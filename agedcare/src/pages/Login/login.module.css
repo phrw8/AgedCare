@@ -1,0 +1,148 @@
+
+.containerContent{
+        height: 100vh;
+        width: 100%;
+        background-image: url(../../assets/bannerLogin.png);
+        background-repeat: no-repeat;
+        background-attachment:fixed;
+        background-position: center;
+        background-size: cover;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+}
+
+.container{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 2; 
+    position: absolute;
+    
+}
+.filterBlue{
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background: rgb(130,195,255);
+background: linear-gradient(120deg, rgba(130,195,255,0) 44%, rgba(130,195,255,.7) 100%);
+}
+.containerForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 8rem;
+    background-color:transparent;
+    /* backdrop-filter: blur(10px); */
+    padding: 2rem 3rem;
+    border: 2px solid #e2f1ff;
+    box-shadow: 16px 21px 47px 3px rgba(0,0,0,0.42);
+}
+.containerForm h1{
+    font-size: 6rem;
+    color: #fff;
+    font-family: "Inspiration";
+    font-weight: normal;
+    text-shadow: 8px 10px 11px rgba(0,0,0,0.44);
+
+}
+
+.referance{
+    position: relative;
+    margin-top: 8rem;
+    margin-left: 8rem;
+}
+.referance h2{
+    position: absolute;
+    color: rgb(255, 255, 255) ;
+    width: 300px;
+    font-size: 2.5rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    transition: all ease .5s;
+}
+.referance h2:hover{
+    transform: scale(.92);
+}
+.circleBlush{
+    position: absolute;
+    z-index: 0;
+    width: 150px;
+    height: 100px;
+    border-radius: 100%;
+    background-color: #fff;
+    opacity: .3;
+    box-shadow: 0px 0px 130px 162px rgba(255,255,255,1);
+    margin-top: 4rem;
+}
+.bold{
+    font-weight: 500;
+}
+@media (max-width:1100px){
+    .containerForm{
+        /* backdrop-filter: blur(3px); */
+        background-color: rgba(0, 0, 0, .3);
+
+    }
+}
+@media (max-width:950px){
+    .referance{
+        margin-left: 4rem;
+    }
+    .containerForm{
+        margin-right: 4rem;
+
+    }
+}
+@media (max-width:820px){
+    .referance h2{
+        display: none;
+    }
+    .container{
+        justify-content: center;
+    }
+    .containerContent{
+        background-attachment:fixed;
+        background-position: initial;
+    }
+}
+@media (max-width:550px){
+    .slogam{
+        display: none;
+    }
+    .containerForm{
+        margin: 0 2rem;
+    }
+    .containerForm h1{
+        font-size: 4rem;
+    
+    }
+    .containerContent{
+        background-position: left;
+    }
+
+}
+@media (max-width:410px){
+    .slogam{
+        display: none;
+    }
+    .containerForm{
+        width: 100%;
+        margin: 0;
+        padding: 2rem 1rem;
+    }
+    .containerForm h1{
+        font-size: 4rem;
+    
+    }
+    .containerForm .subTitle{
+        font-size: 1.2rem;
+    
+    }
+
+}
+

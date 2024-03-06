@@ -1,0 +1,145 @@
+.app{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.whiteBg{
+    height: 100vh;
+    width: 50%;
+    background-color: #fff;
+}
+.blueBg{
+    height: 100vh;
+    width: 50%;
+    background-color: #82C3FF;
+}
+.filterBlueBg{
+    height: 100vh;
+    width: 100%;
+    background: rgb(31,144,248);
+background: linear-gradient(173deg, rgba(31,144,248,0) 16%, rgba(31,144,248,1) 100%);
+}
+.contentContainer{
+    position: absolute;
+    background: #000;
+    width: 80%;
+    height: 70vh;
+    display: flex;
+    margin-left: 2rem;
+    background-color: transparent;
+    box-shadow: 10px 10px 33px 0px rgba(0,0,0,0.56);
+}
+.logoContainer,
+.formContainer{
+    width: 50%;
+
+}
+.logoContainer{
+    background: #82C3FF;
+    position: relative;
+    background-image: url("../../assets/bgNewUser.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.filterImg{
+    position: absolute;
+    height: 70vh;
+    width: 100%;
+    background: rgb(16,15,15);
+    background: linear-gradient(342deg, rgba(16,15,15,0.34) 34%, rgba(130,195,255,0.34) 100%);
+    z-index: 1;
+}
+.logoContainer h1{
+    position: absolute;
+    z-index: 2;
+    color: #fff;
+    font-family: "Inspiration";
+    font-weight: normal;
+    font-size: 5rem;
+    text-shadow: 4px 4px 5px rgba(0,0,0,0.56);
+}
+.formContainer{
+    background-color: #fff;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    padding: 1.5rem;
+}
+@media (max-width:1080px){
+    .logoContainer{
+        width: 40%;
+        background: transparent;
+        background-image:none;
+    
+    }
+    .whiteBg{
+        background-image: url("../../assets/bgNewUser.jpg");
+        background-position: right center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .formContainer{
+        width: 60%;
+    }
+
+}
+@media (max-width:920px){
+    .logoContainer h1{
+        padding: 1rem;
+        font-size: 4rem;
+    }
+}
+@media (max-width:820px){
+    .contentContainer{
+        flex-direction: column;
+        margin: 0;
+        height: 85vh;
+
+    }
+    .logoContainer{
+        background-color: rgba(0, 0, 0, 0.3);
+        width: 100%;
+        height: 15vh;
+        padding: 1rem;
+    }
+    .logoContainer h1{
+        font-size: 3rem;
+    }
+    .filterImg{
+        display: none;
+    }
+    .formContainer{
+        width: 100%;
+        height: 70vh;
+        padding: .5rem 1rem;
+    }
+}
+@media (max-width:630px){
+    .whiteBg{
+        width: 100%;
+    }
+    .blueBg{
+        width: 0;
+    }
+    .formContainer{
+        width: 100%;
+
+    }
+}
+@media (max-width:550px){
+    .formContainer{
+        height: 75vh;
+    }
+}
+@media (max-width:420px){
+    .contentContainer{
+        width: 90% ;
+    }
+}

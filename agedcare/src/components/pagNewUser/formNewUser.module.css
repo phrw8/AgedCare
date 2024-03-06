@@ -1,0 +1,144 @@
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    gap: 1.2rem;
+    width: 100%;
+}
+.form h3{
+    color: #012F59;
+    font-size: 1.4rem;
+}
+.inputGroup{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    position: relative;
+
+}
+.form input{
+    width: 100%;
+    font-size: 1rem;
+    padding: .6rem 1rem;
+    /* border-radius: 1rem; */
+    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.56);
+    font-weight: 500;
+    color: #012F59;
+    outline: none;
+
+}
+.placeholder{
+    color: #012F59;
+    position: absolute;
+    top: .5rem;
+    left: .6rem;
+    opacity: .7;
+    transition: .3s;
+    pointer-events: none;
+    background-color: #fff;
+}
+.form input:focus + .placeholder{
+    top: -.9rem;
+    opacity: .8;
+
+}
+.input.hasValue + .placeholder {
+    top: -.9rem;
+    opacity: .8;
+}
+.form button{
+    background-color: #012F59;
+    color: #fff;
+    padding: .5rem 3rem ;
+    border-radius: .5rem;
+    font-size: 1rem;
+}
+.form button:hover{
+    background-color: #fff;
+    color: #012F59;
+    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.56);
+    cursor: pointer;
+    font-weight: 600;
+
+}
+.passwords{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+.radioTec {
+    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.56);
+    padding: .4rem 1rem;
+    /* border-radius: 1rem; */
+    font-weight: 500;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    gap: .5rem;
+}
+.radioTec label{
+    color: #012F59;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+.radioTec input{
+    box-shadow: none;
+    width: 20px;
+    height: 20px;
+}
+@media (max-width:1080px){
+    .radioTec {
+        font-size: 1rem;
+    }
+
+}
+@media (max-width:950px){
+    .passwords{
+        font-size: .9rem;
+    }
+
+}
+@media (max-height:640px){
+    .radioTec {
+        font-size: 1rem;
+    }
+    .passwords{
+        flex-direction: row;
+
+    }
+    .passwords input{
+        font-size: .9rem;
+    }
+
+}
+@media (max-width:550px){
+    .passwords{
+        flex-direction: column;
+
+    }
+    .form h3{
+     font-size: 1.2rem;
+    }
+}
+@media (max-width:420px){
+    .radioTec label{
+        gap: .5rem;
+    }
+}
+@media (max-width:330px){
+    .placeholder{
+        font-size: .9rem;
+    }
+    .radioTec label{
+        font-size: .9rem;
+    }
+}
+
+
+
+

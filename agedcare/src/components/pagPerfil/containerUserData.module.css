@@ -1,0 +1,91 @@
+.containerDataUser{
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    border: 1px solid #012F59;
+    border-radius: 1rem;
+    box-shadow: -9px 10px 8px 0px rgba(0,0,0,0.25);
+    gap: 1rem;
+}
+.name{
+    color: #012F59;
+    font-size: 2rem;
+    font-weight: 500;
+    outline: none;
+    background: transparent ;
+    width: 70%;
+}
+.inpGroupText{
+    color: #012F59;
+    font-size: 1.2rem;
+}
+.inpGroupText input{
+    color: #012F59;
+    outline: none;
+    background: transparent;
+    padding: 0 1rem;
+    font-size: 1.2rem;
+}
+.inpGroup{
+    position: relative;
+    color: #012F59;
+    width: 33%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.inpGroup label{
+    position: absolute;
+    pointer-events: none;
+    
+}
+.inpGroup input[type="radio"]{
+    all: unset;
+  /* Adicione qualquer estilo adicional ou redefinições necessárias aqui */
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #012F59;
+    border-radius: .5rem;
+    background-color: #fff;
+    cursor: pointer;
+
+    
+}
+.inpGroup input[type="radio"]:checked {
+    /* Estilos para elementos de entrada do tipo rádio que estão marcados */
+    background-color: #82C3FF   ;
+  }
+  .inpGroup input[type="radio"]:checked + label {
+    color: #fff;
+}
+.opcoesSexo{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 1rem;
+
+}
+.estadoCivil{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 1rem;
+
+}
+.nameGroup{
+    display: flex;
+    justify-content: space-between;
+}
+.settings{
+    font-size: 2rem;
+    color: #012F59;
+    cursor: pointer;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none; /* Remove as setas do navegador Chrome */
+  appearance: none; /* Remove as setas de outros navegadores */
+  margin: 0; /* Garante que não haja espaço extra onde as setas costumavam estar */
+}   

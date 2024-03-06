@@ -1,0 +1,21 @@
+.ul{
+    width: 100%;
+    display: flex;
+    flex-direction:column;
+    gap: 2rem;
+}
+.ul .li{
+    border: 1px solid #fff;
+    padding: .5rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+    cursor: pointer;
+    color: #fff;
+}
+.ul .li:hover{
+    border: 1px solid #012F59;
+    background-color: rgba(255, 255, 255,.7);
+    color: #012F59;
+}

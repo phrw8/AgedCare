@@ -1,0 +1,25 @@
+.navBar {
+    position: fixed;
+    width: 19%;
+    height: 100vh;
+    background: rgb(130, 195, 255);
+    /* background: linear-gradient(0deg, rgba(130, 195, 255,0.4) 0%, rgba(130, 195, 255, 1) 100%); */
+    padding: 1rem;
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+}
+.navBarContainer{
+    height: auto;
+}
+.toggleHeader {
+    font-size: 2.5rem;
+}
+
+.toggleBtn {
+    cursor: pointer;
+}
+
+.desactive {
+    width: 6%;
+}

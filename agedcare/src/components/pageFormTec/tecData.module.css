@@ -1,0 +1,77 @@
+.content{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.row1,
+.row2,
+.row3{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.selectInp{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.placeholder{
+    color: rgba(1, 47, 89, .8);
+    font-size: 1rem;
+}
+.selectInp select {
+    appearance: none;
+    padding: .5rem ;
+    outline: none;
+    border: 1px solid  rgba(1, 47, 89, .4);
+    color: rgba(1, 47, 89, 1);
+    width: 100%;
+}
+.selectInp select option {
+    appearance: none;
+    background: rgba(0, 0, 0, 0.3);
+    background-color: #fff;
+    color: rgba(1, 47, 89, .8);
+    border-radius: 0;
+    padding: .5rem 0;
+  }
+  .rgInfo{
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+
+  }
+  .title{
+    color: rgba(0, 18, 34,.7);
+    font-weight: 400;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    text-align: center;
+    border-bottom:1px solid #ccc ;
+    padding-bottom: .5rem;
+}
+@media (max-width:1100px){
+.row2,
+.row3{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-direction: column;
+}
+}
+@media (max-width:640px){
+    .row1{
+        width: 100%;
+        flex-direction: column;
+        gap: 2rem;
+    }
+}
+@media (max-width:400px){
+    .rgInfo{
+        flex-direction: column;
+        gap: 2rem;
+    
+      }
+}

@@ -1,0 +1,33 @@
+.containerImagePerifl {
+    width: 100%;
+    height: 40vh;
+    padding: 1rem;
+    border: 1px solid #012F59;
+    border-radius: 1rem;
+    background: rgb(130,195,255);
+background: linear-gradient(176deg, rgba(130,195,255,0.16430322128851538) 50%, rgba(130,195,255,1) 94%);
+
+}
+
+.icon {
+    position: absolute;
+    color: #012F59;
+    top: .5rem;
+    right: 1rem;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.image img {
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    object-fit: cover;
+
+}

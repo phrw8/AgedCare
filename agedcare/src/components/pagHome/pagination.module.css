@@ -1,0 +1,46 @@
+.content{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+.btn{
+    padding: .5rem 1rem;
+    border-radius: .5rem;
+    background-color: #012F59;
+    color: #fff;
+    cursor: pointer;
+}
+.btn:hover{
+    background-color: #fff;
+    color: #012F59;
+    border: 1px solid rgb(1, 47, 89);
+
+}
+.pagination{
+    display: flex;
+    list-style: none;
+    gap: 1rem;
+}
+
+.btnSkip{
+    padding: .5rem 1rem;
+    background-color: #fff;
+    color: #012F59;
+    border: 1px solid #012F59;
+    border-radius: .5rem;
+    cursor: pointer;
+
+}
+
+.btnSkip:hover{
+    background-color: #012F59;
+    color: #fff;
+    border: 1px solid #012F59;
+
+
+}
+.active{
+    background-color: #012F59;
+    color: #fff;
+    border: 1px solid #012F59;
+}
