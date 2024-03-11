@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './tecnicos.module.css'
+import styles from './tecnicoPerfil.module.css'
 import img from './../../assets/MariaAparecida.png'
 
 const index = () => {

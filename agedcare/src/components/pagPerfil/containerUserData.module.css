@@ -1,8 +1,8 @@
 .containerDataUser{
-    padding: 2.5rem;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 100%;
     border: 1px solid #012F59;
     border-radius: 1rem;
     box-shadow: -9px 10px 8px 0px rgba(0,0,0,0.25);
@@ -89,3 +89,9 @@ input[type="number"]::-webkit-outer-spin-button {
   appearance: none; /* Remove as setas de outros navegadores */
   margin: 0; /* Garante que não haja espaço extra onde as setas costumavam estar */
 }   
+
+@media (max-width:600px){
+    .containerDataUser{
+        margin-bottom: 4rem;
+    }
+}

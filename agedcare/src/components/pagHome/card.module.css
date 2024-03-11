@@ -8,6 +8,11 @@
     flex-direction: column;
     gap: 1rem;
     border: 1px solid #82c3ff;
+    cursor: pointer;
+}
+.link{
+    text-decoration: none;
+    color: inherit;
 }
 .name{
     font-weight: 600;
@@ -41,4 +46,12 @@
     gap: .5rem;
     font-weight: 500;
 
+}
+@media (max-width:630px){
+    .card{
+        width: 100%;
+    }
+    .link{
+        width: 100%;
+    }
 }

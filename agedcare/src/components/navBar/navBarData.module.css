@@ -1,10 +1,11 @@
-.ul{
+.ul {
     width: 100%;
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     gap: 2rem;
 }
-.ul .li{
+
+.ul .li {
     border: 1px solid #fff;
     padding: .5rem 1rem;
     display: flex;
@@ -14,8 +15,36 @@
     cursor: pointer;
     color: #fff;
 }
-.ul .li:hover{
+
+.ul .li:hover {
     border: 1px solid #012F59;
-    background-color: rgba(255, 255, 255,.7);
+    background-color: rgba(255, 255, 255, .7);
     color: #012F59;
+}
+.content{
+    width: 100%;
+}
+
+@media (max-width:760px) {
+    .ul {
+        width: 100%;
+        flex-direction: row;
+        gap: 0;
+        justify-content: space-around;
+    }
+
+    .ul .li {
+        border: none;
+        padding: 0;
+        flex-direction: column;
+        gap: .2rem;
+        color: #012F59;
+        font-size: .8rem;
+        font-weight: 600;
+        width: 20%;
+    }
+    .icon{
+        font-size: 2.5rem;
+    }
+
 }

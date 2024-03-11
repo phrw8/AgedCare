@@ -1,7 +1,8 @@
 import React from 'react'
 import styles from './card.module.css'
+import { Link } from 'react-router-dom';
+export const Card = ({ name, age, cidade, locais, periodo, img, id}) => {
 
-export const Card = ({ name, age, cidade, locais, periodo, img }) => {
     // if (!locais) {
     //     return null; // Ou qualquer comportamento que você deseje caso 'locais' seja inválido
     // }
@@ -47,7 +48,9 @@ export const Card = ({ name, age, cidade, locais, periodo, img }) => {
 
 
     return (
-        <div className={styles.card}>
+        <Link to="/TecnicoInfo" state={{ id: id }} className={styles.link} >
+        <div className={styles.card}> 
+             
             <div className={styles.imgPerfil}></div>
             <h4 className={styles.name}>{name}</h4>
             <h5 className={styles.personalInfo}>{calcularIdade(age)}, {cidade}</h5>
@@ -61,6 +64,8 @@ export const Card = ({ name, age, cidade, locais, periodo, img }) => {
             </ul>
 
             <h5>{periodo}</h5>
+            
         </div>
+        </Link>
     );
 };

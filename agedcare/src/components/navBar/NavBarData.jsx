@@ -13,23 +13,23 @@ const NavBarData = () => {
           <ul className={styles.ul}>
 
             <Link to='/Home' className={styles.li}>
-              <FaHome />
+              <FaHome className={styles.icon}/>
               <span>Home</span>
             </Link>
             <Link to='/Perfil' className={styles.li}>
-              <FaRegUserCircle />
+              <FaRegUserCircle className={styles.icon} />
               <span>Perfil</span>
             </Link>
             <Link to='/Buscar' className={styles.li}>
-            <IoMdSearch />
+            <IoMdSearch className={styles.icon} />
               <span>Buscar</span>
             </Link>
-            <Link to='/Tecnicos' className={styles.li}>
-            <TbNurse />
+            <Link to='/PerfilTecnico' className={styles.li}>
+            <TbNurse className={styles.icon} />
               <span>Técnicos</span>
             </Link>
             <Link to='/Configs' className={styles.li}>
-            <IoSettingsOutline />
+            <IoSettingsOutline className={styles.icon} />
               <span>Configurações</span>
             </Link> 
 

@@ -21,7 +21,7 @@ const footer = () => {
             </div>
         </div>
 
-        <div className={styles.containerLogs}>
+        {/* <div className={styles.containerLogs}>
           <Link to='/Login'>
             <div className={styles.login}>
               <FaUser />
@@ -34,7 +34,7 @@ const footer = () => {
               <p>Cadastrar-se</p>
             </div>
           </Link>
-        </div>
+        </div> */}
       </div>
     </footer>
     </>

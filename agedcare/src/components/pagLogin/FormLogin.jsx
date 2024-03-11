@@ -50,7 +50,7 @@ const FormLogin = () => {
         const pass = user.password;
 
         // manda para a local storage pra acessar os dados do usuario
-      localStorage.setItem('userName', user.userName);
+      localStorage.setItem('id', user.id);
 
         if (pass !== password) {
           setPassWrong(true)

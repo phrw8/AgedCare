@@ -1,0 +1,70 @@
+.app {
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+
+.aside {
+    width: 20%;
+    height: auto;
+    z-index: 2;
+}
+
+.asideClose {
+    width: 8%;
+    height: auto;
+    z-index: 2;
+}
+.contentSmaller{
+    display: flex;
+    flex-direction: column;
+    width:80%;
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    width: 92%;
+
+}
+
+@media (max-width:830px) {
+    .asideClose {
+        width: 12%;
+    }
+    .content {
+        width: 88%;
+    
+    }
+    .aside {
+        width: 25%;
+    }
+    .contentSmaller{
+        width:75%;
+    }
+}
+
+@media (max-width:760px) {
+    .content{
+        width: 100%;
+    }
+    .contentSmaller{
+        width:100%;
+    }
+    .aside {
+        width: 100%;
+        height: auto;
+        position: fixed;
+        bottom: 0;
+        border: 1px solid #000;
+        z-index: 2;
+
+    }
+    .asideClose {
+        width: 100%;
+        height: auto;
+        position: fixed;
+        bottom: 0;
+        border: 1px solid #000;
+        z-index: 2;
+    }
+}

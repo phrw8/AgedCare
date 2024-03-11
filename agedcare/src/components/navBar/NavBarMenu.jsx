@@ -9,8 +9,8 @@ const NavBarMenu = ({active,setActive}) => {
   return (
     <div className={styles.navBarContainer}>
     <div className={active ? styles.navBar : `${styles.navBar} ${styles.desactive}` }>
-      <div className={styles.header}>
-        <div className={styles.toggleHeader}>
+      <div className={active ? styles.navBar : `${styles.navBar} ${styles.desactive}` }>
+        <div className={active ? styles.toggleHeader : styles.toggleHeaderClose}>
           <RxHamburgerMenu onClick={()=>setActive(!active)} className={styles.toggleBtn}/>
         </div>
         {active ? <NavBarData/> : null}

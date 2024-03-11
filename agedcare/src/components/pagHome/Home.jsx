@@ -62,14 +62,14 @@ export const Home = () => {
                 {cidadeData.length > 0 && cuidadoresData.length > 0 && (
                     <div className={styles.content}>
                         {cidadeData.map(user => (
-                            <Card key={user.id} name={user.name} img={user.perfil} age={user.birthday} cidade={user.cidade} locais={user.locaisAptos} />
+                            <Card key={user.id} name={user.name} img={user.perfil} age={user.birthday} cidade={user.cidade} locais={user.locaisAptos} id={user.id}/>
                         ))}
                     </div>
                 )}
                 {cidadeData.length === 0 && cuidadoresData.length > 0 && (
                     <div className={styles.content}>
                         {cuidadoresData.map(user => (
-                            <Card key={user.id} name={user.name} img={user.perfil} age={user.birthday} cidade={user.cidade} locais={user.locaisAptos} />
+                            <Card key={user.id} name={user.name} img={user.perfil} age={user.birthday} cidade={user.cidade} locais={user.locaisAptos} id={user.id}/>
                         ))}
                     </div>
                 )}

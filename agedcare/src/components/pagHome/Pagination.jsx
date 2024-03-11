@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './pagination.module.css'
 
-const maxItens = 9;
+const maxItens = 5;
 const maxLeft = (maxItens - 1) / 2;
 
 export const Pagination = ({ limit, total, skip, setSkip, data }) => {

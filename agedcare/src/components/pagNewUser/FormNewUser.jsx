@@ -23,6 +23,20 @@ const FormNewUser = () => {
       password,
       email,
       tecnico,
+      name:userName,
+      cep:"",
+      celular:"",
+      civilState: {
+        casado: false,
+        solteiro: false,
+        viuvo: false,
+      },
+      sexo: {
+        masculino: false,
+        feminino: false,
+        outras: false,
+      },
+      birthday:""
     };
 
     try {

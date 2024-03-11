@@ -12,11 +12,11 @@ export const TecPreference = ({updateData,data}) => {
         <div className={styles.inpGroup}>
           <label className={styles.titleLabel}>Qual sua disponibilidade? </label>
           <div className={styles.inputCheckGroup}>
-            <Checkbox value={data.disponibilidade.manha} label="Manhã" onChange={()=>updateData("disponibilidade.manha", !data.disponibilidade.manha)} />
-            <Checkbox label="Tarde" value={data.disponibilidade.tarde} onChange={()=>updateData("disponibilidade.tarde", !data.disponibilidade.tarde)}/>
-            <Checkbox label="Noite" value={data.disponibilidade.noite} onChange={()=>updateData("disponibilidade.noite", !data.disponibilidade.noite)}/>
+            <Checkbox value={data.disponibilidade.Manha} label="Manhã" onChange={()=>updateData("disponibilidade.Manha", !data.disponibilidade.Manha)} />
+            <Checkbox label="Tarde" value={data.disponibilidade.Tarde} onChange={()=>updateData("disponibilidade.Tarde", !data.disponibilidade.Tarde)}/>
+            <Checkbox label="Noite" value={data.disponibilidade.Noite} onChange={()=>updateData("disponibilidade.Noite", !data.disponibilidade.Noite)}/>
             <Checkbox label="Pernoite" value={data.disponibilidade.pernoite} onChange={()=>updateData("disponibilidade.pernoite", !data.disponibilidade.pernoite)}/>
-            <Checkbox label="Fim de semana" dado="fds" value={data.disponibilidade.fds} onChange={()=>updateData("disponibilidade.fds", !data.disponibilidade.fds)}/>
+            <Checkbox label="Fim de semana" dado="fds" value={data.disponibilidade.Fds} onChange={()=>updateData("disponibilidade.Fds", !data.disponibilidade.Fds)}/>
           </div>
         </div>
         </div>
@@ -24,10 +24,9 @@ export const TecPreference = ({updateData,data}) => {
         <div className={styles.inpGroup}>
           <label className={styles.titleLabel}>Quais locais você possui apdidão para trabalhar? </label>
           <div className={styles.inputCheckGroup}>
-            <Checkbox label="Domícilio" value={data.locaisAptos.domicilio} onChange={()=>updateData("locaisAptos.domicilio", !data.locaisAptos.domicilio)}/>
-            <Checkbox label="Hospital" value={data.locaisAptos.hospital} onChange={()=>updateData("locaisAptos.hospital", !data.locaisAptos.hospital)} />
-            <Checkbox label="Clínica" value={data.locaisAptos.clinica} onChange={()=>updateData("locaisAptos.clinica", !data.locaisAptos.clinica)}/>
-            <Checkbox label="Asilo" value={data.locaisAptos.asilo} onChange={()=>updateData("locaisAptos.asilo", !data.locaisAptos.asilo)} />
+            <Checkbox label="Domicílio" value={data.locaisAptos.Domicílio} onChange={()=>updateData("locaisAptos.Domicílio", !data.locaisAptos.Domicílio)}/>
+            <Checkbox label="Hospital" value={data.locaisAptos.Hospital} onChange={()=>updateData("locaisAptos.Hospital", !data.locaisAptos.Hospital)} />
+            <Checkbox label="Asilo" value={data.locaisAptos.Asilo} onChange={()=>updateData("locaisAptos.Asilo", !data.locaisAptos.Asilo)} />
           </div>
         </div>
         </div>

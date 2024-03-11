@@ -1,28 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect} from 'react'
 import styles from './perfil.module.css'
-
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
-import NavBarMenu from '../../components/navBar/NavBarMenu'
 import { Perfil } from '../../components/pagPerfil/Perfil'
+import Pages from '../../components/Pages'
+import { useLocation } from 'react-router-dom';
 
 const index = () => {
-    const [active, setActive] = useState(false)
-    return (
+    const { state} = useLocation();
+    const id = state ? state.id : null
+    return(
         <>
-            <div className={styles.app}>
-                <div className={active ? styles.aside : styles.asideClose}>
-                    <NavBarMenu active={active} setActive={setActive} />
-
-                </div>
-                <div className={styles.content}>
-                    <Header />
-                    <Perfil/>
-                    <Footer />
-                </div>
-
-            </div>
+        <Pages component={Perfil} id={id} />
         </>
+
     )
 }
 

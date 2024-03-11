@@ -9,7 +9,8 @@ import NewUser from './pages/NewUser/index.jsx';
 import Home from './pages/Home/index.jsx';
 import Buscar from './pages/Buscar/index.jsx';
 import Perfil from './pages/Perfil/index.jsx';
-import Tecnicos from './pages/Tecnicos/index.jsx';
+import TecnicoInfo from './pages/TecnicoInfo/index.jsx';
+import PerfilTec from './pages/PerfilTec/index.jsx';
 import FormTec from './pages/FormTec/index.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -21,8 +22,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/NewUser" element={<NewUser />} />
         <Route path="/Home" element={<Home />} />
         <Route path="/Perfil" element={<Perfil />} />
-        <Route path="/Tecnicos" element={<Tecnicos />} />
+        <Route path="/TecnicoInfo" element={<TecnicoInfo />} />
         <Route path="/Buscar" element={<Buscar />} />
+        <Route path="/PerfilTec" element={<PerfilTec />} />
         <Route path="/FormTec" element={<FormTec />} />
       </Routes>
     </BrowserRouter>
