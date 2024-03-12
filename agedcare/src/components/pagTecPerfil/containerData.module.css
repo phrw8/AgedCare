@@ -1,0 +1,48 @@
+.app{
+    width: 60%;
+    border-radius: 2rem;
+    padding: 2rem 3rem 0 3rem;
+    background-color: #fff;
+}
+
+.row1,
+.row2,
+.row3{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    flex-wrap: wrap;
+}
+.row3{
+    margin-top: 4rem;
+    justify-content: space-around;
+}
+.birthday{
+    color: #012F59;
+    font-weight: 500;
+    font-size: 1.6rem;
+}
+.h3foggy{
+    color: rgba(1, 47, 89,.7);
+    font-weight: 500;
+    font-size: 1.5rem;
+}
+.title{
+    color: rgba(1, 47, 89,.6);
+    font-size:  1.6rem;
+    font-weight: 500;
+
+}
+.name{
+    color: #012F59;
+    font-size: 2rem;
+    font-weight: 500;
+}
+.divisoria{
+    background-color: #ccc;
+    width: 1px;
+    height: 50px;
+    margin-bottom: 1rem;
+}

@@ -1,29 +1,18 @@
-import React from 'react'
+import React, { useEffect, useState} from 'react'
 import styles from './tecnicoPerfil.module.css'
-import img from './../../assets/MariaAparecida.png'
+import Pages from '../../components/Pages'
+import { useLocation } from 'react-router-dom';
+import ContainerContent from '../../components/pagTecPerfil/ContainerContent';
 
-const index = () => {
-  return (
-    <>
-    <div className={styles.app}>
-        <img src={img}/>
-        <div className={styles.container}>
-            <div className={styles.slogam}>
-                <div className={styles.referance}>
-                    <h2>Seu <span>cuidado</span> em primeiro lugar</h2>
-                </div>
-            </div>
-            <div className={styles.containerForm}>
-                <h1>Aged Care</h1>
-                <h5>Entre na sua conta</h5>
-                <form >
-                </form>
+const index = (props) => {
+    const { state} = useLocation();
+    const id = state ? state.id : null
+    return(
+        <>
+        <Pages component={ContainerContent} id={id} />
+        </>
 
-            </div>
-        </div>
-    </div>
-    </>
-  )
-}
+    )
+} 
 
 export default index
