@@ -6,7 +6,6 @@ import { FaWhatsapp } from "react-icons/fa";
 import { IoMdStar } from "react-icons/io";
 
 import { IconContext } from 'react-icons';
-import { FaCoffee, FaShoppingBag, FaUniversity } from 'react-icons/fa';
 
 import { RiHospitalLine } from "react-icons/ri";
 import { IoHomeOutline } from "react-icons/io5";
@@ -77,12 +76,12 @@ export const ContainerData = ({ data }) => {
                                 <IoMdStar className={styles.start} />
                             </div>
                             <div className={styles.avaliacao2}>
-                            <div className={styles.numeroAvalicao}>
-                                <p className={styles.avNum}>5,0/5,0</p>
-                            </div>
-                            <div className={styles.quantidadeAvaliacoes}>
-                                <p className={styles.avLengh}>1.352 avaliações </p>
-                            </div>
+                                <div className={styles.numeroAvalicao}>
+                                    <p className={styles.avNum}>5,0/5,0</p>
+                                </div>
+                                <div className={styles.quantidadeAvaliacoes}>
+                                    <p className={styles.avLengh}>1.352 avaliações </p>
+                                </div>
                             </div>
                         </div>
                         <div className={styles.personalContainer}>

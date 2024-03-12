@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from "./containerData.module.css"
 
-const ContainerData = () => {
+const ContainerData = ({data}) => {
   return (
     <>
       <div className={styles.app}>
@@ -10,10 +10,10 @@ const ContainerData = () => {
         </div>
         <div className={styles.row2}>
           <div className={styles.row11}>
-            <h3 className={styles.name}>Amanda da Rosa Wernke</h3>
-            <h3 className={styles.h3foggy}>123 456 789 00</h3>
+            <h3 className={styles.name}>{data ? data.name : "error"}</h3>
+            <h3 className={styles.h3foggy}>{data ? data.cpf : "error"}</h3>
           </div>
-          <h3 className={styles.birthday}>31/05/1995</h3>
+          <h3 className={styles.birthday}>{data ? data.birthday : "error"}</h3>
 
         </div>
         <div className={styles.row3}>
