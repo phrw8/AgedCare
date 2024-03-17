@@ -14,8 +14,12 @@ import { PiSunDimLight } from "react-icons/pi";
 import { PiMoonDuotone } from "react-icons/pi";
 import { PiMoonFill } from "react-icons/pi";
 import { SlEyeglass } from "react-icons/sl";
+import  ComentarioForm  from './avaliacao/ComentarioForm';
+import { Comentarios } from './avaliacao/Comentarios';
 
 export const ContainerData = ({ data }) => {
+    const tecId=data ? data.id : ""
+    const currentUserId=localStorage.getItem("id")
     const numeroTelefone = data ? data.celular : null;
     const mensagem = 'Olá, venho da AgedCare!';
     const mensagemCodificada = encodeURIComponent(mensagem);
@@ -59,6 +63,7 @@ export const ContainerData = ({ data }) => {
         'pernoite': PiMoonFill,
         'fds': PiSunHorizon,
     };
+    console.log(tecId)
     return (
         <>
             <div className={styles.app}>
@@ -136,6 +141,10 @@ export const ContainerData = ({ data }) => {
                         <p>{data ? data.comentario : 0}</p>
                     </div>
                 </div>
+                <div className={styles.row2Container}>
+                    <Comentarios currentUserId={currentUserId} tecId={tecId}/>
+                </div>
+
 
 
             </div>

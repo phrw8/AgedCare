@@ -46,7 +46,7 @@
       "identidade": "",
       "perfil": "",
       "km": "10",
-      "comentario":"Olá, sou Amanda, uma apaixonada por cuidar daqueles que construíram histórias e deixaram um legado para nós. Com 32 anos de idade e formação técnica em enfermagem, dediquei minha carreira ao cuidado e bem-estar dos idosos. Compreendo profundamente a importância de proporcionar um ambiente seguro, acolhedor e respeitoso para nossos idosos. Cada indivíduo tem uma história única e preciosas lições para compartilhar, e é uma honra poder fazer parte desse capítulo de suas vidas. Minha abordagem é baseada no respeito, na empatia e na compaixão. Busco sempre ouvir atentamente suas necessidades, compreender suas preferências e oferecer um cuidado personalizado e de qualidade. Além de fornecer assistência prática e cuidados médicos, estou aqui para ser uma companheira, uma amiga e uma fonte de conforto. Estou comprometida em criar um ambiente que promova a saúde, a felicidade e a dignidade de cada indivíduo sob meus cuidados.Se você procura um profissional dedicado, atencioso e compassivo para cuidar de um ente querido, estou aqui para ajudar. Vamos juntos proporcionar o melhor cuidado possível aos nossos idosos, celebrando cada momento e honrando sua jornada de vida."
+      "comentario": "Olá, sou Amanda, uma apaixonada por cuidar daqueles que construíram histórias e deixaram um legado para nós. Com 32 anos de idade e formação técnica em enfermagem, dediquei minha carreira ao cuidado e bem-estar dos idosos. Compreendo profundamente a importância de proporcionar um ambiente seguro, acolhedor e respeitoso para nossos idosos. Cada indivíduo tem uma história única e preciosas lições para compartilhar, e é uma honra poder fazer parte desse capítulo de suas vidas. Minha abordagem é baseada no respeito, na empatia e na compaixão. Busco sempre ouvir atentamente suas necessidades, compreender suas preferências e oferecer um cuidado personalizado e de qualidade. Além de fornecer assistência prática e cuidados médicos, estou aqui para ser uma companheira, uma amiga e uma fonte de conforto. Estou comprometida em criar um ambiente que promova a saúde, a felicidade e a dignidade de cada indivíduo sob meus cuidados.Se você procura um profissional dedicado, atencioso e compassivo para cuidar de um ente querido, estou aqui para ajudar. Vamos juntos proporcionar o melhor cuidado possível aos nossos idosos, celebrando cada momento e honrando sua jornada de vida."
     },
     {
       "id": "77f5",
@@ -54,20 +54,20 @@
       "password": "123",
       "email": "12312@df21",
       "tecnico": false,
-      "name": "Paulo Henrique",
+      "name": "Paulo Henrique123",
       "cep": "88965000",
       "celular": "48999665544",
       "civilState": {
-        "casado": true,
+        "casado": false,
         "solteiro": false,
         "viuvo": false
       },
       "sexo": {
-        "feminino": true,
         "masculino": false,
+        "feminino": false,
         "outras": false
       },
-      "birthday": "1956-09-12"
+      "birthday": "1956-09-07"
     },
     {
       "id": "fbf0",
@@ -100,12 +100,10 @@
         "tarde": false
       },
       "locaisAptos": {
-        "Domicilio": false,
-        "Hospital": false,
-        "Clinica": false,
-        "Asilo": false,
+        "Domicilio": true,
         "Hospital": true,
-        "Domicilio": true
+        "Clinica": false,
+        "Asilo": false
       },
       "distancia": "",
       "certificadoProfissional": "",

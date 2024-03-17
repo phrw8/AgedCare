@@ -1,0 +1,13 @@
+.rating {
+    display: inline-block;
+  }
+  
+  .rating input[type=radio]{
+    display: none;
+  }
+  .star{
+    cursor: pointer;
+    font-size: 2rem;
+  }
+  
+    
