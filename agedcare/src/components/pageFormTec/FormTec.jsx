@@ -58,7 +58,8 @@ const FormTec = ({ screen, setScreen }) => {
         certificadoProfissional: "",
         identidade: "",
         perfil: "",
-        comentario:""
+        comentario:"",
+        avaliacao:""
     };
 
     const [data, setData] = useState(formData);

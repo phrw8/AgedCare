@@ -2,6 +2,8 @@ import React from 'react'
 import styles from './card.module.css'
 import { IoMdStar } from "react-icons/io";
 
+import {ShowRating} from './../pagTecnicoInfo/avaliacao/ShowRating'
+
 const Card = ({data}) => {
   return (
     <>
@@ -11,15 +13,9 @@ const Card = ({data}) => {
         <hr className={styles.divisoria}/>
           <h3 className={styles.username}>{`@${data ? data.userName : "error"}`}</h3>
           <div className={styles.avaliacao}>
-                            <div className={styles.stars}>
-                                <IoMdStar className={styles.start} />
-                                <IoMdStar className={styles.start} />
-                                <IoMdStar className={styles.start} />
-                                <IoMdStar className={styles.start} />
-                                <IoMdStar className={styles.start} />
-                            </div>
+                            <ShowRating rating={data ? data.avaliacao : "Nao possui avaliacoes"} title={true}/>
                                 <div className={styles.numeroAvalicao}>
-                                    <p className={styles.avNum}>5,0/5,0</p>
+                                    <p className={styles.avNum}>5,0/{data ? data.avaliacao : "Nao possui avaliacoes"}</p>
                             </div>
                         </div>
       </div>

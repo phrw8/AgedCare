@@ -49,7 +49,7 @@ const ContainerContent = () => {
                         <ContainerPersonal name="Alterar informações de endereço" data={dataUser}/>
                     </div>
                     <div className={styles.row4}>
-                        <ContainerDesc/>
+                        <ContainerDesc data={dataUser}/>
                     </div>
 
                 </div>

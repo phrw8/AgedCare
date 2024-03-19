@@ -5,7 +5,7 @@ export const Rating = ({ avaliacao, setAvaliacao,rating,hover,setHover,setRating
 
     return (
         <>
-            <div class={styles.rating}>
+            <div className={styles.rating}>
                 {[...Array(5)].map((star, index) => {
                     const currentRating = index + 1;
                     return (

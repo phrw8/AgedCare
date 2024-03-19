@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from './containerData.module.css'
 
 import img1 from '../../assets/tecpic.png'
@@ -14,12 +14,14 @@ import { PiSunDimLight } from "react-icons/pi";
 import { PiMoonDuotone } from "react-icons/pi";
 import { PiMoonFill } from "react-icons/pi";
 import { SlEyeglass } from "react-icons/sl";
-import  ComentarioForm  from './avaliacao/ComentarioForm';
+import ComentarioForm from './avaliacao/ComentarioForm';
 import { Comentarios } from './avaliacao/Comentarios';
+import { Rating } from './avaliacao/Rating';
+import { ShowRating } from './avaliacao/ShowRating';
 
 export const ContainerData = ({ data }) => {
-    const tecId=data ? data.id : ""
-    const currentUserId=localStorage.getItem("id")
+    const tecId = data ? data.id : ""
+    const currentUserId = localStorage.getItem("id")
     const numeroTelefone = data ? data.celular : null;
     const mensagem = 'Olá, venho da AgedCare!';
     const mensagemCodificada = encodeURIComponent(mensagem);
@@ -39,6 +41,7 @@ export const ContainerData = ({ data }) => {
         : null;
 
 
+    const [avaliacaoTec, setAvaliacaoTec] = useState()
 
     function calcularIdade(dataNascimento) {
         // Converte a data de nascimento para um objeto Date
@@ -63,7 +66,76 @@ export const ContainerData = ({ data }) => {
         'pernoite': PiMoonFill,
         'fds': PiSunHorizon,
     };
-    console.log(tecId)
+    function calcularMediaAvaliacoes(objeto, nm) {
+        const filhos = Object.keys(objeto);
+        let somaAvaliacoes = 0;
+        let count = 0; // Contador para o número de avaliações não nulas
+
+        filhos.forEach(filho => {
+            const avaliacao = objeto[filho].avaliacao
+            if (avaliacao !== null && avaliacao !== undefined) {
+                console.log(avaliacao)
+                somaAvaliacoes += objeto[filho].avaliacao;
+                count++;
+            }
+        });
+
+        const media = count > 0 ? (somaAvaliacoes / count).toFixed(1) : 'Não possui avaliações';
+        console.log(media)
+        if (nm) {
+            return media;
+        } else {
+            return count
+        }
+
+
+    }
+
+
+    useEffect(() => {
+        const avaliacaoDataTec = async () => {
+            try {
+                const response = await fetch(`http://localhost:3030/avaliacoes/tec/${tecId}`);
+                const data = await response.json();
+                setAvaliacaoTec(data);
+
+            } catch (error) {
+                console.error('Ocorreu um erro ao buscar o número total de itens:', error);
+            }
+        };
+        if (tecId) {
+            avaliacaoDataTec();
+        }
+
+    }, [tecId]);
+    useEffect(() => {
+        const avaliacaoDataTec = async () => {
+            if(tecId && avaliacaoTec){
+                console.log(calcularMediaAvaliacoes(avaliacaoTec,1))
+                try {
+                    const response = await fetch(`http://localhost:3000/users/${tecId}`, {
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            avaliacao: calcularMediaAvaliacoes(avaliacaoTec,1),
+                            
+                        })
+                        
+                    });
+                    } catch (error) {
+                        console.error('Ocorreu um erro ao buscar o número total de itens:', error);
+                    }
+                };
+
+            }
+           
+            if (tecId) {
+                avaliacaoDataTec();
+            }
+        },[tecId,avaliacaoTec ])
+
     return (
         <>
             <div className={styles.app}>
@@ -73,19 +145,13 @@ export const ContainerData = ({ data }) => {
                     </div>
                     <div className={styles.dataContainer}>
                         <div className={styles.avaliacao}>
-                            <div className={styles.stars}>
-                                <IoMdStar className={styles.start} />
-                                <IoMdStar className={styles.start} />
-                                <IoMdStar className={styles.start} />
-                                <IoMdStar className={styles.start} />
-                                <IoMdStar className={styles.start} />
-                            </div>
+                            <ShowRating rating={avaliacaoTec ? calcularMediaAvaliacoes(avaliacaoTec, 1) : "carregando"} title={true} />
                             <div className={styles.avaliacao2}>
                                 <div className={styles.numeroAvalicao}>
-                                    <p className={styles.avNum}>5,0/5,0</p>
+                                    <p className={styles.avNum}>5,0/{avaliacaoTec ? calcularMediaAvaliacoes(avaliacaoTec, 1) : "carregando"}</p>
                                 </div>
                                 <div className={styles.quantidadeAvaliacoes}>
-                                    <p className={styles.avLengh}>1.352 avaliações </p>
+                                    <p className={styles.avLengh}>{avaliacaoTec ? calcularMediaAvaliacoes(avaliacaoTec, 0) : "carregando"} avaliações </p>
                                 </div>
                             </div>
                         </div>
@@ -142,7 +208,7 @@ export const ContainerData = ({ data }) => {
                     </div>
                 </div>
                 <div className={styles.row2Container}>
-                    <Comentarios currentUserId={currentUserId} tecId={tecId}/>
+                    <Comentarios currentUserId={currentUserId} tecId={tecId} />
                 </div>
 
 

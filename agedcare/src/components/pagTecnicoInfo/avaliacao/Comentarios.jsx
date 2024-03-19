@@ -22,7 +22,7 @@ export const Comentarios = ({ currentUserId, tecId}) => {
         const data = {
             comentario: text,
             parentId: parentId,
-            userId: 1,
+            userId: currentUserId,
             userName: userData.userName,
             createdAt:  new Date().toISOString().slice(0, 19).replace('T', ' '),
             avaliacao:avaliacao,

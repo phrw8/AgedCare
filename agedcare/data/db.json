@@ -46,7 +46,8 @@
       "identidade": "",
       "perfil": "",
       "km": "10",
-      "comentario": "Olá, sou Amanda, uma apaixonada por cuidar daqueles que construíram histórias e deixaram um legado para nós. Com 32 anos de idade e formação técnica em enfermagem, dediquei minha carreira ao cuidado e bem-estar dos idosos. Compreendo profundamente a importância de proporcionar um ambiente seguro, acolhedor e respeitoso para nossos idosos. Cada indivíduo tem uma história única e preciosas lições para compartilhar, e é uma honra poder fazer parte desse capítulo de suas vidas. Minha abordagem é baseada no respeito, na empatia e na compaixão. Busco sempre ouvir atentamente suas necessidades, compreender suas preferências e oferecer um cuidado personalizado e de qualidade. Além de fornecer assistência prática e cuidados médicos, estou aqui para ser uma companheira, uma amiga e uma fonte de conforto. Estou comprometida em criar um ambiente que promova a saúde, a felicidade e a dignidade de cada indivíduo sob meus cuidados.Se você procura um profissional dedicado, atencioso e compassivo para cuidar de um ente querido, estou aqui para ajudar. Vamos juntos proporcionar o melhor cuidado possível aos nossos idosos, celebrando cada momento e honrando sua jornada de vida."
+      "comentario": "Olá, sou Amanda, uma apaixonada por cuidar daqueles que construíram histórias e deixaram um legado para nós. Com 32 anos de idade e formação técnica em enfermagem, dediquei minha carreira ao cuidado e bem-estar dos idosos. Compreendo profundamente a importância de proporcionar um ambiente seguro, acolhedor e respeitoso para nossos idosos. Cada indivíduo tem uma história única e preciosas lições para compartilhar, e é uma honra poder fazer parte desse capítulo de suas vidas. Minha abordagem é baseada no respeito, na empatia e na compaixão. Busco sempre ouvir atentamente suas necessidades, compreender suas preferências e oferecer um cuidado personalizado e de qualidade. Além de fornecer assistência prática e cuidados médicos, estou aqui para ser uma companheira, uma amiga e uma fonte de conforto. Estou comprometida em criar um ambiente que promova a saúde, a felicidade e a dignidade de cada indivíduo sob meus cuidados.Se você procura um profissional dedicado, atencioso e compassivo para cuidar de um ente querido, estou aqui para ajudar. Vamos juntos proporcionar o melhor cuidado possível aos nossos idosos, celebrando cada momento e honrando sua jornada de vida.",
+      "avaliacao": "3.8"
     },
     {
       "id": "77f5",
@@ -67,7 +68,8 @@
         "feminino": false,
         "outras": false
       },
-      "birthday": "1956-09-07"
+      "birthday": "1956-09-07",
+      "avaliacao": ""
     },
     {
       "id": "fbf0",
@@ -108,7 +110,51 @@
       "distancia": "",
       "certificadoProfissional": "",
       "identidade": "",
-      "perfil": ""
+      "perfil": "",
+      "avaliacao": "4.7"
+    },
+    {
+      "id": "7ea4",
+      "userName": "Tec2",
+      "password": "123",
+      "email": "paulo@gmail.com",
+      "tecnico": true,
+      "name": "Paulo Henrique da rosa wernke",
+      "cep": "88965000",
+      "celular": "48999451625",
+      "civilState": "União Estável",
+      "sexo": "Masculino",
+      "birthday": "2024-03-15",
+      "cpf": "12345678900",
+      "emissor": "sspsc",
+      "rg": "rg",
+      "logradouro": "Rua",
+      "endereco": "Augusto Daniel Raupp",
+      "nm": "123",
+      "uf": "SC",
+      "cidade": "Santa Rosa do Sul",
+      "bairro": "Centro",
+      "disponibilidade": {
+        "Manhã": false,
+        "Tarde": false,
+        "Noite": true,
+        "Pernoite": false,
+        "Fds": false,
+        "pernoite": true
+      },
+      "locaisAptos": {
+        "Domicilio": false,
+        "Hospital": true,
+        "Clinica": false,
+        "Asilo": false
+      },
+      "distancia": "",
+      "certificadoProfissional": "",
+      "identidade": "",
+      "perfil": "",
+      "comentario": "",
+      "avaliacao": "4.0",
+      "km": "12"
     }
   ]
 }
