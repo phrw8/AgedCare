@@ -1,0 +1,16 @@
+.container{
+    background-color: #ccc;
+    width: 100%;
+    padding: 2rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.p{
+    color: #012F59;
+}
+.img{
+    width: 80%;
+}

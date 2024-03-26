@@ -4,15 +4,17 @@ import styles from './home.module.css'
 import { useState, useEffect } from 'react'
 import useFetch from '../hooks/useFetch'
 
-import { Card } from './Card'
-import { Pagination } from './Pagination'
+
 import { InputSrc } from './InputSrc'
+import { Pagination } from './Pagination'
+import { Card } from './Card'
+
 
 export const Home = () => {
     const [cuidadoresData, setCuidadoresData] = useState([]);
     const [cidade, setCidade] = useState("")
     const [cidadeData, setCidadeData] = useState([])
-    const [skip, setSkip] = useState(0); // Estado para controlar o valor de skip
+    const [skip, setSkip] = useState(0);
     const { data, loading, error } = useFetch(`http://localhost:3000/users?_limit=12&_start=${skip}`);
     const [totalItems, setTotalItems] = useState(0);
 

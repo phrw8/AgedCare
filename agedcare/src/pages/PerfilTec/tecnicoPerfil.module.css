@@ -1,3 +1,124 @@
-.app{
-    color: black;
+.app {
+    background-color: #fff;
+    width: 100%;
+    border-radius: 2rem;
+    padding: 1.5rem 2rem 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
+
+.app2 {
+    width: 100%;
+    border-radius: 2rem;
+    padding: 2rem 3rem 0 3rem;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.row {
+    color: rgb(1, 47, 89);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.row2 {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 1rem;
+}
+.textarea {
+    min-height: 150px;
+    width: 100%;
+    padding: 0;
+    border-radius: 5px;
+    resize: vertical; 
+    outline: none;
+    font-size: 1rem;
+}
+
+.h3foggy {
+    color: rgba(1, 47, 89, .7);
+    font-weight: 500;
+}
+
+.contentRow {
+    display: flex;
+    justify-content: start;
+    gap: 4rem;
+}
+
+.collumn {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.itens {
+    display: flex;
+    font-size: 1.3rem;
+    color: #012F59;
+    font-weight: 500;
+    align-items: center;
+    gap: .2rem;
+
+}
+
+.h3 {
+    color: #012F59;
+}
+
+.iconChangeConfig {
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+.name {
+    color: #012F59;
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+.divisoria {
+    background-color: #ccc;
+    width: 1px;
+    height: 50px;
+    margin-bottom: 1rem;
+}
+.btnsComentario{
+    display: flex;
+    gap: 1rem;
+}
+.btnComentario{
+    background-color: #012F59;
+    color: #fff;
+    border-radius:.5rem;
+    padding: .5rem 1rem;
+    cursor: pointer;
+}
+.btnComentario:hover{
+    background-color: #fff;
+    color: #012F59;
+    border:1px solid #012F59;
+}
+.labelInput{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+.input{
+    font-size: 1.2rem;
+    outline: none;
+}
+
+
+
+

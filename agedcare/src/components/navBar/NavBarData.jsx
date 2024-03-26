@@ -80,7 +80,7 @@ const NavBarData = () => {
           removeId()
         }}>
           <TbDoorEnter className={styles.icon} />
-          <span>Logout</span>
+          <span className={styles.logoutText}>Logout</span>
         </Link>
       </div>
     </>

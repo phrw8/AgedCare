@@ -1,0 +1,51 @@
+.filterTec{
+    border:1px solid rgba(1, 47, 89,.8);
+    border-right: 0;
+    background-color: rgba(130, 195, 255,.22);
+    color: rgba(1, 47, 89,.8);
+    padding: .5rem 1rem;
+    display: flex;
+    align-items: center;
+    border-radius: .5rem 0 0 .5rem;
+    width: 100%;
+}
+.placeholder{
+    position: absolute;
+    top: .4rem;
+    left: .4rem;
+    border: 0;
+    color: rgba(1, 47, 89,.5);
+    transition: .3s;
+    pointer-events: none;
+    background-color: #fff;
+    padding: 0 .1rem;
+    padding: 0 .2rem;
+    width: auto;
+    background: transparent;
+    
+}
+.filterTec:focus + .placeholder{
+    top: -1.3rem;
+    color: rgba(1, 47, 89, .8);
+
+}
+.filterTec.hasValue + .placeholder {
+    top: -1.3rem;
+    color: rgba(1, 47, 89, .9);
+}
+.inputGroup{
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.btn{
+    width: 20%;
+    border:1px solid rgba(1, 47, 89,.8);
+    background-color: rgba(130, 195, 255,.22);
+    color: rgba(1, 47, 89,.8);
+    height: auto;
+    padding: .5rem;
+    border-radius: 0 .5rem .5rem 0;
+    cursor: pointer;
+}

@@ -1,5 +1,6 @@
 .card{
     width: 300px;
+    min-height: 350px;
     border-radius: 2rem;
     background-color: #fff;
     display: flex;
@@ -48,6 +49,6 @@
     margin-right: -.3rem;
 }
 .avNum{
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: 300;
 }

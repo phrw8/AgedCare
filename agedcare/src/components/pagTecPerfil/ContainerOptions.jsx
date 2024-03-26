@@ -1,5 +1,6 @@
 import React from 'react'
-import styles from './containerOptions.module.css'
+// import styles from './containerOptions.module.css'
+import styles from './../../pages/PerfilTec/tecnicoPerfil.module.css'
 import { IconContext } from 'react-icons';
 
 import { GrUserSettings } from "react-icons/gr";
@@ -42,11 +43,11 @@ export const ContainerOptions = ({ name, data }) => {
     return (
         <>
             <div className={styles.app}>
-                <div className={styles.row1}>
+                <div className={styles.row}>
                     <p className={styles.h3foggy}>{name}</p>
-                    <GrUserSettings />
+                    <GrUserSettings className={styles.iconChangeConfig}/>
                 </div>
-                <div className={styles.row2}>
+                <div className={styles.row}>
                     <div className={styles.contentRow}>
                         {name === "Disponibilidade" && disponibilidade.map((item, index) => (
                             <div key={index} className={styles.itens}>

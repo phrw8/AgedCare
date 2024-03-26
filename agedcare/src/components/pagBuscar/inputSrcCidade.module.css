@@ -1,0 +1,16 @@
+.filterTec{
+    background-color:#fff;
+    border-bottom: 1px solid #ccc;
+    color: rgb(1, 47, 89);
+    display: flex;
+    align-items: center;
+    width: 100%;
+    outline: none;
+}
+
+.inputGroup{
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}

@@ -47,7 +47,7 @@
       "perfil": "",
       "km": "10",
       "comentario": "Olá, sou Amanda, uma apaixonada por cuidar daqueles que construíram histórias e deixaram um legado para nós. Com 32 anos de idade e formação técnica em enfermagem, dediquei minha carreira ao cuidado e bem-estar dos idosos. Compreendo profundamente a importância de proporcionar um ambiente seguro, acolhedor e respeitoso para nossos idosos. Cada indivíduo tem uma história única e preciosas lições para compartilhar, e é uma honra poder fazer parte desse capítulo de suas vidas. Minha abordagem é baseada no respeito, na empatia e na compaixão. Busco sempre ouvir atentamente suas necessidades, compreender suas preferências e oferecer um cuidado personalizado e de qualidade. Além de fornecer assistência prática e cuidados médicos, estou aqui para ser uma companheira, uma amiga e uma fonte de conforto. Estou comprometida em criar um ambiente que promova a saúde, a felicidade e a dignidade de cada indivíduo sob meus cuidados.Se você procura um profissional dedicado, atencioso e compassivo para cuidar de um ente querido, estou aqui para ajudar. Vamos juntos proporcionar o melhor cuidado possível aos nossos idosos, celebrando cada momento e honrando sua jornada de vida.",
-      "avaliacao": "3.8"
+      "avaliacao": "3.0"
     },
     {
       "id": "77f5",
@@ -59,12 +59,12 @@
       "cep": "88965000",
       "celular": "48999665544",
       "civilState": {
+        "viuvo": true,
         "casado": false,
-        "solteiro": false,
-        "viuvo": false
+        "solteiro": false
       },
       "sexo": {
-        "masculino": false,
+        "masculino": true,
         "feminino": false,
         "outras": false
       },
@@ -114,10 +114,51 @@
       "avaliacao": "4.7"
     },
     {
+      "id": "ab30f",
+      "userName": "Tec3",
+      "password": "123",
+      "email": "paulowernke300@gmail.com",
+      "tecnico": true,
+      "name": "Tecnnico",
+      "cep": "88965000",
+      "celular": "48999451625",
+      "civilState": "União Estável",
+      "sexo": "Masculino",
+      "birthday": "2001-02-13",
+      "cpf": "1234567890",
+      "emissor": "sspsc",
+      "rg": "123568",
+      "logradouro": "Rua",
+      "endereco": "Augusto Daniel Raupp",
+      "nm": "200",
+      "uf": "SC",
+      "cidade": "Ararangua",
+      "bairro": "Centro",
+      "disponibilidade": {
+        "Tarde": true,
+        "Noite": false,
+        "Pernoite": true,
+        "Fds": false,
+        "Manha": true,
+        "tarde": false
+      },
+      "locaisAptos": {
+        "Domicilio": true,
+        "Hospital": true,
+        "Clinica": false,
+        "Asilo": true
+      },
+      "distancia": "",
+      "certificadoProfissional": "",
+      "identidade": "",
+      "perfil": "",
+      "avaliacao": "4.7"
+    },
+    {
       "id": "7ea4",
       "userName": "Tec2",
       "password": "123",
-      "email": "paulo@gmail.com",
+      "email": "n deu de pegar odfsdfsdfsds dados",
       "tecnico": true,
       "name": "Paulo Henrique da rosa wernke",
       "cep": "88965000",
@@ -133,14 +174,15 @@
       "nm": "123",
       "uf": "SC",
       "cidade": "Santa Rosa do Sul",
-      "bairro": "Centro",
+      "bairro": "Centrofdsfds",
       "disponibilidade": {
         "Manhã": false,
         "Tarde": false,
         "Noite": true,
         "Pernoite": false,
         "Fds": false,
-        "pernoite": true
+        "pernoite": true,
+        "Manha": true
       },
       "locaisAptos": {
         "Domicilio": false,
@@ -152,7 +194,7 @@
       "certificadoProfissional": "",
       "identidade": "",
       "perfil": "",
-      "comentario": "",
+      "comentario": "value",
       "avaliacao": "4.0",
       "km": "12"
     }

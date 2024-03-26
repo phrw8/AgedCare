@@ -12,6 +12,7 @@ import Perfil from './pages/Perfil/index.jsx';
 import TecnicoInfo from './pages/TecnicoInfo/index.jsx';
 import PerfilTec from './pages/PerfilTec/index.jsx';
 import FormTec from './pages/FormTec/index.jsx';
+import Configs from './pages/Configs/index.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -26,6 +27,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/Buscar" element={<Buscar />} />
         <Route path="/PerfilTec" element={<PerfilTec />} />
         <Route path="/FormTec" element={<FormTec />} />
+        <Route path="/Configs" element={<Configs />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,

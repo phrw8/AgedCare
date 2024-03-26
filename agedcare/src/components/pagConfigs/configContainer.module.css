@@ -1,0 +1,13 @@
+.container{
+    display: flex;
+    padding:  2rem 6rem;
+    gap: 2rem ;
+}
+.ul{
+    width: 35%;
+}
+.content{
+    border: 1px solid #012F59;
+    width: 65%;
+    padding: 1rem;
+}
