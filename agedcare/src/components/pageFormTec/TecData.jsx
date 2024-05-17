@@ -133,3 +133,4 @@ export const TecData = ({ data, updateData }) => {
     </>
   )
 }
+
