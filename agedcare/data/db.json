@@ -197,6 +197,50 @@
       "comentario": "value",
       "avaliacao": "4.0",
       "km": "12"
+    },
+    {
+      "id": "5159",
+      "userName": "Murilo ",
+      "password": "murilo123",
+      "email": "ofcsmurilo@gmail.com",
+      "tecnico": true,
+      "name": "Murilo Rocha",
+      "cep": "233243",
+      "celular": "2334545",
+      "civilState": "União Estável",
+      "sexo": "Masculino",
+      "birthday": "2006-08-15",
+      "cpf": "2324324",
+      "emissor": "ssp",
+      "rg": "243343",
+      "logradouro": "avenida jg km 44",
+      "endereco": "avenida jag",
+      "nm": "22",
+      "uf": "sc",
+      "cidade": "Santa Rosa",
+      "bairro": "Jaguararia",
+      "disponibilidade": {
+        "Manhã": false,
+        "Tarde": false,
+        "Noite": false,
+        "Pernoite": false,
+        "Fds": false,
+        "Manha": true,
+        "pernoite": true
+      },
+      "locaisAptos": {
+        "Domicilio": false,
+        "Hospital": true,
+        "Clinica": false,
+        "Asilo": false
+      },
+      "distancia": "",
+      "certificadoProfissional": "",
+      "identidade": "",
+      "perfil": "",
+      "comentario": "",
+      "avaliacao": "",
+      "km": "100"
     }
   ]
 }
