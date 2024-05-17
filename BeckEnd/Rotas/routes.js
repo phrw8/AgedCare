@@ -10,6 +10,6 @@ router.post('/perfilTecAtualiza',upload,UserController.RotaPerfilTec)
 router.post('/cadastro-tec', verificarPermissaoTecnico, upload, UserController.RotaCadastroTec); 
 router.get('/home', verificarPermissaoUsuario,UserController.RotaHome);
 router.get('/logout', UserController.RotaLogout);
-router.get('/perfilTec',UserController.RotaPerfilTecGet)
+router.get('/perfilTec',verificarPermissaoTecnico,UserController.RotaPerfilTecGet)
 
 module.exports = router;
