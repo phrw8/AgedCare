@@ -15,5 +15,16 @@ function verificarPermissaoUsuario(req, res, next) {
     }
 }
 
-module.exports = { verificarPermissaoTecnico, verificarPermissaoUsuario };
+function VerificaAutenticacao(req, res, next) {
+    if (req.session.user && req.session.user.loggedin) {
+     
+        next();
+    } else {
+        
+        res.status(403).json({ error: 'Você não está autenticado.' });
+    }
+}
+
+
+module.exports = { verificarPermissaoTecnico, verificarPermissaoUsuario,VerificaAutenticacao };
 

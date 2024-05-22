@@ -4,6 +4,9 @@ const app = express();
 const PORT = 5050;
 const rota = require('./Rotas/routes.js');
 const session = require("express-session")
+const cors = require('cors')
+
+app.use(cors())
 
 app.use(session({
     secret: 'mysecretkey', 
