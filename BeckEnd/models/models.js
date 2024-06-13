@@ -1,6 +1,7 @@
 const connection = require('../bd/db');
-
+//aki é a class do model
 class User {
+    //funçao utilizada para criar o usuario no caso o cadastro
     criarUsuario(nome, email,senha,permissao) {
         return new Promise((resolve, reject) => {
             const query = 'INSERT INTO aged.usuarios (nome,email,senha,permissao) VALUES (?, ?, ?, ?)';
@@ -19,7 +20,7 @@ class User {
     }
 
 
-    
+    //funçao para login do usuario
     Login(email, senha) {
         return new Promise((resolve, reject) => {
             const query = 'SELECT * FROM aged.usuarios WHERE email = ? AND senha = ?';
@@ -36,7 +37,7 @@ class User {
             });
         });
     }
-
+    //  nao esta sendo utilizada!!!
     CriarTecnico(nome,cpf,datanasc,org,rg,email,fone,sexo,estado,logradouro,numero,cidade,uf,bairro,cep,dia,noite,tarde,fds,pernoite,domicilio,hospital,asilo,clinica,km,foto,identidade,obs,cod_usario) {
         return new Promise((resolve, reject) => {
             const query = 'INSERT INTO aged.tecnico (nome,cpf,datanasc,org,rg,email,fone,sexo,estado,logradouro,numero,cidade,uf,bairro,cep,dia,noite,tarde,fds,pernoite,domicilio,hospital,asilo,clinica,km,foto,identidade,obs,cod_usario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
@@ -53,6 +54,7 @@ class User {
             });
         });
     }
+    //função de mostrar os tecnicos
     MostraTecnicos() {
         return new Promise((resolve, reject) => {
             const query = 'SELECT * FROM aged.tecnico';

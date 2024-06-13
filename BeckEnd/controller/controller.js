@@ -3,7 +3,7 @@ const path = require('path');
 const connection = require('../bd/db.js');
 const user = require('../models/models');
 
-
+//aki manipula as imagens
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'uploads/');
@@ -19,7 +19,9 @@ const upload = multer({ storage: storage }).fields([
   { name: 'identidade', maxCount: 1 }
 ]);
 
+// a class controller
 class UserController {
+    // rota do cadastro
     async RotaCadastro(req, res) {
         const { nome, email, senha, permissao } = req.body;
     
@@ -31,7 +33,7 @@ class UserController {
             res.status(500).json({ success: false, message: error.message });
         }
     }
-
+    // rota do login
     async RotaLogin(req,res){
         const { email, senha} = req.body; 
         try {
@@ -48,13 +50,17 @@ class UserController {
             res.status(401).json({ error: 'E-mail ou senha incorretos.' });
         }
     }
-
+    //rota do cadastro do tec as informaçoes a mais 
     async RotaCadastroTec(req, res) {
         try {
             const cod_usuario = req.session.user.cod;
             const { nome, cpf, datanasc, org, rg, email, fone, sexo, estado, logradouro, numero, cidade, uf, bairro, cep, dia, noite, tarde, fds, pernoite, domicilio, hospital, asilo, clinica, km, obs} = req.body;
 
-            const dataNascimento = new Date(datanasc).toISOString().split('T')[0];
+            const dateRegex = /^\d{2}\/\d{2}\/\d{4}$/
+
+        if (!dateRegex.test(datanasc)) {
+            return res.status(400).json({ error: 'Formato de data inválido. Use DD/MM/YYYY.' });
+        }
 
             if (!req.files || !req.files.foto || !req.files.identidade) {
               return res.status(400).json({ error: 'Alguma imagem não foi enviada.' });
@@ -71,7 +77,7 @@ class UserController {
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             `;
             
-            connection.query(query, [nome, cpf, dataNascimento, org, rg, email, fone, sexo, estado, 
+            connection.query(query, [nome, cpf, datanasc, org, rg, email, fone, sexo, estado, 
                 logradouro, numero, cidade, uf, bairro, cep, dia, noite, 
                 tarde, fds, pernoite, domicilio, hospital, asilo, clinica, 
                 km, foto, identidade, obs, cod_usuario], function (error, results, fields) {
@@ -86,7 +92,7 @@ class UserController {
             res.status(500).send({ error: error.message });
         }
     }
-
+    //rota home que retornar os dados de todos tecnicos
     async RotaHome(req,res){
         try {
             const dados = await user.MostraTecnicos()
@@ -96,7 +102,7 @@ class UserController {
             res.status(500).json({ error: 'Erro ao exibir técnicos.' });
         }
     }
-
+    //rota de logout
     async RotaLogout(req, res) {
         try {
             req.session.destroy((error) => {
@@ -112,17 +118,24 @@ class UserController {
             res.status(500).json({ error: 'Erro ao fazer logout.' });
         }
     }
-
+    //rota de atualizar o perfil do tecnico
     async RotaPerfilTec(req, res) {
         try {
             const cod_usuario = req.session.user.cod; 
+            
             const { nome, cpf, datanasc, org, rg, email, fone, sexo, estado, logradouro, numero, cidade, uf, bairro, cep, dia, noite, tarde, fds, pernoite, domicilio, hospital, asilo, clinica, km, obs } = req.body;
-    
+        
+            const dateRegex = /^\d{2}\/\d{2}\/\d{4}$/
+            
+            if (!dateRegex.test(datanasc)) {
+                return res.status(400).json({ error: 'Formato de data inválido. Use DD/MM/YYYY.' });
+            }
+            
             if (!req.files || !req.files.foto || !req.files.identidade) {
                 return res.status(400).json({ error: 'Alguma imagem não foi enviada.' });
             }
     
-            const dataNascimento = new Date(datanasc).toISOString().split('T')[0];
+            
             const foto = req.files.foto[0].filename;
             const identidade = req.files.identidade[0].filename;
     
@@ -134,7 +147,7 @@ class UserController {
                 km=?, foto=?, identidade=?, obs=? 
                 WHERE cod_usuario=?
             `;
-            connection.query(query, [nome, cpf, dataNascimento, org, rg, email, fone, sexo, estado,
+            connection.query(query, [nome, cpf, datanasc, org, rg, email, fone, sexo, estado,
                 logradouro, numero, cidade, uf, bairro, cep, dia, noite,
                 tarde, fds, pernoite, domicilio, hospital, asilo, clinica,
                 km, foto, identidade, obs, cod_usuario], function (error, results, fields) {
@@ -150,7 +163,7 @@ class UserController {
         }
     }
 
-
+    //rota do perfil do tecnico que retorna informaçoes dele baseado no tecnico auntenticado
     async RotaPerfilTecGet(req, res) {
         try {
             const cod_usuario = req.session.user.cod; 
