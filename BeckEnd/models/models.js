@@ -21,10 +21,10 @@ class User {
 
 
     //funçao para login do usuario
-    Login(email, senha) {
+    Login(nome, senha) {
         return new Promise((resolve, reject) => {
-            const query = 'SELECT * FROM aged.usuarios WHERE email = ? AND senha = ?';
-            connection.query(query, [email,senha], (error, results) => {
+            const query = 'SELECT * FROM aged.usuarios WHERE nome = ? AND senha = ?';
+            connection.query(query, [nome,senha], (error, results) => {
                 if (error) {
                     reject(error);
                 } else {

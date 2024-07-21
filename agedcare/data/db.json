@@ -241,6 +241,49 @@
       "comentario": "",
       "avaliacao": "",
       "km": "100"
+    },
+    {
+      "id": "9969",
+      "userName": "armando",
+      "password": "123",
+      "email": "armando@gmail.com",
+      "tecnico": true,
+      "name": "Armando",
+      "cep": "23243",
+      "celular": "233343",
+      "civilState": "União Estável",
+      "sexo": "Masculino",
+      "birthday": "2006-02-11",
+      "cpf": "2343",
+      "emissor": "sccp",
+      "rg": "2343",
+      "logradouro": "turvo",
+      "endereco": "turvo",
+      "nm": "22",
+      "uf": "sc",
+      "cidade": "turvo",
+      "bairro": "turvo",
+      "disponibilidade": {
+        "Manhã": false,
+        "Tarde": false,
+        "Noite": true,
+        "Pernoite": false,
+        "Fds": false,
+        "pernoite": true
+      },
+      "locaisAptos": {
+        "Domicilio": false,
+        "Hospital": true,
+        "Clinica": false,
+        "Asilo": false
+      },
+      "distancia": "",
+      "certificadoProfissional": "",
+      "identidade": "",
+      "perfil": "",
+      "comentario": "",
+      "avaliacao": "",
+      "km": "200"
     }
   ]
 }
