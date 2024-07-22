@@ -243,6 +243,7 @@
       "km": "100"
     },
     {
+<<<<<<< HEAD
       "id": "aac0",
       "userName": "policarpo",
       "password": "policarpo123",
@@ -269,6 +270,35 @@
         "Noite": false,
         "Pernoite": false,
         "Fds": true
+=======
+      "id": "9969",
+      "userName": "armando",
+      "password": "123",
+      "email": "armando@gmail.com",
+      "tecnico": true,
+      "name": "Armando",
+      "cep": "23243",
+      "celular": "233343",
+      "civilState": "União Estável",
+      "sexo": "Masculino",
+      "birthday": "2006-02-11",
+      "cpf": "2343",
+      "emissor": "sccp",
+      "rg": "2343",
+      "logradouro": "turvo",
+      "endereco": "turvo",
+      "nm": "22",
+      "uf": "sc",
+      "cidade": "turvo",
+      "bairro": "turvo",
+      "disponibilidade": {
+        "Manhã": false,
+        "Tarde": false,
+        "Noite": true,
+        "Pernoite": false,
+        "Fds": false,
+        "pernoite": true
+>>>>>>> a5473247b653b95832fcd449d2878c6eb46a4123
       },
       "locaisAptos": {
         "Domicilio": false,
@@ -282,6 +312,7 @@
       "perfil": "",
       "comentario": "",
       "avaliacao": "",
+<<<<<<< HEAD
       "km": "100"
     },
     {
@@ -556,6 +587,9 @@
         "outras": false
       },
       "birthday": ""
+=======
+      "km": "200"
+>>>>>>> a5473247b653b95832fcd449d2878c6eb46a4123
     }
   ]
 }

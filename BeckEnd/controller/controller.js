@@ -35,9 +35,9 @@ class UserController {
     }
     // rota do login
     async RotaLogin(req,res){
-        const { email, senha} = req.body; 
+        const { nome, senha} = req.body; 
         try {
-            const usuarioAutenticado = await user.Login(email,senha);
+            const usuarioAutenticado = await user.Login(nome,senha);
             
             req.session.user = usuarioAutenticado
 
