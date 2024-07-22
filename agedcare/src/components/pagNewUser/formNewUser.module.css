@@ -91,6 +91,13 @@
     width: 20px;
     height: 20px;
 }
+.alert{
+    color: red;
+}
+.noAlert{
+    color: red;
+    display: none;
+}
 @media (max-width:1080px){
     .radioTec {
         font-size: 1rem;

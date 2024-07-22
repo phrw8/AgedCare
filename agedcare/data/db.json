@@ -243,34 +243,6 @@
       "km": "100"
     },
     {
-<<<<<<< HEAD
-      "id": "aac0",
-      "userName": "policarpo",
-      "password": "policarpo123",
-      "email": "policarpo@gmail.com",
-      "tecnico": true,
-      "name": "Policarpo viado",
-      "cep": "232323",
-      "celular": "32323",
-      "civilState": "União Estável",
-      "sexo": "Masculino",
-      "birthday": "2024-06-19",
-      "cpf": "232323",
-      "emissor": "scpp",
-      "rg": "232322",
-      "logradouro": "laguna",
-      "endereco": "atra do banco",
-      "nm": "22",
-      "uf": "sc",
-      "cidade": "turvo",
-      "bairro": "alvorada",
-      "disponibilidade": {
-        "Manhã": false,
-        "Tarde": true,
-        "Noite": false,
-        "Pernoite": false,
-        "Fds": true
-=======
       "id": "9969",
       "userName": "armando",
       "password": "123",
@@ -298,7 +270,6 @@
         "Pernoite": false,
         "Fds": false,
         "pernoite": true
->>>>>>> a5473247b653b95832fcd449d2878c6eb46a4123
       },
       "locaisAptos": {
         "Domicilio": false,
@@ -312,37 +283,15 @@
       "perfil": "",
       "comentario": "",
       "avaliacao": "",
-<<<<<<< HEAD
-      "km": "100"
+      "km": "200"
     },
     {
-      "id": "195a",
-      "userName": "Paulo ",
-      "password": "sad",
-      "email": "paulowernke300@gmail.com",
-      "tecnico": false,
-      "name": "Paulo ",
-      "cep": "",
-      "celular": "",
-      "civilState": {
-        "casado": false,
-        "solteiro": false,
-        "viuvo": false
-      },
-      "sexo": {
-        "masculino": false,
-        "feminino": false,
-        "outras": false
-      },
-      "birthday": ""
-    },
-    {
-      "id": "7691",
-      "userName": "paulowernke300",
+      "id": "aa23",
+      "userName": "Paulo1233464564",
       "password": "123",
-      "email": "paulowernke300@gmail.com",
+      "email": "453453@gmail.com",
       "tecnico": true,
-      "name": "paulowernke300",
+      "name": "Paulo1233464564",
       "cep": "",
       "celular": "",
       "civilState": {
@@ -358,52 +307,10 @@
       "birthday": ""
     },
     {
-      "id": "54c8",
-      "userName": "Toquinho",
-      "password": "123",
-      "email": "paulowernke300@gmail.com",
-      "tecnico": true,
-      "name": "Toquinho",
-      "cep": "",
-      "celular": "",
-      "civilState": {
-        "casado": false,
-        "solteiro": false,
-        "viuvo": false
-      },
-      "sexo": {
-        "masculino": false,
-        "feminino": false,
-        "outras": false
-      },
-      "birthday": ""
-    },
-    {
-      "id": "271d",
-      "userName": "Paulo769",
-      "password": "123",
-      "email": "paulowernke300@gmail.com",
-      "tecnico": true,
-      "name": "Paulo769",
-      "cep": "",
-      "celular": "",
-      "civilState": {
-        "casado": false,
-        "solteiro": false,
-        "viuvo": false
-      },
-      "sexo": {
-        "masculino": false,
-        "feminino": false,
-        "outras": false
-      },
-      "birthday": ""
-    },
-    {
-      "id": "3622",
+      "id": "5a1b",
       "userName": "123",
       "password": "123",
-      "email": "paulowernke300@gmail.com",
+      "email": "123@gmail.com",
       "tecnico": true,
       "name": "123",
       "cep": "",
@@ -421,96 +328,12 @@
       "birthday": ""
     },
     {
-      "id": "6ed8",
-      "userName": "541553",
-      "password": "123",
-      "email": "paulowernke300@gmail.com",
-      "tecnico": true,
-      "name": "541553",
-      "cep": "",
-      "celular": "",
-      "civilState": {
-        "casado": false,
-        "solteiro": false,
-        "viuvo": false
-      },
-      "sexo": {
-        "masculino": false,
-        "feminino": false,
-        "outras": false
-      },
-      "birthday": ""
-    },
-    {
-      "id": "b470",
-      "userName": "12334534534",
-      "password": "123",
-      "email": "paulowernke300@gmail.com",
-      "tecnico": true,
-      "name": "12334534534",
-      "cep": "",
-      "celular": "",
-      "civilState": {
-        "casado": false,
-        "solteiro": false,
-        "viuvo": false
-      },
-      "sexo": {
-        "masculino": false,
-        "feminino": false,
-        "outras": false
-      },
-      "birthday": ""
-    },
-    {
-      "id": "5802",
-      "userName": "31231231",
-      "password": "213131",
-      "email": "21312313@dsfsdfs",
-      "tecnico": true,
-      "name": "31231231",
-      "cep": "",
-      "celular": "",
-      "civilState": {
-        "casado": false,
-        "solteiro": false,
-        "viuvo": false
-      },
-      "sexo": {
-        "masculino": false,
-        "feminino": false,
-        "outras": false
-      },
-      "birthday": ""
-    },
-    {
-      "id": "cd04",
-      "userName": "1234",
-      "password": "123",
-      "email": "paulohenrique@gmail.com",
-      "tecnico": true,
-      "name": "1234",
-      "cep": "",
-      "celular": "",
-      "civilState": {
-        "casado": false,
-        "solteiro": false,
-        "viuvo": false
-      },
-      "sexo": {
-        "masculino": false,
-        "feminino": false,
-        "outras": false
-      },
-      "birthday": ""
-    },
-    {
-      "id": "8542",
-      "userName": "123$%",
-      "password": "1123",
+      "id": "5a80",
+      "userName": "1233242342",
+      "password": "21341",
       "email": "paulowernke@gmail.com",
       "tecnico": true,
-      "name": "123$%",
+      "name": "1233242342",
       "cep": "",
       "celular": "",
       "civilState": {
@@ -524,72 +347,6 @@
         "outras": false
       },
       "birthday": ""
-    },
-    {
-      "id": "e9b6",
-      "userName": "253tsdfsd",
-      "password": "123",
-      "email": "paulowernke@gmail.com",
-      "tecnico": true,
-      "name": "253tsdfsd",
-      "cep": "",
-      "celular": "",
-      "civilState": {
-        "casado": false,
-        "solteiro": false,
-        "viuvo": false
-      },
-      "sexo": {
-        "masculino": false,
-        "feminino": false,
-        "outras": false
-      },
-      "birthday": ""
-    },
-    {
-      "id": "f914",
-      "userName": "'212312",
-      "password": "123",
-      "email": "paulowernke@gmail.com",
-      "tecnico": true,
-      "name": "'212312",
-      "cep": "",
-      "celular": "",
-      "civilState": {
-        "casado": false,
-        "solteiro": false,
-        "viuvo": false
-      },
-      "sexo": {
-        "masculino": false,
-        "feminino": false,
-        "outras": false
-      },
-      "birthday": ""
-    },
-    {
-      "id": "4d4b",
-      "userName": "213132",
-      "password": "21312",
-      "email": "paulo@gmail",
-      "tecnico": true,
-      "name": "213132",
-      "cep": "",
-      "celular": "",
-      "civilState": {
-        "casado": false,
-        "solteiro": false,
-        "viuvo": false
-      },
-      "sexo": {
-        "masculino": false,
-        "feminino": false,
-        "outras": false
-      },
-      "birthday": ""
-=======
-      "km": "200"
->>>>>>> a5473247b653b95832fcd449d2878c6eb46a4123
     }
   ]
 }
