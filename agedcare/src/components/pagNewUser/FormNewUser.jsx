@@ -23,9 +23,9 @@ const FormNewUser = () => {
       password,
       email,
       tecnico,
-      name:userName,
-      cep:"",
-      celular:"",
+      name: userName,
+      cep: "",
+      celular: "",
       civilState: {
         casado: false,
         solteiro: false,
@@ -36,26 +36,35 @@ const FormNewUser = () => {
         feminino: false,
         outras: false,
       },
-      birthday:""
+      birthday: ""
     };
 
     try {
-      // Use o fetch para fazer uma solicitação POST para verificar se o nome de usuário já existe
-      const response = await fetch(`${url}?userName=${user.userName}`);
+      // Verificação do nome de usuário
+      const response = await fetch(url);
 
       if (!response.ok) {
         throw new Error('Erro ao verificar o nome de usuário');
       }
 
-      // Verifique se o usuário já existe
       const data = await response.json();
-      const repeatUser = data.filter((us) => us.userName === user.userName);
+      console.log('Dados retornados:', data);  // Adiciona log para ver os dados retornados
 
+      
+      // Verifique se o usuário já existe
+      const repeatUser = data.filter((us) => us.userName === user.userName);
       if (repeatUser.length > 0) {
         throw new Error('Nome de usuário já está em uso');
       }
 
-      // Se o usuário não existir, faça uma solicitação POST para criar um novo usuário
+      // Verificação do email
+      const repeatEmail = data.filter((us) => us.email === user.email);
+      if (repeatEmail.length = 0) {
+        throw new Error('Esse email já está em uso');
+      }
+      
+
+      // Criação de novo usuário
       const createUserResponse = await fetch(url, {
         method: "POST",
         headers: {
@@ -77,7 +86,8 @@ const FormNewUser = () => {
     } catch (error) {
       console.error(error.message);
     }
-  };
+};
+
 
   const handleDados = (dado, valor) => {
     switch (dado) {
