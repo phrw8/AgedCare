@@ -1,0 +1,44 @@
+CREATE TABLE usuarios (
+    cod INT AUTO_INCREMENT,
+    nome VARCHAR(100),
+    email varchar(100),
+    senha VARCHAR(100),
+    permissao ENUM('adm', 'usuario','tecnico') DEFAULT 'usuario',
+    PRIMARY KEY(cod)
+);
+
+
+CREATE TABLE tecnico (
+  cod int auto_increment primary key,
+  nome varchar(50) unique,
+  cpf VARCHAR(45) NOT NULL UNIQUE,
+  datanasc varchar(15)  NOT NULL,
+  org varchar(10) not null,
+  rg varchar(20) not null unique,
+  email varchar(30) not null,
+  fone VARCHAR(19) NOT NULL,
+  sexo ENUM('masculino', 'feminino', 'outros') NOT NULL,
+  estado ENUM('uniao estavel', 'solteiro', 'outros') NOT NULL,
+  logradouro VARCHAR(45) not null,
+  numero varchar(5),
+  cidade VARCHAR(45) not null,
+  uf VARCHAR(2) not null,
+  bairro VARCHAR(20) not null,
+  cep VARCHAR(10) not null,
+  dia ENUM('true', 'false'),
+  noite ENUM('true', 'false'),
+  tarde ENUM('true', 'false'),
+  fds ENUM('true', 'false'),
+  pernoite ENUM('true', 'false'),
+  domicilio ENUM('true', 'false'),
+  hospital ENUM('true', 'false'),
+  asilo ENUM('true', 'false'),
+  clinica ENUM('true', 'false'),
+  km varchar(20),
+  foto varchar(100) NOT NULL,
+  identidade varchar(100) NOT NULL,
+  obs varchar(500) not null,
+  certificado varchar(400),
+  cod_usuario INT,
+  FOREIGN KEY (cod_usuario) REFERENCES usuarios(cod)
+);
