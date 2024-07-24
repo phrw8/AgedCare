@@ -27,6 +27,7 @@ class UserController {
     
         try {
             const message = await user.criarUsuario(nome,email,senha,permissao);
+            console.log(message)
             res.status(201).json({ success: true, message });
         } catch (error) {
             console.error('Erro ao criar usuário:', error);
@@ -34,22 +35,28 @@ class UserController {
         }
     }
     // rota do login
-    async RotaLogin(req,res){
-        const { nome, senha} = req.body; 
+    async RotaLogin(req, res) {
+        const { nome, senha } = req.body; 
         try {
-            const usuarioAutenticado = await user.Login(nome,senha);
+            const usuarioAutenticado = await user.Login(nome, senha);
             
-            req.session.user = usuarioAutenticado
+            req.session.user = usuarioAutenticado;
 
             console.log(req.session.user)
-
-
-            res.status(200).json({ message: 'Login bem-sucedido.' }); 
+    
+            res.status(200).json({ 
+                message: 'Login bem-sucedido.',
+                user: {
+                    cod: usuarioAutenticado.cod,
+                    permissao: usuarioAutenticado.permissao
+                } 
+            }); 
         } catch (error) {
             console.error('Erro ao autenticar usuário:', error);
             res.status(401).json({ error: 'E-mail ou senha incorretos.' });
         }
     }
+    
     //rota do cadastro do tec as informaçoes a mais 
     async RotaCadastroTec(req, res) {
         try {
