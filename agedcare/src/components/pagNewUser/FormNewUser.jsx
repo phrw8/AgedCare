@@ -111,7 +111,7 @@ const FormNewUser = () => {
             <input type="radio" name='input' value={tecnico} onClick={(e) => { handleDados("tecnico", false) }} />
           </label>
         </label>
-        <button type="submit" className={styles.btn}  >Entrar</button>
+        <button type="submit" className={styles.btn}  >Criar</button>
       </form>
     </>
   );

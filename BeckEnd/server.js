@@ -6,6 +6,7 @@ const rota = require('./Rotas/routes.js');
 const session = require("express-session");
 const cors = require('cors');
 
+
 app.use(cors({
     origin: 'http://localhost:5173', 
     credentials: true
