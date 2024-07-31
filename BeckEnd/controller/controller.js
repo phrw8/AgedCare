@@ -117,7 +117,10 @@ class UserController {
                     console.error('Erro ao fazer logout:', error);
                     res.status(500).json({ error: 'Erro ao fazer logout.' });
                 } else {
+                    // Limpar o cookie da sessão
+                    res.clearCookie('connect.sid', { path: '/' });
                     res.status(200).json({ message: 'Logout bem-sucedido.' });
+                    
                 }
             });
         } catch (error) {

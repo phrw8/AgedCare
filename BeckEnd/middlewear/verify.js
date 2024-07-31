@@ -16,7 +16,7 @@ function verificarPermissaoUsuario(req, res, next) {
 }
 
 function VerificaAutenticacao(req, res, next) {
-    if (req.session.user.permissao==='usuario'&& req.session.user.permissao === 'tecnico') {
+    if (req.session.user) {
      
         next();
     } else {
