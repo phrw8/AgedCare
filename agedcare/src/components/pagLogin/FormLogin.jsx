@@ -54,6 +54,9 @@ const FormLogin = () => {
       console.log(result); // Adicione este console.log para verificar a estrutura da resposta
 
       if (result.user && result.user.cod) {
+        // Armazene os dados do usuário no sessionStorage
+        sessionStorage.setItem('user', JSON.stringify(result.user));
+
         const userId = result.user.cod;
 
         // Verifica se o usuário é um técnico e se possui cadastro na tabela técnico

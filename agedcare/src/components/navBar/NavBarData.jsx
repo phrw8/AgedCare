@@ -5,11 +5,12 @@ import { IoMdSearch } from "react-icons/io";
 import { TbNurse } from "react-icons/tb";
 import { IoSettingsOutline } from "react-icons/io5";
 import { TbDoorEnter } from "react-icons/tb";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './navBarData.module.css';
 
 const NavBarData = () => {
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
@@ -20,7 +21,9 @@ const NavBarData = () => {
 
       if (response.ok) {
         console.log('Logout bem-sucedido');
+        sessionStorage.removeItem('user'); // Remove os dados do usuário do sessionStorage
         setUser(null); // Limpa o estado do usuário após logout
+        navigate('/Login'); // Redireciona para a página de login após logout
       } else {
         throw new Error('Erro ao fazer logout');
       }
@@ -30,25 +33,10 @@ const NavBarData = () => {
   };
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await fetch('http://localhost:5050/home', {
-          method: 'GET',
-          credentials: 'include'
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          setUser(data.user); // Define o estado do usuário com os dados recebidos
-        } else {
-          throw new Error('Não foi possível obter os dados do usuário');
-        }
-      } catch (error) {
-        console.error('Ocorreu um erro ao buscar os dados do usuário:', error);
-      }
-    };
-
-    fetchUserData();
+    const userData = JSON.parse(sessionStorage.getItem('user'));
+    if (userData) {
+      setUser(userData);
+    }
   }, []);
 
   return (
