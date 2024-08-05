@@ -1,94 +1,58 @@
-import React, { useEffect } from 'react'
-import { useState } from 'react';
-import styles from './formTec.module.css'
-
-import { TecData } from './TecData'
+import React, { useState } from 'react';
+import styles from './formTec.module.css';
+import { TecData } from './TecData';
 import { TecPreference } from "./TecPreference";
 import { TecAdress } from "./TecAdress";
 import { TecDocs } from './TecDocs';
-
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { TecConfirm } from './TecConfirm';
-
 import { Navigate } from 'react-router-dom';
-import useFetch from '../hooks/useFetch';
 
 const FormTec = ({ screen, setScreen }) => {
-
-    const url='http://localhost:3000/users'
     const [submitted, setSubmitted] = useState(false); 
+    const activeUserString = sessionStorage.getItem("user");
+    const activeUser = JSON.parse(activeUserString);
 
-    const activeUserString=sessionStorage.getItem("user")
-    const activeUser= JSON.parse(activeUserString)
-
-    // dados a serem mandados para o server
     const formData = {
         ...activeUser,
-        tecnico:true,
-        name: "",
-        birthday: "",
+        nome: activeUser.nome || "",
         cpf: "",
-        emissor: "",
+        datanasc: "",
+        org: "",
         rg: "",
-        celular: "",
-        email: "",
-        civilState: "União Estável",
+        email: activeUser.email || "",
+        fone: "",
         sexo: "Masculino",
-        cep: "",
+        estado: "União Estável",
         logradouro: "",
-        endereco: "",
-        nm: "",
-        uf: "",
+        numero: "",
         cidade: "",
+        uf: "",
         bairro: "",
-        disponibilidade: {
-            Manhã: false,
-            Tarde: false,
-            Noite: false,
-            Pernoite: false,
-            Fds: false,
-        },
-        locaisAptos: {
-            Domicilio: false,
-            Hospital: false,
-            Clinica: false,
-            Asilo: false,
-        },
-        distancia: "",
-        certificadoProfissional: "",
-        identidade: "",
-        perfil: "",
-        comentario:"",
-        avaliacao:""
+        cep: "",
+        dia: false,
+        noite: false,
+        tarde: false,
+        fds: false,
+        pernoite: false,
+        domicilio: false,
+        hospital: false,
+        asilo: false,
+        clinica: false,
+        km: "",
+        obs: ""
     };
 
     const [data, setData] = useState(formData);
-    const [validar, setValidar] = useState(false)
-    // atualiza os dados do formData
+    const [validar, setValidar] = useState(false);
+
     const updateData = (key, value) => {
-        console.log(key)
-        console.log(value)
-        setData(prevData => {
-            // Divide a chave em partes usando '.'
-            const keys = key.split('.');
-            // Copia o estado anterior de 'data'
-            const newData = { ...prevData };
-            // Atualiza o valor aninhado no objeto 'data'
-            let current = newData;
-            for (let i = 0; i < keys.length; i++) {
-                if (i === keys.length - 1) {
-                    // Última chave, atualiza o valor
-                    current[keys[i]] = value;
-                } else {
-                    // Ainda não chegamos à última chave, avança para o próximo nível
-                    current = current[keys[i]];
-                }
-            }
-            return newData;
-        });
+        setData(prevData => ({
+            ...prevData,
+            [key]: value
+        }));
     };
 
-    // lista de componentes
     const componentsList = [
         <TecData updateData={updateData} data={data} />,
         <TecAdress updateData={updateData} data={data} />,
@@ -97,7 +61,6 @@ const FormTec = ({ screen, setScreen }) => {
         <TecConfirm updateData={updateData} data={data} />
     ];
 
-    // funcoes para passar peolos componentes
     const handleNextScreen = () => {
         screen < 4 && validar && setScreen(prevScreen => prevScreen + 1);
     };
@@ -105,96 +68,101 @@ const FormTec = ({ screen, setScreen }) => {
         screen > 0 && setScreen(prevScreen => prevScreen - 1);
     };
 
-    // funcao para verificar se os campos de inputs estao sendo preenchidos 
     const validarSteps = () => {
         let isValid = false;
-
         if (screen === 0) {
-            if (screen === 0) {
-                if (data.name !== '' && data.email !== '' && data.birthday !== "" && data.cpf !== "" && data.emissor !== "" && data.rg !== '' && data.celular !== "") {
-                    isValid = true;
-                    console.log("Todos os campos estão preenchidos.");
-                } else {
-                    isValid = false;
-                    alert("Preencha todos os campos .");
-                }
+            if (data.nome && data.email && data.datanasc && data.cpf && data.org && data.rg && data.fone) {
+                isValid = true;
+            } else {
+                alert("Preencha todos os campos.");
             }
         } else if (screen === 1) {
-            if (data.logradouro !== '' && data.cep !== '' && data.endereco !== "" && data.nm !== "" && data.uf !== "" && data.cidade !== '' && data.bairro !== "") {
+            if (data.logradouro && data.cep && data.numero && data.uf && data.cidade && data.bairro) {
                 isValid = true;
-                console.log("Todos os campos estão preenchidos.");
             } else {
-                isValid = false;
-                alert("Preencha todos os campos .");
+                alert("Preencha todos os campos.");
             }
         } else if (screen === 2) {
-            if (data.cep !== '' && data.nm !== '') {
+            if (data.dia || data.noite || data.tarde || data.fds || data.pernoite) {
                 isValid = true;
-                console.log("ok");
             } else {
-                isValid = false;
-                alert("Preencha todos os campos .");
+                alert("Preencha todos os campos.");
             }
         } else if (screen === 3) {
-            if (data.km !== '' && data.disponibilidade !== false) {
+            if (data.km) {
                 isValid = true;
-                console.log("ok");
             } else {
-                isValid = false;
-                alert("Preencha todos os campos .");
+                alert("Preencha todos os campos.");
             }
         }
-        setValidar(isValid); // Define o estado validar uma vez, com o valor de isValid
-    }
+        setValidar(isValid);
+    };
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
-        const userId=sessionStorage.getItem("userId")
-        const res = await fetch(`${url}/${userId}`, {
-            method: "PUT",
-            headers: {
-                "Content-type": "application/json"
-            },
-            body: JSON.stringify(data),
-        })
-        console.log(res);
+        e.preventDefault();
+        const formData = new FormData();
 
-        if (res.ok) {
-            setSubmitted(true);
+        for (const key in data) {
+            formData.append(key, data[key]);
         }
-    }
+
+        // Add cod_usuario to the FormData
+        formData.append('cod_usuario', activeUser.cod);
+
+        try {
+            const response = await fetch('http://localhost:5050/cadastro-tec', {
+                method: 'POST',
+                credentials: 'include',
+                body: formData,
+            });
+
+            if (response.ok) {
+                setSubmitted(true);
+            } else {
+                const errorData = await response.json();
+                console.error('Erro ao enviar os dados:', errorData);
+                alert('Erro ao enviar os dados.');
+            }
+        } catch (error) {
+            console.error('Erro ao enviar os dados:', error);
+            alert('Erro ao enviar os dados.');
+        }
+    };
+
     return (
         <>
-         {submitted ? <Navigate to="/Home" /> : null}
-            <form className={styles.form} onSubmit={(e)=>{handleSubmit(e)}}>
+            {submitted ? <Navigate to="/Home" /> : null}
+            <form className={styles.form} onSubmit={handleSubmit}>
                 {componentsList[screen]}
                 <div className={styles.buttons}>
-                    {screen !== 0 ?
+                    {screen !== 0 && (
                         <button type="button" onClick={handlePrevScreen} className={styles.btnLeft}>
                             <GrFormPrevious />
                             <span>Anterior</span>
-                        </button> : null}
-
-                    {screen === 4 ?
-                        <button type="submit" className={styles.btnRight} >
+                        </button>
+                    )}
+                    {screen === 4 ? (
+                        <button type="submit" className={styles.btnRight}>
                             <span>Enviar</span>
-                        </button> : null}
-                    {screen !== 4 ?
-                        <button type="button" onClick={() => {
-                            validarSteps()
-                            console.log("1")
-                            handleNextScreen()
-                            setValidar(!validar);
-                        }} className={styles.btnRight}>
+                        </button>
+                    ) : (
+                        <button
+                            type="button"
+                            onClick={() => {
+                                validarSteps();
+                                handleNextScreen();
+                            }}
+                            className={styles.btnRight}
+                        >
                             <span>Próximo</span>
                             <GrFormNext />
-                        </button> : null
-                    }
+                        </button>
+                    )}
                 </div>
             </form>
         </>
+    );
+};
 
-    )
-}
-
-export default FormTec
+export default FormTec;
+ 
