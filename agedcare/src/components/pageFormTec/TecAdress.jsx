@@ -52,7 +52,7 @@ export const TecAdress = ({updateData,data}) => {
                     <NormalInput  value={data.logradouro || ""} onChange={(e)=>updateData("logradouro", e.target.value)}  label="Logradouro" dado="logradouro" />
                     <NormalInput value={data.cep || ""} onChange={(e)=>updateData("cep", e.target.value)} label="CEP" dado="cep" />
                     <NormalInput  value={data.endereco || ""} onChange={(e)=>updateData("endereco", e.target.value)}  label="Endereço" dado="endereco" />
-                    <NormalInput  value={data.nm || ""} onChange={(e)=>updateData("nm", e.target.value)}  label="NM" dado="nm" />
+                    <NormalInput  value={data.numero || ""} onChange={(e)=>updateData("numero", e.target.value)}  label="NM" dado="nm" />
                 </div>
                 <div className={styles.row2}>
                     <NormalInput  value={data.uf || ""} onChange={(e)=>updateData("uf", e.target.value)}  label="UF" dado="uf" />

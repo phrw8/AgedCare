@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import styles from './formTec.module.css';
 import { TecData } from './TecData';
 import { TecPreference } from "./TecPreference";
@@ -51,6 +51,15 @@ const FormTec = ({ screen, setScreen }) => {
             ...prevData,
             [key]: value
         }));
+        console.log(data)
+    };
+    useEffect(() => {
+        console.log(data);
+    }, [data]);
+
+    const convertDateToBrazilian = (dateString) => {
+        const [month, day, year] = dateString.split('/');
+        return `${day}/${month}/${year}`;
     };
 
     const componentsList = [
@@ -100,6 +109,9 @@ const FormTec = ({ screen, setScreen }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        updateData(data.datanasc,convertDateToBrazilian(data.datanasc))
+        console.log(data)
+
         const formData = new FormData();
 
         for (const key in data) {

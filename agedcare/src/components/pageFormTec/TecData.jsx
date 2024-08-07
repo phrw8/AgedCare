@@ -95,19 +95,19 @@ export const TecData = ({ data, updateData }) => {
       <div className={styles.content}>
         <label className={styles.title}>Dados pessoais</label>
         <div className={styles.row1}>
-          <NormalInput value={data.name || ""} onChange={(e) => updateData("name", e.target.value)} label="Nome Completo" dado="name" />
-          <NormalInput value={data.birthday || ""} onChange={(e) => updateData("birthday", e.target.value)} label="Data de Nascimento" type="date" dado="date" />
+          <NormalInput value={data.nome || ""} onChange={(e) => updateData("nome", e.target.value)} label="Nome Completo" dado="name" />
+          <NormalInput value={data.datanasc || ""} onChange={(e) => updateData("datanasc", e.target.value)} label="Data de Nascimento" type="date" dado="datanasc" />
         </div>
         <div className={styles.row2}>
           <NormalInput value={data.cpf || ""} onChange={(e) => updateData("cpf", e.target.value)} label="CPF" dado="cpf" />
           <div className={styles.rgInfo}>
-            <NormalInput value={data.emissor || ""} onChange={(e) => updateData("emissor", e.target.value)} label="Orgão emissor" dado="emissor" />
+            <NormalInput value={data.org || ""} onChange={(e) => updateData("org", e.target.value)} label="Orgão emissor" dado="emissor" />
             <NormalInput value={data.rg || ""} onChange={(e) => updateData("rg", e.target.value)} label="RG" dado="rg" />
           </div>
 
         </div>
         <div className={styles.row3}>
-          <NormalInput value={data.celular || ""} onChange={(e) => updateData("celular", e.target.value)} label="Celular" dado="number" />
+          <NormalInput value={data.fone || ""} onChange={(e) => updateData("fone", e.target.value)} label="Celular" dado="number" />
           <NormalInput value={data.email || ""} onChange={(e) => updateData("email", e.target.value)} label="Email" dado="email" />
         </div>
         <div className={styles.row3}>
