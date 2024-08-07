@@ -190,6 +190,50 @@ class UserController {
             res.status(500).send({ error: error.message });
         }
     }
+
+    async RotaObterUsuario(req, res) {
+        try {
+            const cod_usuario = req.session.user.cod;
+
+            const query = `
+                SELECT nome, email FROM usuarios WHERE cod = ?
+            `;
+
+            connection.query(query, [cod_usuario], function (error, results, fields) {
+                if (error) {
+                    res.status(500).send({ error: error.message });
+                } else {
+                    res.status(200).json(results[0]);
+                }
+            });
+        } catch (error) {
+            res.status(500).send({ error: error.message });
+        }
+    }
+
+    async RotaAtualizarUsuario(req, res) {
+        try {
+            const cod_usuario = req.session.user.cod;
+            const { nome, email } = req.body;
+
+            const query = `
+                UPDATE usuarios 
+                SET nome=?, email=?
+                WHERE cod=?
+            `;
+
+            connection.query(query, [nome, email, cod_usuario], function (error, results, fields) {
+                if (error) {
+                    res.status(500).send({ error: error.message });
+                } else {
+                    res.status(200).send({ message: 'Dados atualizados com sucesso!' });
+                }
+            });
+        } catch (error) {
+            res.status(500).send({ error: error.message });
+        }
+    }
+
     
 }
 

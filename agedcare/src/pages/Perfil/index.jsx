@@ -1,18 +1,18 @@
-import React, { useState, useEffect} from 'react'
-import styles from './perfil.module.css'
-import { Perfil } from '../../components/pagPerfil/Perfil'
-import Pages from '../../components/Pages'
-import { useLocation } from 'react-router-dom';
+import React from 'react';
+import styles from './perfil.module.css';
+import { Perfil } from '../../components/pagPerfil/Perfil';
+import Pages from '../../components/Pages';
 
-const index = () => {
-    const { state} = useLocation();
-    const id = state ? state.id : null
-    return(
+const Index = () => {
+    // Obtém o id do usuário diretamente do sessionStorage
+    const info = sessionStorage.getItem('user');
+    const id = info ? JSON.parse(info).cod : null;
+
+    return (
         <>
-        <Pages component={Perfil} id={id} />
+            <Pages component={Perfil} id={id} />
         </>
+    );
+};
 
-    )
-}
-
-export default index
+export default Index;
