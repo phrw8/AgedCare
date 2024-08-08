@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './formTec.module.css';
 import { TecData } from './TecData';
 import { TecPreference } from "./TecPreference";
@@ -9,7 +9,7 @@ import { TecConfirm } from './TecConfirm';
 import { Navigate } from 'react-router-dom';
 
 const FormTec = ({ screen, setScreen }) => {
-    const [submitted, setSubmitted] = useState(false); 
+    const [submitted, setSubmitted] = useState(false);
     const activeUserString = sessionStorage.getItem("user");
     const activeUser = JSON.parse(activeUserString);
 
@@ -57,8 +57,10 @@ const FormTec = ({ screen, setScreen }) => {
         console.log(data);
     }, [data]);
 
+
     const convertDateToBrazilian = (dateString) => {
-        const [month, day, year] = dateString.split('/');
+        console.log(dateString)
+        const [year, month, day] = dateString.split('-');
         return `${day}/${month}/${year}`;
     };
 
@@ -109,23 +111,28 @@ const FormTec = ({ screen, setScreen }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        updateData(data.datanasc,convertDateToBrazilian(data.datanasc))
-        console.log(data)
 
-        const formData = new FormData();
+        // Clone the data object to avoid mutating the original
+        const formattedData = { ...data };
+        console.log(formattedData)
 
-        for (const key in data) {
-            formData.append(key, data[key]);
+        // Format the date before adding to formattedData
+        formattedData.datanasc = convertDateToBrazilian(data.datanasc);
+
+        // Create FormData object and append all fields
+        const formDataObj = new FormData();
+        for (const key in formattedData) {
+            formDataObj.append(key, formattedData[key]);
         }
 
         // Add cod_usuario to the FormData
-        formData.append('cod_usuario', activeUser.cod);
+        formDataObj.append('cod_usuario', activeUser.cod);
 
         try {
             const response = await fetch('http://localhost:5050/cadastro-tec', {
                 method: 'POST',
                 credentials: 'include',
-                body: formData,
+                body: formDataObj,
             });
 
             if (response.ok) {
@@ -139,7 +146,41 @@ const FormTec = ({ screen, setScreen }) => {
             console.error('Erro ao enviar os dados:', error);
             alert('Erro ao enviar os dados.');
         }
+
+        /*
+     updateData(data.datanasc, convertDateToBrazilian(data.datanasc));
+     console.log(data);
+ 
+     const formData = new FormData();
+ 
+     for (const key in data) {
+         formData.append(key, data[key]);
+     }
+ 
+     // Add cod_usuario to the FormData
+     formData.append('cod_usuario', activeUser.cod);
+ 
+     try {
+         const response = await fetch('http://localhost:5050/cadastro-tec', {
+             method: 'POST',
+             credentials: 'include',
+             body: formData,
+         });
+ 
+         if (response.ok) {
+             setSubmitted(true);
+         } else {
+             const errorData = await response.json();
+             console.error('Erro ao enviar os dados:', errorData);
+             alert('Erro ao enviar os dados.');
+         }
+     } catch (error) {
+         console.error('Erro ao enviar os dados:', error);
+         alert('Erro ao enviar os dados.');
+     }
+     */
     };
+
 
     return (
         <>
@@ -177,4 +218,3 @@ const FormTec = ({ screen, setScreen }) => {
 };
 
 export default FormTec;
- 
