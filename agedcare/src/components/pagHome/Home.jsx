@@ -1,90 +1,86 @@
-import React from 'react'
-import styles from './home.module.css'
-
-import { useState, useEffect } from 'react'
-import useFetch from '../hooks/useFetch'
-
-
-import { InputSrc } from './InputSrc'
-import { Pagination } from './Pagination'
-import { Card } from './Card'
-
+import React, { useState, useEffect } from 'react';
+import styles from './home.module.css';
+import { InputSrc } from './InputSrc';
+import { Card } from './Card';
+import { Pagination } from './Pagination';
 
 export const Home = () => {
-    const [cuidadoresData, setCuidadoresData] = useState([]);
-    const [cidade, setCidade] = useState("")
-    const [cidadeData, setCidadeData] = useState([])
-    const [skip, setSkip] = useState(0);
-    const { data, loading, error } = useFetch(`http://localhost:3000/users?_limit=12&_start=${skip}`);
-    const [totalItems, setTotalItems] = useState(0);
+    const [tecnicosData, setTecnicosData] = useState([]);
+    const [cidade, setCidade] = useState("");
+    const [cidadeData, setCidadeData] = useState([]);
+    const [skip, setSkip] = useState(0); // Estado para controlar a paginação
+    const limit = 12; // Limite de itens por página
 
     useEffect(() => {
         if (cidade) {
             const cidadeLowerCase = cidade.toLowerCase();
-            const tecnicosDe = cuidadoresData.filter(user => user.cidade.toLowerCase().includes(cidadeLowerCase) );
-            setCidadeData(tecnicosDe);
-            console.log(cidadeData)
+            const tecnicosFiltrados = tecnicosData.filter(tecnico => 
+                tecnico.cidade.toLowerCase().includes(cidadeLowerCase)
+            );
+            setCidadeData(tecnicosFiltrados);
         } else {
-            // Se o campo de cidade estiver vazio, exiba todos os resultados
-            setCidade()
+            setCidadeData(tecnicosData); // Exibe todos os técnicos se a cidade não estiver filtrada
         }
-    }, [cidade, cuidadoresData]);
+    }, [cidade, tecnicosData]);
 
     useEffect(() => {
-        const fetchTotalItems = async () => {
+        const fetchTecnicos = async () => {
             try {
-                const response = await fetch('http://localhost:3000/users');
+                const response = await fetch('http://localhost:5050/home');
                 const data = await response.json();
-                setTotalItems(data.length); // Define o número total de itens
+                setTecnicosData(data);
             } catch (error) {
-                console.error('Ocorreu um erro ao buscar o número total de itens:', error);
+                console.error('Ocorreu um erro ao buscar os técnicos:', error);
             }
         };
 
-        fetchTotalItems();
+        fetchTecnicos();
     }, []);
 
-    useEffect(() => {
-        if (data) {
-            const cuidadores = data.filter(user => user.tecnico === true);
-            setCuidadoresData(cuidadores);
-            console.log(cuidadoresData)
-        }
-    }, [data, skip]);
+    // Cálculo dos dados a serem exibidos na página atual
+    const currentData = cidadeData.slice(skip, skip + limit);
 
     return (
-        <>
-            <div className={styles.homeContainer}>
-                <InputSrc cidade={cidade} setCidade={setCidade} />
-                {cidade ? <h2 className={styles.title}>Cuidadores de {cidade}</h2> :
-                    <h2 className={styles.title}>Cuidadores perto de você</h2>}
+        <div className={styles.homeContainer}>
+            <InputSrc cidade={cidade} setCidade={setCidade} />
+            {cidade ? <h2 className={styles.title}>Cuidadores de {cidade}</h2> :
+                <h2 className={styles.title}>Cuidadores perto de você</h2>}
 
-                {loading && <div>Carregando...</div>}
-                {error && <div>Ocorreu um erro: {error.message}</div>}
-                {cidadeData.length > 0 && cuidadoresData.length > 0 && (
-                    <div className={styles.content}>
-                        {cidadeData.map(user => (
-                            <Card key={user.id} name={user.name} img={user.perfil} age={user.birthday} cidade={user.cidade} locais={user.locaisAptos} id={user.id}/>
-                        ))}
-                    </div>
-                )}
-                {cidadeData.length === 0 && cuidadoresData.length > 0 && (
-                    <div className={styles.content}>
-                        {cuidadoresData.map(user => (
-                            <Card key={user.id} name={user.name} img={user.perfil} age={user.birthday} cidade={user.cidade} locais={user.locaisAptos} id={user.id}/>
-                        ))}
-                    </div>
-                )}
-                {cidadeData.length === 0 && cuidadoresData.length === 0 && (
+            <div className={styles.content}>
+                {currentData.length > 0 ? (
+                    currentData.map(tecnico => (
+                        <Card 
+                            key={tecnico.cod} 
+                            name={tecnico.nome} 
+                            img={tecnico.foto} 
+                            age={tecnico.datanasc} 
+                            cidade={tecnico.cidade} 
+                            locaisAptos={{
+                                dia: tecnico.dia,
+                                noite: tecnico.noite,
+                                tarde: tecnico.tarde,
+                                fds: tecnico.fds,
+                                pernoite: tecnico.pernoite,
+                                domicilio: tecnico.domicilio,
+                                hospital: tecnico.hospital,
+                                asilo: tecnico.asilo,
+                                clinica: tecnico.clinica
+                            }}
+                            id={tecnico.cod} 
+                        />
+                    ))
+                ) : (
                     <div className={styles.alert}>Nenhum cuidador encontrado</div>
                 )}
-                <Pagination
-                    limit={12}
-                    total={cidadeData.length > 0 ? cidadeData.length : totalItems}
-                    skip={skip}
-                    setSkip={setSkip}
-                    data={cidadeData.length > 0 ? cidadeData : cuidadoresData} />
             </div>
-        </>
+
+            <Pagination
+                limit={limit}
+                total={cidadeData.length}
+                skip={skip}
+                setSkip={setSkip}
+                data={cidadeData}
+            />
+        </div>
     );
 };

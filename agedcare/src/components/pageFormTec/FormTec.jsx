@@ -40,7 +40,7 @@ const FormTec = ({ screen, setScreen }) => {
         asilo: false,
         clinica: false,
         km: "",
-        obs: ""
+        obs: "deixar aki default so pra testa"
     };
 
     const [data, setData] = useState(formData);

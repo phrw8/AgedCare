@@ -1,5 +1,5 @@
-import React from 'react'
-import styles from './pagination.module.css'
+import React from 'react';
+import styles from './pagination.module.css';
 
 const maxItens = 5;
 const maxLeft = (maxItens - 1) / 2;
@@ -11,17 +11,18 @@ export const Pagination = ({ limit, total, skip, setSkip, data }) => {
 
     // Função para avançar  
     const handleNext = () => {
-        if (data.length >= skip + 12) {
-            setSkip(prevSkip => prevSkip + 12);
+        if (data.length > skip + limit) {
+            setSkip(prevSkip => prevSkip + limit);
         }
     };
 
     // Função para retroceder
     const handlePrevious = () => {
-        if (skip >= 12) {
-            setSkip(prevSkip => prevSkip - 12);
+        if (skip >= limit) {
+            setSkip(prevSkip => prevSkip - limit);
         }
     };
+
     const scrollToTop = () => {
         window.scrollTo({
             top: 0,
@@ -30,30 +31,38 @@ export const Pagination = ({ limit, total, skip, setSkip, data }) => {
     };
 
     return (
-        <>
-            <div className={styles.content}>
-                <button onClick={() => handlePrevious()} className={styles.btn}>Anterior</button>
-                <ul className={styles.pagination}>
-                    {Array.from({ length: maxItens })
-                        .map((_, index) => index + first)
-                        .map((page, index) => {
-                            return (
-                                <li key={index}>
-                                    <button
-                                        className={`${styles.btnSkip} ${page === current ? styles.active : ''}`}
-                                        onClick={() => {
-                                            scrollToTop();
-                                            setSkip((page - 1) * limit)
-                                        }}
-                                    >
-                                        {page}
-                                    </button>
-                                </li>
-                            );
-                        })}
-                </ul>
-                <button onClick={() => handleNext()} className={styles.btn}>Próximo</button>
-            </div>
-        </>
+        <div className={styles.content}>
+            <button 
+                onClick={handlePrevious} 
+                className={styles.btn}
+                disabled={skip === 0} // Desativa o botão se estiver na primeira página
+            >
+                Anterior
+            </button>
+            <ul className={styles.pagination}>
+                {Array.from({ length: Math.min(maxItens, pages) })
+                    .map((_, index) => index + first)
+                    .map((page, index) => (
+                        <li key={index}>
+                            <button
+                                className={`${styles.btnSkip} ${page === current ? styles.active : ''}`}
+                                onClick={() => {
+                                    scrollToTop();
+                                    setSkip((page - 1) * limit);
+                                }}
+                            >
+                                {page}
+                            </button>
+                        </li>
+                    ))}
+            </ul>
+            <button 
+                onClick={handleNext} 
+                className={styles.btn}
+                disabled={skip + limit >= total} // Desativa o botão se estiver na última página
+            >
+                Próximo
+            </button>
+        </div>
     );
 };
