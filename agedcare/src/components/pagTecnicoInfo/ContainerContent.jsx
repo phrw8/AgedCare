@@ -1,44 +1,43 @@
-import React, { useEffect, useState } from 'react'
-import styles from './containerContent.module.css'
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import styles from './containerContent.module.css';
+import { ContainerData } from './ContainerData';
 
-import { ContainerData } from './ContainerData'
+const ContainerContent = () => {
+  const location = useLocation();
+  const [data, setData] = useState(null);
 
-import banner from './../../assets/bgHeaderTec.jpg'
-const ContainerContent = ({ id }) => {
-  // Fazer as funcoes e requisicoes
-  const [data, setData] = useState()
+  // Get id from the location state
+  const id = location.state?.id;
 
   useEffect(() => {
-    const url = `http://localhost:3000/users/${id}`; // Substitua pelo seu endpoint real
-
-    fetch(url)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Erro ao obter os dados do usuário');
+    const fetchTechnicianData = async () => {
+      try {
+        if (id) {
+          const url = `http://localhost:5050/tecnico/${id}`; // Endpoint to fetch technician data
+          const response = await fetch(url);
+          if (!response.ok) {
+            throw new Error('Erro ao obter os dados do técnico');
+          }
+          const result = await response.json();
+          setData(result);
         }
-        return response.json(); // Retorna uma promessa contendo os dados do usuário no formato JSON
-      })
-      .then(data => {
-        // Define os dados do usuário no estado
-        setData(data);
-      })
-      .catch(error => {
-        // Manipula erros da requisição
+      } catch (error) {
         console.error('Erro na requisição:', error);
-      });
+      }
+    };
+
+    fetchTechnicianData();
   }, [id]);
 
   return (
-    <>
-      <div className={styles.app}>
-        <div className={styles.square}>
-          <div className={styles.banner}>
-
-          </div>
+    <div className={styles.app}>
+      <div className={styles.square}>
+        <div className={styles.banner}></div>
         <ContainerData data={data} />
-        </div>
       </div>
-    </>
-  )
-}
-export default ContainerContent
+    </div>
+  );
+};
+
+export default ContainerContent;

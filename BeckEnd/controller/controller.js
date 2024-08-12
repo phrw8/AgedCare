@@ -234,6 +234,28 @@ class UserController {
         }
     }
 
+    // Nova rota para obter os dados do técnico baseado no ID
+async RotaObterTecnicoPorId(req, res) {
+    try {
+        const { id } = req.params; // Captura o ID do técnico a partir dos parâmetros da URL
+
+        const query = 'SELECT * FROM aged.tecnico WHERE id = ?';
+        connection.query(query, [id], function (error, results, fields) {
+            if (error) {
+                res.status(500).send({ error: error.message });
+            } else if (results.length === 0) {
+                res.status(404).send({ error: 'Técnico não encontrado.' });
+            } else {
+                res.status(200).json(results[0]);
+            }
+        });
+
+    } catch (error) {
+        res.status(500).send({ error: error.message });
+    }
+}
+
+
     
 }
 
