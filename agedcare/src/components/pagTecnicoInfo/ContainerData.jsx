@@ -20,52 +20,59 @@ import { Rating } from './avaliacao/Rating';
 import { ShowRating } from './avaliacao/ShowRating';
 
 export const ContainerData = ({ data }) => {
-    const tecId = data ? data.id : ""
-    const currentUserId = localStorage.getItem("id")
-    const numeroTelefone = data ? data.celular : null;
+    const tecId = data ? data.cod : "";
+    const currentUserId = localStorage.getItem("id");
+    const numeroTelefone = data ? data.fone : null;
     const mensagem = 'Olá, venho da AgedCare!';
     const mensagemCodificada = encodeURIComponent(mensagem);
 
-    const locaisAptosData = data ? data.locaisAptos : null;
+    // Mapeando os campos de locais de aptidão e disponibilidade
+    const locaisAptosData = {
+        asilo: data.asilo,
+        hospital: data.hospital,
+        domicilio: data.domicilio,
+        clinica: data.clinica
+    };
 
-    const locaisAptosArray = locaisAptosData ? Object.entries(locaisAptosData)
-        .filter(([local, apto]) => apto)
-        .map(([local, apto]) => local)
-        : null;
+    const disponibilidadeData = {
+        dia: data.dia,
+        tarde: data.tarde,
+        noite: data.noite,
+        pernoite: data.pernoite,
+        fds: data.fds
+    };
 
-    const disponibilidadeData = data ? data.disponibilidade : null;
+    // Filtrando os locais disponíveis
+    const locaisAptosArray = Object.entries(locaisAptosData)
+        .filter(([local, apto]) => apto === "true")
+        .map(([local, apto]) => local);
 
-    const disponibilidadeArray = disponibilidadeData ? Object.entries(disponibilidadeData)
-        .filter(([local, apto]) => apto)
-        .map(([local, apto]) => local)
-        : null;
-
+    const disponibilidadeArray = Object.entries(disponibilidadeData)
+        .filter(([local, apto]) => apto === "true")
+        .map(([local, apto]) => local);
 
     const [avaliacaoTec, setAvaliacaoTec] = useState()
 
     function calcularIdade(dataNascimento) {
-        // Converte a data de nascimento para um objeto Date
         const dataNascimentoObj = new Date(dataNascimento);
         const dataAtual = new Date(); // Data atual
-
-        // Calcula a diferença entre as datas em milissegundos
         const diff = dataAtual - dataNascimentoObj;
-
-        // Converte a diferença de milissegundos para anos
-        const idade = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25)); // 365.25 dias por ano considerando anos bissextos
-
+        const idade = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25)); // 365.25 dias por ano
         return idade;
     }
+
     const icones = {
         'asilo': SlEyeglass,
         'hospital': RiHospitalLine,
         'domicilio': IoHomeOutline,
-        'manha': PiSunHorizon,
+        'clinica': IoHomeOutline,
+        'dia': PiSunHorizon,
         'tarde': PiSunDimLight,
         'noite': PiMoonDuotone,
         'pernoite': PiMoonFill,
         'fds': PiSunHorizon,
     };
+
     function calcularMediaAvaliacoes(objeto, nm) {
         const filhos = Object.keys(objeto);
         let somaAvaliacoes = 0;
@@ -74,23 +81,14 @@ export const ContainerData = ({ data }) => {
         filhos.forEach(filho => {
             const avaliacao = objeto[filho].avaliacao
             if (avaliacao !== null && avaliacao !== undefined) {
-                console.log(avaliacao)
                 somaAvaliacoes += objeto[filho].avaliacao;
                 count++;
             }
         });
 
         const media = count > 0 ? (somaAvaliacoes / count).toFixed(1) : 'Não possui avaliações';
-        console.log(media)
-        if (nm) {
-            return media;
-        } else {
-            return count
-        }
-
-
+        return nm ? media : count;
     }
-
 
     useEffect(() => {
         const avaliacaoDataTec = async () => {
@@ -98,20 +96,18 @@ export const ContainerData = ({ data }) => {
                 const response = await fetch(`http://localhost:3030/avaliacoes/tec/${tecId}`);
                 const data = await response.json();
                 setAvaliacaoTec(data);
-
             } catch (error) {
-                console.error('Ocorreu um erro ao buscar o número total de itens:', error);
+                console.error('Ocorreu um erro ao buscar as avaliações:', error);
             }
         };
         if (tecId) {
             avaliacaoDataTec();
         }
-
     }, [tecId]);
+
     useEffect(() => {
-        const avaliacaoDataTec = async () => {
-            if(tecId && avaliacaoTec){
-                console.log(calcularMediaAvaliacoes(avaliacaoTec,1))
+        const atualizarAvaliacao = async () => {
+            if (tecId && avaliacaoTec) {
                 try {
                     const response = await fetch(`http://localhost:3000/users/${tecId}`, {
                         method: 'PATCH',
@@ -119,29 +115,25 @@ export const ContainerData = ({ data }) => {
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({
-                            avaliacao: calcularMediaAvaliacoes(avaliacaoTec,1),
-                            
+                            avaliacao: calcularMediaAvaliacoes(avaliacaoTec, 1),
                         })
-                        
                     });
-                    } catch (error) {
-                        console.error('Ocorreu um erro ao buscar o número total de itens:', error);
-                    }
-                };
-
+                } catch (error) {
+                    console.error('Ocorreu um erro ao atualizar a avaliação:', error);
+                }
             }
-           
-            if (tecId) {
-                avaliacaoDataTec();
-            }
-        },[tecId,avaliacaoTec ])
+        };
+        if (tecId) {
+            atualizarAvaliacao();
+        }
+    }, [tecId, avaliacaoTec]);
 
     return (
         <>
             <div className={styles.app}>
                 <div className={styles.row0Container}>
                     <div className={styles.card}>
-                        <img src={img1} className={styles.img} />
+                        <img src={img1} className={styles.img} alt="Foto do técnico" />
                     </div>
                     <div className={styles.dataContainer}>
                         <div className={styles.avaliacao}>
@@ -157,62 +149,53 @@ export const ContainerData = ({ data }) => {
                         </div>
                         <div className={styles.personalContainer}>
                             <div className={styles.row0}>
-                                <p className={styles.name}>{data ? data.name : "nome nao encontrado"} </p>
+                                <p className={styles.name}>{data ? data.nome : "Nome não encontrado"}</p>
                             </div>
                             <div className={styles.row1}>
-                                <p className={styles.ageCity}>{calcularIdade(data ? data.birthday : 0)} anos,</p>
-                                <p className={styles.ageCity}>{data ? data.cidade : "cidade nao encontrado"}</p>
+                                <p className={styles.ageCity}>{calcularIdade(data ? data.datanasc : 0)} anos,</p>
+                                <p className={styles.ageCity}>{data ? data.cidade : "Cidade não encontrada"}</p>
                             </div>
                             <hr className={styles.divisoria} />
                             <div className={styles.row2}>
                                 <div className={styles.locaisDisp}>
-                                    {locaisAptosArray ?
-                                        locaisAptosArray.map((local, index) => (
-                                            <div key={index} className={styles.item}>
-                                                <IconContext.Provider value={{ className: styles.icon }}>
-                                                    {icones[local] && React.createElement(icones[local])}
-                                                </IconContext.Provider>
-                                                <p className={styles.hab}>{local}</p>
-                                            </div>
-                                        ))
-                                        : null
-                                    }
+                                    {locaisAptosArray.map((local, index) => (
+                                        <div key={index} className={styles.item}>
+                                            <IconContext.Provider value={{ className: styles.icon }}>
+                                                {icones[local] && React.createElement(icones[local])}
+                                            </IconContext.Provider>
+                                            <p className={styles.hab}>{local}</p>
+                                        </div>
+                                    ))}
                                 </div>
                                 <div className={styles.locaisDisp}>
-                                    {disponibilidadeArray ?
-                                        disponibilidadeArray.map((local, index) => (
-                                            <div key={index} className={styles.item}>
-                                                <IconContext.Provider value={{ className: styles.icon }}>
-                                                    {icones[local] && React.createElement(icones[local])}
-                                                </IconContext.Provider>
-                                                <p className={styles.hab}>{local}</p>
-                                            </div>
-                                        ))
-                                        : null
-                                    }
+                                    {disponibilidadeArray.map((local, index) => (
+                                        <div key={index} className={styles.item}>
+                                            <IconContext.Provider value={{ className: styles.icon }}>
+                                                {icones[local] && React.createElement(icones[local])}
+                                            </IconContext.Provider>
+                                            <p className={styles.hab}>{local}</p>
+                                        </div>
+                                    ))}
                                 </div>
-
                             </div>
                         </div>
                         <div className={styles.btnContainer}>
-                            <button className={styles.btnWhatssap}><a href={`https://wa.me/${numeroTelefone}/?text=${mensagemCodificada}`} target="_blank" rel="noopener noreferrer">
-                                Entre em contato <FaWhatsapp />
-                            </a></button>
-
+                            <button className={styles.btnWhatssap}>
+                                <a href={`https://wa.me/${numeroTelefone}/?text=${mensagemCodificada}`} target="_blank" rel="noopener noreferrer">
+                                    Entre em contato <FaWhatsapp />
+                                </a>
+                            </button>
                         </div>
                     </div>
                 </div>
                 <div className={styles.row1Container}>
                     <div className={styles.descContainer}>
-                        <p>{data ? data.comentario : 0}</p>
+                        <p>{data ? data.obs : "Sem observações"}</p>
                     </div>
                 </div>
                 <div className={styles.row2Container}>
                     <Comentarios currentUserId={currentUserId} tecId={tecId} />
                 </div>
-
-
-
             </div>
         </>
     )

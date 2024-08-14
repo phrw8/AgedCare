@@ -239,7 +239,7 @@ async RotaObterTecnicoPorId(req, res) {
     try {
         const { id } = req.params; // Captura o ID do técnico a partir dos parâmetros da URL
 
-        const query = 'SELECT * FROM aged.tecnico WHERE id = ?';
+        const query = 'SELECT * FROM aged.tecnico WHERE cod = ?';
         connection.query(query, [id], function (error, results, fields) {
             if (error) {
                 res.status(500).send({ error: error.message });

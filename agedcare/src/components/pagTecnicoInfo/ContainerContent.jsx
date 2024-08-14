@@ -7,14 +7,14 @@ const ContainerContent = () => {
   const location = useLocation();
   const [data, setData] = useState(null);
 
-  // Get id from the location state
+  // Obtém o id da rota
   const id = location.state?.id;
 
   useEffect(() => {
     const fetchTechnicianData = async () => {
       try {
         if (id) {
-          const url = `http://localhost:5050/tecnico/${id}`; // Endpoint to fetch technician data
+          const url = `http://localhost:5050/tecnico/${id}`; // Endpoint para buscar dados do técnico
           const response = await fetch(url);
           if (!response.ok) {
             throw new Error('Erro ao obter os dados do técnico');
