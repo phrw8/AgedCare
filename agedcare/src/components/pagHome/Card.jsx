@@ -1,6 +1,7 @@
+// Card.js
 import React from 'react';
-import styles from './card.module.css';
 import { Link } from 'react-router-dom';
+import styles from './card.module.css';
 import { RiHospitalLine } from "react-icons/ri";
 import { IoHomeOutline } from "react-icons/io5";
 import { PiSunHorizon, PiSunDimLight, PiMoonDuotone, PiMoonFill } from "react-icons/pi";
@@ -55,7 +56,7 @@ export const Card = ({ name, age, cidade, locaisAptos, img, id }) => {
     );
 
     return (
-        <Link to="/TecnicoInfo" state={{ id }} className={styles.link}>
+        <Link to={{ pathname: "/TecnicoInfo", state: { id } }} className={styles.link}>
             <div className={styles.card}>
                 <div className={styles.imgPerfil}>
                     {img && <img src={img} alt={`Foto de ${name}`} />}

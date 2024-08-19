@@ -1,3 +1,4 @@
+// ContainerContent.js
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import styles from './containerContent.module.css';
@@ -21,6 +22,7 @@ const ContainerContent = () => {
           }
           const result = await response.json();
           setData(result);
+          console.log(result)
         }
       } catch (error) {
         console.error('Erro na requisição:', error);
