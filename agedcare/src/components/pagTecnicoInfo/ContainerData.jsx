@@ -19,7 +19,7 @@ import { ShowRating } from './avaliacao/ShowRating';
 export const ContainerData = ({ data }) => {
     // Garantindo que `data` existe antes de acessar suas propriedades
     const tecId = data ? data.cod : "";
-    const currentUserId = localStorage.getItem("id");
+   // const currentUserId = localStorage.getItem("id");
     const numeroTelefone = data ? data.fone : null;
     const mensagem = 'Olá, venho da AgedCare!';
     const mensagemCodificada = encodeURIComponent(mensagem);
@@ -51,12 +51,20 @@ export const ContainerData = ({ data }) => {
     // const [avaliacaoTec, setAvaliacaoTec] = useState();
 
     function calcularIdade(dataNascimento) {
-        const dataNascimentoObj = new Date(dataNascimento);
-        const dataAtual = new Date(); 
+        if (!dataNascimento) return "Data inválida";
+        
+        // Converte a data do formato DD/MM/YYYY para YYYY-MM-DD
+        const partes = dataNascimento.split('/');
+        const dataNascimentoFormatada = `${partes[2]}-${partes[1]}-${partes[0]}`;
+        
+        const dataNascimentoObj = new Date(dataNascimentoFormatada);
+        const dataAtual = new Date();
         const diff = dataAtual - dataNascimentoObj;
         const idade = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
-        return idade;
+        
+        return isNaN(idade) ? "Data inválida" : idade;
     }
+    
 
     const icones = {
         'asilo': SlEyeglass,
@@ -130,7 +138,7 @@ export const ContainerData = ({ data }) => {
             <div className={styles.app}>
                 <div className={styles.row0Container}>
                     <div className={styles.card}>
-                        <img src={`http://localhost:3030/uploads/${data ? data.foto : 'default.png'}`} className={styles.img} alt="Foto do técnico" />
+                        <img src="murili.jpg" className={styles.img} alt="Foto do técnico" />
                     </div>
                     <div className={styles.dataContainer}>
                         <div className={styles.avaliacao}>
@@ -191,7 +199,7 @@ export const ContainerData = ({ data }) => {
                     </div>
                 </div>
                 <div className={styles.row2Container}>
-                    <Comentarios currentUserId={currentUserId} tecId={tecId} />
+                    <Comentarios/>
                 </div>
             </div>
         </>

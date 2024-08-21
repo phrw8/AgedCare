@@ -23,7 +23,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/NewUser" element={<NewUser />} />
         <Route path="/Home" element={<Home />} />
         <Route path="/Perfil" element={<Perfil />} />
-        <Route path="/TecnicoInfo" element={<TecnicoInfo />} />
+        <Route path="/TecnicoInfo/:id" element={<TecnicoInfo />} /> {/* Updated */}
         <Route path="/Buscar" element={<Buscar />} />
         <Route path="/PerfilTec" element={<PerfilTec />} />
         <Route path="/FormTec" element={<FormTec />} />

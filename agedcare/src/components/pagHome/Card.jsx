@@ -56,7 +56,7 @@ export const Card = ({ name, age, cidade, locaisAptos, img, id }) => {
     );
 
     return (
-        <Link to={{ pathname: "/TecnicoInfo", state: { id } }} className={styles.link}>
+        <Link to={`/TecnicoInfo/${id}`}  className={styles.link}>
             <div className={styles.card}>
                 <div className={styles.imgPerfil}>
                     {img && <img src={img} alt={`Foto de ${name}`} />}

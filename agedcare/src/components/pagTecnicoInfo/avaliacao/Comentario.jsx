@@ -6,26 +6,27 @@ import ComentarioForm from './ComentarioForm'
 import {ShowRating} from './ShowRating'
 
 export const Comentario = ({
-    comentario,
-    replies,
-    currentUserId,
-    deleteComment,
-    activeComentario,
-    setActiveComentario,
-    addComment,
-    parentId = null,
-    updateComment={updateComment} }) => {
+    //comentario,
+    //replies,
+    //currentUserId,
+   // deleteComment,
+   // activeComentario,
+   // setActiveComentario,
+    //addComment,
+    //parentId = null,
+    //updateComment={updateComment}
+ }) => {
 
-    const canReply = Boolean(currentUserId) && !parentId
-    const canEdit = currentUserId == comentario.userId
-    const canDelete = currentUserId == comentario.userId
-    const isReplying = activeComentario &&
-        activeComentario.type == "replying" &&
-        activeComentario.id == comentario.id;
-    const isEditing = activeComentario &&
-        activeComentario.type == "editing" &&
-        activeComentario.id == comentario.id;
-    const replyId = parentId ? parentId : comentario.id
+    //const canReply = Boolean(currentUserId) && !parentId
+   // const canEdit = currentUserId == comentario.userId
+    //const canDelete = currentUserId == comentario.userId
+   // const isReplying = activeComentario &&
+       // activeComentario.type == "replying" &&
+        //activeComentario.id == comentario.id;
+    //const isEditing = activeComentario &&
+       // activeComentario.type == "editing" &&
+        //activeComentario.id == comentario.id;
+   //const replyId = parentId ? parentId : comentario.id
     
  
     return (
@@ -34,7 +35,11 @@ export const Comentario = ({
                 <img src={defaultUser} />
             </div>
             <div className={styles.commentRightPart}>
-                {!parentId ? <ShowRating rating={comentario.avaliacao}/> : null}
+                {//!parentId ? 
+                <ShowRating 
+                //rating={comentario.avaliacao}
+                /> 
+                }
                 <div className={styles.commentContent}>
                     <div className={styles.commentAuthor}>{comentario.userName}</div>
                     <div className={styles.dateText}>
@@ -75,16 +80,17 @@ export const Comentario = ({
                         {replies.map(reply => {
                             return (
                                 <Comentario
-                                    comentario={reply}
-                                    key={reply.id}
-                                    replies={[]}
-                                    currentUserId={currentUserId}
-                                    deleteComment={deleteComment}
-                                    parentId={comentario.id}
-                                    addComment={addComment}
-                                    activeComentario={activeComentario}
-                                    setActiveComentario={setActiveComentario}
-                                    updateComment={updateComment} />
+                                    //comentario={reply}
+                                   // key={reply.id}
+                                    //replies={[]}
+                                    //currentUserId={currentUserId}
+                                    //deleteComment={deleteComment}
+                                   // parentId={comentario.id}
+                                   // addComment={addComment}
+                                  //  activeComentario={activeComentario}
+                                  //  setActiveComentario={setActiveComentario}
+                                 //updateComment={updateComment}
+                                  />
                             );
                         })}
                     </div>

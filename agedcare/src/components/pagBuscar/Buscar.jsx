@@ -18,7 +18,7 @@ export const Buscar = () => {
     const [cuidadoresName, setCuidadoresName] = useState([])
     const [name, setName] = useState("")
     const [skip, setSkip] = useState(0);
-    const { data, loading, error } = useFetch(`http://localhost:3000/users?_limit=12&_start=${skip}`);
+    const { data, loading, error } = useFetch(`http://localhost:5050/home?_limit=12&_start=${skip}`);
 
     const handleCheckboxChange = (local) => {
         const index = locais.indexOf(local);
