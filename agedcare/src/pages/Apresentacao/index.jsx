@@ -58,6 +58,9 @@ const index = () => {
 
                                
                                     <button className={styles.btnLog} ><Link to='/NewUser' className={styles.linkSemEstilo}>Cadastro</Link></button>
+
+
+                                    <button className={styles.btnLog} ><Link to='/Sobre' className={styles.linkSemEstilo}>Sobre nós</Link></button>
                                 
 
 
