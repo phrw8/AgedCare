@@ -13,7 +13,7 @@ import TecnicoInfo from './pages/TecnicoInfo/index.jsx';
 import PerfilTec from './pages/PerfilTec/index.jsx';
 import FormTec from './pages/FormTec/index.jsx';
 import Configs from './pages/Configs/index.jsx';
-import Sobre from "./pages/Sobre/Index.jsx"
+
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -30,7 +30,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/PerfilTec" element={<PerfilTec />} />
         <Route path="/FormTec" element={<FormTec />} />
         <Route path="/Configs" element={<Configs />} />
-        <Route path="/Sobre" element={<Sobre />} />
+        
         
       </Routes>
     </BrowserRouter>

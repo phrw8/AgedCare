@@ -10,7 +10,7 @@ const Input = ({ name, handleChange }) => {
     return (
         <label className={styles.switch}>
             <input
-                type='checkbox'
+                type="checkbox"
                 value={name}
                 onChange={() => handleChange(name)}
                 className={styles.inputCheckbox}

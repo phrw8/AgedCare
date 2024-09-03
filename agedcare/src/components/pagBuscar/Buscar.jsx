@@ -14,7 +14,6 @@ export const Buscar = () => {
     const [cuidadoresData, setCuidadoresData] = useState([]);
     const [cuidadoresName, setCuidadoresName] = useState([]);
     const [name, setName] = useState("");
-    const [skip, setSkip] = useState(0);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -23,7 +22,7 @@ export const Buscar = () => {
         setError(null);
 
         try {
-            const response = await fetch(`http://localhost:5050/home?_limit=12&_start=${skip}`);
+            const response = await fetch('http://localhost:5050/home'); // Removed pagination
             if (!response.ok) {
                 throw new Error('Erro ao buscar dados');
             }
@@ -54,13 +53,13 @@ export const Buscar = () => {
     };
 
     const handleSearch = () => {
-        setSkip(0); // Reset pagination on new search
-        fetchData(); // Fetch data after search
+        // Fetch data after search
+        fetchData(); 
     };
 
     useEffect(() => {
         fetchData();
-    }, [skip]);
+    }, []);
 
     useEffect(() => {
         if (name || cidade || locais.length > 0 || disponibilidades.length > 0) {

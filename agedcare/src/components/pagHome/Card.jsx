@@ -1,4 +1,3 @@
-// Card.js
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './card.module.css';
@@ -95,3 +94,5 @@ export const Card = ({ name, age, cidade, locaisAptos, img, id }) => {
         </Link>
     );
 };
+
+export default Card;
