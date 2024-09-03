@@ -1,0 +1,38 @@
+.content-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
+.about-us, .reasons, .mission, .why-choose, .contact {
+  margin-bottom: 30px;
+}
+
+h1, h2 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+p, li {
+  color: #555;
+}
+
+ol {
+  list-style-type: decimal;
+  padding-left: 20px;
+}
+
+ol li {
+  margin-bottom: 10px;
+}
+
+strong {
+  color: #000;
+}
+
+.contact p {
+  margin-bottom: 10px;
+}
