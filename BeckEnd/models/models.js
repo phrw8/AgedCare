@@ -67,7 +67,18 @@ class User {
             });
         });
     }
-    
+    MostraUsuarios() {
+        return new Promise((resolve, reject) => {
+            const query = 'SELECT * FROM aged.usuarios';
+            connection.query(query, (error, results) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve(results);
+                }
+            });
+        });
+    }
    
 }
 

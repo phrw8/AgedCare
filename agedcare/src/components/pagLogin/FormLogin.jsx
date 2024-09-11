@@ -59,8 +59,10 @@ const FormLogin = () => {
 
         const userId = result.user.cod;
 
-        // Verifica se o usuário é um técnico e se possui cadastro na tabela técnico
-        if (result.user.permissao === 'tecnico') {
+        // Verifica a permissão do usuário
+        if (result.user.permissao === 'adm') {
+          setRedirectTo('/adm'); // Redireciona para a página de admin
+        } else if (result.user.permissao === 'tecnico') {
           const tecnicoResponse = await fetch('http://localhost:5050/home', {
             method: 'GET',
             credentials: 'include'
@@ -77,6 +79,7 @@ const FormLogin = () => {
         } else {
           setRedirectTo('/Home'); // Redireciona para a Home se for um usuário comum
         }
+
         setLogin(true);
       } else {
         console.error('Resposta inesperada do servidor:', result);

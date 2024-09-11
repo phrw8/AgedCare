@@ -255,6 +255,77 @@ async RotaObterTecnicoPorId(req, res) {
     }
 }
 
+async RotaRetornaUsuarios(req,res){
+    try {
+        const dados = await user.MostraUsuarios()
+        res.status(200).json(dados)
+    } catch (error) {
+        console.error('Erro ao exibir usuarios:', error);
+        res.status(500).json({ error: 'Erro ao exibir usuarios.' });
+    }
+}
+
+async RotaDeletarUsuario(req, res) {
+    try {
+        const { cod } = req.params;
+
+        const query = `
+            DELETE FROM usuarios WHERE cod = ?
+        `;
+
+        connection.query(query, [cod], function (error, results, fields) {
+            if (error) {
+                res.status(500).send({ error: error.message });
+            } else {
+                res.status(200).send({ message: 'Usuário deletado com sucesso!' });
+            }
+        });
+    } catch (error) {
+        res.status(500).send({ error: error.message });
+    }
+}
+
+async RotaObterUsuarioId(req, res) {
+    try {
+        const { cod } = req.params; // Captura o ID do técnico a partir dos parâmetros da URL
+
+        const query = 'SELECT * FROM aged.usuarios WHERE cod = ?';
+        connection.query(query, [cod], function (error, results, fields) {
+            if (error) {
+                res.status(500).send({ error: error.message });
+            } else if (results.length === 0) {
+                res.status(404).send({ error: 'Usuario nao encontrado.' });
+            } else {
+                res.status(200).json(results[0]);
+            }
+        });
+
+    } catch (error) {
+        res.status(500).send({ error: error.message });
+    }
+}
+async RotaAtualizar(req, res) {
+    try {
+        const { nome, email, permissao } = req.body
+        const { cod } = req.params
+
+        const query = `
+            UPDATE usuarios 
+            SET nome=?, email=?, permissao=?
+            WHERE cod=?
+        `;
+
+        connection.query(query, [nome, email, permissao, cod], function (error, results, fields) {
+            if (error) {
+                res.status(500).send({ error: error.message });
+            } else {
+                res.status(200).send({ message: 'Dados atualizados com sucesso!' });
+            }
+        });
+    } catch (error) {
+        res.status(500).send({ error: error.message });
+    }
+}
 
     
 }

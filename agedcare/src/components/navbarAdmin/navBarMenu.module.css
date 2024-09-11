@@ -1,0 +1,77 @@
+.navBarContainer {
+    width: 100%;
+    background-color: #012F59;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+  
+  .header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #012F59;
+  }
+  
+  .toggleBtn {
+    font-size: 2rem;
+    cursor: pointer;
+    color: #fff;
+  }
+  
+  .navBar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #012F59;
+    padding: 1rem 0;
+    transition: max-height 0.3s ease;
+  }
+  
+  .desactive {
+    max-height: 0;
+    overflow: hidden;
+  }
+  
+  .ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  
+  .li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border: 1px solid transparent;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .li:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+    color: #012F59;
+  }
+  
+  .icon {
+    font-size: 1.5rem;
+  }
+  
+  @media (max-width: 760px) {
+    .ul {
+      flex-direction: column;
+    }
+  
+    .li {
+      justify-content: center;
+      padding: 1rem 0;
+    }
+  }
+  

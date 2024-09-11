@@ -14,6 +14,8 @@ import PerfilTec from './pages/PerfilTec/index.jsx';
 import FormTec from './pages/FormTec/index.jsx';
 import Configs from './pages/Configs/index.jsx';
 import About from './pages/About/index.jsx'
+import Admin from './pages/Admin/index.jsx'
+import EditUser from './pages/EditUser/EditUser.jsx';
 
 
 
@@ -32,6 +34,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/FormTec" element={<FormTec />} />
         <Route path="/Configs" element={<Configs />} />
         <Route path="/About" element={<About />} />
+        <Route path="/adm" element={<Admin />} />
+        <Route path="/atualizar/:cod" element={<Admin />} />
         
 
 
