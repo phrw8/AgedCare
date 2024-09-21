@@ -12,7 +12,7 @@ router.patch('/usuario', UserController.RotaAtualizarUsuario);
 // Tecnico rotas
 router.post('/cadastro-tec', verificarPermissaoTecnico, upload, UserController.RotaCadastroTec); 
 router.post('/perfilTecAtualiza', upload, UserController.RotaPerfilTec); 
-router.get('/perfilTec', verificarPermissaoTecnico, UserController.RotaPerfilTecGet); 
+router.get('/perfilTec', UserController.RotaPerfilTecGet); 
 router.get('/tecnico/:id', UserController.RotaObterTecnicoPorId); 
 
 //  Rotas padrão

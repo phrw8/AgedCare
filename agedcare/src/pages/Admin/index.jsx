@@ -2,16 +2,16 @@ import React, { useEffect, useState } from 'react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { FaTrashAlt, FaEdit } from 'react-icons/fa';
-import './index.css'; // Para o CSS customizado
+import './index.css'; 
 
 const index = () => {
   const [users, setUsers] = useState([]);
 
-  // Função para buscar os usuários da API
+  
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch('http://localhost:5050/adm'); // Substitua com sua rota de API correta
+        const response = await fetch('http://localhost:5050/adm'); 
         const data = await response.json();
         setUsers(data);
         console.log(data)
@@ -22,7 +22,7 @@ const index = () => {
     fetchUsers();
   }, []);
 
-  // Função para deletar um usuário
+  
   const handleDelete = async (cod) => {
     try {
       await fetch(`http://localhost:5050/delete/${cod}`, {
@@ -34,7 +34,7 @@ const index = () => {
     }
   };
 
-  // Função para atualizar um usuário (redirecionar para página de edição)
+  
   const handleEdit = (cod) => {
     window.location.href = `/atualizar/${cod}`;
   };
@@ -42,8 +42,9 @@ const index = () => {
   return (
     <>
       <Header />
+      <h1>Painel de Controle</h1>
       <div className="container">
-        <h1>Painel de Controle</h1>
+        
         <table className="user-table">
           <thead>
             <tr>

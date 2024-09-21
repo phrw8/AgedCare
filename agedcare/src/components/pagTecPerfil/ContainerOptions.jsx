@@ -1,5 +1,4 @@
 import React from 'react'
-// import styles from './containerOptions.module.css'
 import styles from './../../pages/PerfilTec/tecnicoPerfil.module.css'
 import { IconContext } from 'react-icons';
 
@@ -10,35 +9,47 @@ import { PiSunHorizon } from "react-icons/pi";
 import { PiSunDimLight } from "react-icons/pi";
 import { PiMoonDuotone } from "react-icons/pi";
 import { PiMoonFill } from "react-icons/pi";
-import { BsCalendar2Week } from "react-icons/bs";
 import { SlEyeglass } from "react-icons/sl";
-import { ImLab } from "react-icons/im";
 
 export const ContainerOptions = ({ name, data }) => {
-    const locaisAptosAll = data ? data.locaisAptos : "n deu certo";
+    if (!data) {
+        return <p>Carregando dados...</p>; // Caso os dados não estejam disponíveis ainda
+    }
 
+    // Adaptando a estrutura de dados de acordo com a API
+    const locaisAptosAll = {
+        Domicilio: data.domicilio,
+        Hospital: data.hospital,
+        Asilo: data.asilo,
+        Clinica: data.clinica
+    };
+
+    const disponibilidadeAll = {
+        Manha: data.dia,
+        Tarde: data.tarde,
+        Noite: data.noite,
+        Pernoite: data.pernoite
+    };
+
+    // Filtrando os valores que são verdadeiros
     const locais = Object.entries(locaisAptosAll)
         .filter(([key, value]) => value)
         .map(([key, value]) => key);
-
-    const disponibilidadeAll = data ? data.disponibilidade : "n deu certo";
 
     const disponibilidade = Object.entries(disponibilidadeAll)
         .filter(([key, value]) => value)
         .map(([key, value]) => key);
 
+    // Mapeamento dos ícones
     const icones = {
         'Asilo': SlEyeglass,
         'Hospital': RiHospitalLine,
-        'Laboratorio': ImLab,
         'Domicilio': IoHomeOutline,
         'Manha': PiSunHorizon,
         'Tarde': PiSunDimLight,
         'Noite': PiMoonDuotone,
-        'Pernoite': PiMoonFill,
-        'Fim de semana': BsCalendar2Week,
+        'Pernoite': PiMoonFill
     };
-
 
     return (
         <>
@@ -54,20 +65,19 @@ export const ContainerOptions = ({ name, data }) => {
                                 <IconContext.Provider value={{ className: styles.icon }}>
                                     {icones[item] && React.createElement(icones[item])}
                                 </IconContext.Provider>
-                                {item}</div>
+                                {item}
+                            </div>
                         ))}
                         {name === "Locais aptos" && locais.map((local, index) => (
                             <div key={index} className={styles.itens}>
                                 <IconContext.Provider value={{ className: styles.icon }}>
                                     {icones[local] && React.createElement(icones[local])}
                                 </IconContext.Provider>
-                                {local}</div>
+                                {local}
+                            </div>
                         ))}
                     </div>
-
-
                 </div>
-
             </div>
         </>
     )

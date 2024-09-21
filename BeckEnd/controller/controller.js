@@ -287,7 +287,7 @@ async RotaDeletarUsuario(req, res) {
 
 async RotaObterUsuarioId(req, res) {
     try {
-        const { cod } = req.params; // Captura o ID do técnico a partir dos parâmetros da URL
+        const { cod } = req.params; 
 
         const query = 'SELECT * FROM aged.usuarios WHERE cod = ?';
         connection.query(query, [cod], function (error, results, fields) {

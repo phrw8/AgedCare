@@ -2,18 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-
+import './EditeUser.module.css'
 
 const EditUser = () => {
-  const { cod } = useParams(); // Pega o código do usuário a partir da URL
+  const { cod } = useParams(); 
   const [user, setUser] = useState({ nome: '', email: '', permissao: '' });
   const navigate = useNavigate();
 
-  // Função para buscar os dados do usuário a partir do cod
+  
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await fetch(`http://localhost:5050/user${cod}`);
+        const response = await fetch(`http://localhost:5050/user/${cod}`);
         const data = await response.json();
         setUser(data);
       } catch (error) {
@@ -23,7 +23,7 @@ const EditUser = () => {
     fetchUser();
   }, [cod]);
 
-  // Função para salvar as alterações do usuário
+  
   const handleSave = async (e) => {
     e.preventDefault();
     try {
@@ -34,13 +34,14 @@ const EditUser = () => {
         },
         body: JSON.stringify(user),
       });
-      navigate('/admin'); // Redireciona de volta para o painel de controle
+      alert('informaçoes alteradas')
+      navigate('/adm'); 
     } catch (error) {
       console.error('Erro ao salvar usuário:', error);
     }
   };
 
-  // Função para manipular as alterações nos inputs
+  
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
@@ -48,6 +49,7 @@ const EditUser = () => {
   return (
     <>
       <Header />
+      
       <div className="container">
         <h1>Editar Usuário</h1>
         <form onSubmit={handleSave}>

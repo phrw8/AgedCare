@@ -11,7 +11,7 @@ const Card = ({data}) => {
         <hr className={styles.divisoria1}/>
         <div className={styles.image}></div>
         <hr className={styles.divisoria}/>
-          <h3 className={styles.username}>{`@${data ? data.userName : "error"}`}</h3>
+          <h3 className={styles.username}>{`@${data ? data.nome : "error"}`}</h3>
           <div className={styles.avaliacao}>
                             <ShowRating rating={data ? data.avaliacao : "Nao possui avaliacoes"} title={true}/>
                                 <div className={styles.numeroAvalicao}>

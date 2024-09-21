@@ -35,7 +35,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/Configs" element={<Configs />} />
         <Route path="/About" element={<About />} />
         <Route path="/adm" element={<Admin />} />
-        <Route path="/atualizar/:cod" element={<Admin />} />
+        <Route path="/atualizar/:cod" element={<EditUser />} />
         
 
 
