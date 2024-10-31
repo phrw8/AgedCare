@@ -3,7 +3,7 @@ import styles from './containerData.module.css'
 
 import { FaWhatsapp } from "react-icons/fa";
 import { IconContext } from 'react-icons';
-
+import tec1Image from './../../assets/tec1.jpeg'
 import { RiHospitalLine } from "react-icons/ri";
 import { IoHomeOutline } from "react-icons/io5";
 import { PiSunHorizon } from "react-icons/pi";
@@ -138,7 +138,7 @@ export const ContainerData = ({ data }) => {
             <div className={styles.app}>
                 <div className={styles.row0Container}>
                     <div className={styles.card}>
-                        <img src="murili.jpg" className={styles.img} alt="Foto do técnico" />
+                        <img src={tec1Image} className={styles.img} alt="Foto do técnico" />
                     </div>
                     <div className={styles.dataContainer}>
                         <div className={styles.avaliacao}>

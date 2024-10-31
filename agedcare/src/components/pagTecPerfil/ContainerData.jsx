@@ -11,8 +11,9 @@ const ContainerData = ({data}) => {
         </div>
         <div className={styles.row}>
           <div >
-            <h3 className={styles.name}>{data ? data.nome : "error"}</h3>
-            <h3 className={styles.h3foggy}>{data ? data.cpf : "error"}</h3>
+            <h3 className={styles.name}> Nome:{data ? data.nome : "error"}</h3>
+            <h3 className={styles.name}>Cpf: {data ? data.cpf : "error"}</h3>
+            <h3 className={styles.name}>Email: {data ? data.email : "error"}</h3>
           </div>
           <h3 className={styles.birthday}>{data ? data.nasc : "error"}</h3>
 

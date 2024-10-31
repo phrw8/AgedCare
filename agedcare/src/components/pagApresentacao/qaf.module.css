@@ -1,0 +1,82 @@
+/* index.css ou App.css */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rethink+Sans:ital,wght@0,400..800;1,400..800&display=swap');
+
+.qafContainer {
+    
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 20px;
+    
+    border-radius: 8px;
+}
+
+
+.title {
+    font-family: "Montserrat", sans-serif;
+    font-size: 35px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 60px;
+    color: #007bff;
+}
+
+.faqs {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.faqItem {
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+    cursor: pointer;
+    font-family: "Montserrat", sans-serif;
+}
+
+.question {
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #333;
+    transition: color 0.3s;
+    font-family: "Rethink Sans", sans-serif;
+}
+
+.question:hover {
+    color: #007bff;
+}
+
+.toggleIcon {
+    font-size: 24px;
+    margin-left: 10px;
+}
+
+.answer {
+    margin-top: 10px;
+    font-size: 17px;
+    color: #666;
+    line-height: 1.6;
+    font-family: "Montserrat", sans-serif;
+}
+
+@media (max-width: 768px) {
+    .qafContainer {
+        padding: 15px;
+    }
+
+    .title {
+        font-size: 20px;
+    }
+
+    .question {
+        font-size: 16px;
+    }
+
+    .answer {
+        font-size: 14px;
+    }
+}

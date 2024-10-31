@@ -1,15 +1,18 @@
 .rating {
-    display: inline-block;
-  }
-  
-  .rating input[type=radio]{
-    display: none;
-  }
-  .star{
-    font-size: 1rem;
-  }
-  .title{
-    font-size: 1.5rem;
-  }
-  
-    
+  display: flex; /* Alinha os itens horizontalmente */
+  align-items: center;
+  gap: 0.5rem; /* Espaço entre as estrelas */
+}
+
+.rating input[type=radio] {
+  display: none;
+}
+
+.star {
+  font-size: 1rem;
+  color: yellow;
+}
+
+.title {
+  font-size: 1.5rem;
+}

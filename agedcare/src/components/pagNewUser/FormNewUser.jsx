@@ -24,7 +24,7 @@ const FormNewUser = () => {
     };
 
     try {
-      // User Registration
+     
       const createUserResponse = await fetch('http://localhost:5050/cadastro', {
         method: "POST",
         headers: {

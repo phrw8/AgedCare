@@ -6,6 +6,7 @@ import { IoHomeOutline } from "react-icons/io5";
 import { PiSunHorizon, PiSunDimLight, PiMoonDuotone, PiMoonFill } from "react-icons/pi";
 import { SlEyeglass } from "react-icons/sl";
 import { MdLocalHospital } from "react-icons/md";  // Ícone para clínica
+import tecImage from './../../assets/tec1.jpeg'
 
 export const Card = ({ name, age, cidade, locaisAptos, img, id }) => {
     const calcularIdade = (age) => {
@@ -58,7 +59,7 @@ export const Card = ({ name, age, cidade, locaisAptos, img, id }) => {
         <Link to={`/TecnicoInfo/${id}`}  className={styles.link}>
             <div className={styles.card}>
                 <div className={styles.imgPerfil}>
-                    {img && <img src={img} alt={`Foto de ${name}`} />}
+                    {img && <img src={img} alt={``} />}
                 </div>
                 <h4 className={styles.name}>{name}</h4>
                 <h5 className={styles.personalInfo}>{calcularIdade(age)}, {cidade}</h5>

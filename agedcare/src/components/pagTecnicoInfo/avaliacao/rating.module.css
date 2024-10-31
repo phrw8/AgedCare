@@ -1,5 +1,7 @@
 .rating {
-    display: inline-block;
+  display: flex; /* Alinha os itens horizontalmente */
+  align-items: center;
+  gap: 0.5rem; /* Espaço entre as estrelas */
   }
   
   .rating input[type=radio]{
@@ -8,6 +10,7 @@
   .star{
     cursor: pointer;
     font-size: 2rem;
+    color: yellow;
   }
   
     

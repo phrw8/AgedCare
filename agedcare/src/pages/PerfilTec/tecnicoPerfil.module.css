@@ -8,6 +8,8 @@
     gap: 1.5rem;
 }
 
+
+
 .app2 {
     width: 100%;
     border-radius: 2rem;
@@ -43,10 +45,11 @@
     resize: vertical; 
     outline: none;
     font-size: 1rem;
+    
 }
 
 .h3foggy {
-    color: rgba(1, 47, 89, .7);
+    color: black;
     font-weight: 500;
 }
 
@@ -82,9 +85,11 @@
 }
 
 .name {
-    color: #012F59;
-    font-size: 1.6rem;
-    font-weight: 500;
+    
+    font-size: 15;
+    font-weight: 400;
+    color: black;
+    padding: 20px;
 }
 
 .divisoria {
@@ -118,6 +123,23 @@
     font-size: 1.2rem;
     outline: none;
 }
+
+.obsField {
+    width: 100%;
+    background: none;
+    border: none;
+    outline: none;
+    font-size: 1.2rem;
+    color: #012F59;
+    text-align: justify;
+    white-space: pre-wrap;  /* Preserva as quebras de linha no texto */
+    word-wrap: break-word;  /* Quebra palavras longas automaticamente */
+    line-height: 1.6rem;  /* Espaçamento entre linhas para melhorar a legibilidade */
+    padding: 70;
+    margin: 0;
+}
+
+
 
 
 

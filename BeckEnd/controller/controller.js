@@ -131,45 +131,182 @@ class UserController {
     //rota de atualizar o perfil do tecnico
     async RotaPerfilTec(req, res) {
         try {
-            const cod_usuario = req.session.user.cod; 
-            
-            const { nome, cpf, datanasc, org, rg, email, fone, sexo, estado, logradouro, numero, cidade, uf, bairro, cep, dia, noite, tarde, fds, pernoite, domicilio, hospital, asilo, clinica, km, obs } = req.body;
-        
-            const dateRegex = /^\d{2}\/\d{2}\/\d{4}$/
-            
-            if (!dateRegex.test(datanasc)) {
-                return res.status(400).json({ error: 'Formato de data inválido. Use DD/MM/YYYY.' });
-            }
-            
-            if (!req.files || !req.files.foto || !req.files.identidade) {
-                return res.status(400).json({ error: 'Alguma imagem não foi enviada.' });
+            const cod_usuario = req.session.user.cod; // Recupera o código do usuário da sessão
+    
+            // Extrai os campos enviados no corpo da requisição
+            const {
+                nome, cpf, datanasc, org, rg, email, fone, sexo, estado,
+                logradouro, numero, cidade, uf, bairro, cep,
+                dia, noite, tarde, fds, pernoite, domicilio,
+                hospital, asilo, clinica, km, obs
+            } = req.body;
+    
+            const updateFields = [];
+            const updateValues = [];
+    
+            // Validação do formato da data, se fornecida
+            if (datanasc) {
+                const dateRegex = /^\d{2}\/\d{2}\/\d{4}$/;
+                if (!dateRegex.test(datanasc)) {
+                    return res.status(400).json({ error: 'Formato de data inválido. Use DD/MM/YYYY.' });
+                }
+                updateFields.push('datanasc=?');
+                updateValues.push(datanasc);
             }
     
-            
-            const foto = req.files.foto[0].filename;
-            const identidade = req.files.identidade[0].filename;
+            // Validação das imagens, caso estejam presentes
+            let foto, identidade;
+            if (req.files) {
+                if (req.files.foto) {
+                    foto = req.files.foto[0].filename;
+                    updateFields.push('foto=?');
+                    updateValues.push(foto);
+                }
+                if (req.files.identidade) {
+                    identidade = req.files.identidade[0].filename;
+                    updateFields.push('identidade=?');
+                    updateValues.push(identidade);
+                }
+            }
     
+            // Adiciona os outros campos para atualização, caso sejam fornecidos
+            if (nome) {
+                updateFields.push('nome=?');
+                updateValues.push(nome);
+            }
+            if (cpf) {
+                updateFields.push('cpf=?');
+                updateValues.push(cpf);
+            }
+            if (org) {
+                updateFields.push('org=?');
+                updateValues.push(org);
+            }
+            if (rg) {
+                updateFields.push('rg=?');
+                updateValues.push(rg);
+            }
+            if (email) {
+                updateFields.push('email=?');
+                updateValues.push(email);
+            }
+            if (fone) {
+                updateFields.push('fone=?');
+                updateValues.push(fone);
+            }
+            if (sexo) {
+                updateFields.push('sexo=?');
+                updateValues.push(sexo);
+            }
+            if (estado) {
+                updateFields.push('estado=?');
+                updateValues.push(estado);
+            }
+            if (logradouro) {
+                updateFields.push('logradouro=?');
+                updateValues.push(logradouro);
+            }
+            if (numero) {
+                updateFields.push('numero=?');
+                updateValues.push(numero);
+            }
+            if (cidade) {
+                updateFields.push('cidade=?');
+                updateValues.push(cidade);
+            }
+            if (uf) {
+                updateFields.push('uf=?');
+                updateValues.push(uf);
+            }
+            if (bairro) {
+                updateFields.push('bairro=?');
+                updateValues.push(bairro);
+            }
+            if (cep) {
+                updateFields.push('cep=?');
+                updateValues.push(cep);
+            }
+            if (dia) {
+                updateFields.push('dia=?');
+                updateValues.push(dia);
+            }
+            if (noite) {
+                updateFields.push('noite=?');
+                updateValues.push(noite);
+            }
+            if (tarde) {
+                updateFields.push('tarde=?');
+                updateValues.push(tarde);
+            }
+            if (fds) {
+                updateFields.push('fds=?');
+                updateValues.push(fds);
+            }
+            if (pernoite) {
+                updateFields.push('pernoite=?');
+                updateValues.push(pernoite);
+            }
+            if (domicilio) {
+                updateFields.push('domicilio=?');
+                updateValues.push(domicilio);
+            }
+            if (hospital) {
+                updateFields.push('hospital=?');
+                updateValues.push(hospital);
+            }
+            if (asilo) {
+                updateFields.push('asilo=?');
+                updateValues.push(asilo);
+            }
+            if (clinica) {
+                updateFields.push('clinica=?');
+                updateValues.push(clinica);
+            }
+            if (km) {
+                updateFields.push('km=?');
+                updateValues.push(km);
+            }
+            if (obs) {
+                updateFields.push('obs=?');
+                updateValues.push(obs);
+            }
+    
+            // Se nenhum campo foi enviado para atualização, retorna erro
+            if (updateFields.length === 0) {
+                return res.status(400).json({ error: 'Nenhum campo para atualizar.' });
+            }
+    
+            // Construção dinâmica da query
             const query = `
-                UPDATE aged.tecnico 
-                SET nome=?, cpf=?, datanasc=?, org=?, rg=?, email=?, fone=?, sexo=?, estado=?, 
-                logradouro=?, numero=?, cidade=?, uf=?, bairro=?, cep=?, dia=?, noite=?, 
-                tarde=?, fds=?, pernoite=?, domicilio=?, hospital=?, asilo=?, clinica=?, 
-                km=?, foto=?, identidade=?, obs=? 
+                UPDATE aged.tecnico
+                SET ${updateFields.join(', ')}
                 WHERE cod_usuario=?
             `;
-            connection.query(query, [nome, cpf, datanasc, org, rg, email, fone, sexo, estado,
-                logradouro, numero, cidade, uf, bairro, cep, dia, noite,
-                tarde, fds, pernoite, domicilio, hospital, asilo, clinica,
-                km, foto, identidade, obs, cod_usuario], function (error, results, fields) {
-                    if (error) {
-                        res.status(500).send({ error: error.message });
-                    } else {
-                        res.status(200).send({ message: 'Dados atualizados com sucesso!' });
-                    }
-                });
+            updateValues.push(cod_usuario);
+    
+            // Execução da query
+            connection.query(query, updateValues, function (error, results, fields) {
+                if (error) {
+                    res.status(500).send({ error: error.message });
+                } else {
+                    res.status(200).send({ message: 'Dados atualizados com sucesso!' });
+                }
+            });
     
         } catch (error) {
             res.status(500).send({ error: error.message });
+        }
+    }
+    
+
+    async RotaAtualizarDisponibilidade(req,res){
+        try {
+            const cod_usuario = req.session.user.cod
+
+            const{dia, noite, tarde, fds, pernoite} =req.body
+
+        } catch (error) {
+            console.log(error)
         }
     }
 

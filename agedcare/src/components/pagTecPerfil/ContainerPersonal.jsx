@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
-import styles from './../../pages/PerfilTec/tecnicoPerfil.module.css'
-import { GrUserSettings } from "react-icons/gr";
+import { useEffect, useState } from 'react';
+import styles from './../../pages/PerfilTec/tecnicoPerfil.module.css';
+import { GrUserSettings } from 'react-icons/gr';
 
 const InputField = ({ label, name, value, onChange }) => (
   <label className={styles.labelInput}>
@@ -16,37 +16,39 @@ const InputField = ({ label, name, value, onChange }) => (
 );
 
 export const ContainerPersonal = ({ name, data }) => {
-  const [tecData, setTecData] = useState(data ? data : data);
+  const [tecData, setTecData] = useState(data || {});
   const [editing, setEditing] = useState(false);
+  const cod_usuario = sessionStorage.getItem('user');
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setTecData({ ...tecData, [name]: value });
   };
 
-  const submitComentario = async (id) => {
+  const updateTecData = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/users/${id}`, {
-        method: 'PATCH',
+      const response = await fetch('http://localhost:5050/perfilTecAtualiza', {
+        method: 'PATCH', // Utilizando o PATCH para atualizações parciais
+        credentials: 'include',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify(tecData)
+        body: JSON.stringify({ ...tecData, cod_usuario }), // Incluindo o código do usuário
       });
 
       if (response.ok) {
-        console.log("deu certo fera");
+        console.log('Dados atualizados com sucesso.');
       } else {
-        console.error('Falha ao enviar comentário.');
+        console.error('Falha ao atualizar os dados do técnico.');
       }
     } catch (error) {
-      console.error('Erro ao enviar comentário:', error);
+      console.error('Erro ao atualizar os dados do técnico:', error);
     }
   };
 
   useEffect(() => {
-    console.log(tecData);
-  }, [tecData]);
+    setTecData(data || {});
+  }, [data]);
 
   return (
     <div className={styles.app}>
@@ -55,85 +57,56 @@ export const ContainerPersonal = ({ name, data }) => {
         <GrUserSettings className={styles.iconChangeConfig} onClick={() => setEditing(!editing)} />
       </div>
       <div className={styles.collumn}>
-        {name === "Alterar informações pessoais" && !editing && (
+        {name === 'Alterar informações pessoais' && (
           <>
             <div className={styles.row}>
-              <InputField label="Nome" name="name" value={data ? data.name : "carregando"} onChange={handleInputChange} />
-              <InputField label="CPF" name="cpf" value={data ? data.cpf : "carregando"} onChange={handleInputChange} />
+              <InputField label="Nome" name="nome" value={tecData.nome || ''} onChange={handleInputChange} />
+              <InputField label="CPF" name="cpf" value={tecData.cpf || ''} onChange={handleInputChange} />
             </div>
             <div className={styles.row}>
-              <InputField label="Email" name="email" value={data ? data.email : "carregando"} onChange={handleInputChange} />
-              <InputField label="RG" name="rg" value={data ? data.rg : "carregando"} onChange={handleInputChange} />
+              <InputField label="Email" name="email" value={tecData.email || ''} onChange={handleInputChange} />
+              <InputField label="RG" name="rg" value={tecData.rg || ''} onChange={handleInputChange} />
             </div>
             <div className={styles.row}>
-              <InputField label="Celular" name="celular" value={data ? data.celular : "carregando"} onChange={handleInputChange} />
-              <InputField label="Data de Nascimento" name="birthday" value={data ? data.birthday : "carregando"} onChange={handleInputChange} />
+              <InputField label="Celular" name="fone" value={tecData.fone || ''} onChange={handleInputChange} />
+              <InputField label="Data de Nascimento" name="datanasc" value={tecData.datanasc || ''} onChange={handleInputChange} />
             </div>
           </>
         )}
-        {name === "Alterar informações pessoais" && editing && (
+        {name === 'Alterar informações de endereço' && (
           <>
             <div className={styles.row}>
-              <InputField label="Nome" name="name" value={tecData ? tecData.name : "carregando"} onChange={handleInputChange} />
-              <InputField label="CPF" name="cpf" value={tecData ? tecData.cpf : "n deu de pegar os dados"} onChange={handleInputChange} />
+              <InputField label="CEP" name="cep" value={tecData.cep || ''} onChange={handleInputChange} />
+              <InputField label="UF" name="uf" value={tecData.uf || ''} onChange={handleInputChange} />
+              <InputField label="Cidade" name="cidade" value={tecData.cidade || ''} onChange={handleInputChange} />
             </div>
             <div className={styles.row}>
-              <InputField label="Email" name="email" value={tecData ? tecData.email : "n deu de pegar os dados"} onChange={handleInputChange} />
-              <InputField label="RG" name="rg" value={tecData ? tecData.rg : "n deu de pegar os dados"} onChange={handleInputChange} />
+              <InputField label="Bairro" name="bairro" value={tecData.bairro || ''} onChange={handleInputChange} />
+              <InputField label="Numero" name="numero" value={tecData.numero || ''} onChange={handleInputChange} />
             </div>
             <div className={styles.row}>
-              <InputField label="Celular" name="celular" value={tecData ? tecData.celular : "n deu de pegar os dados"} onChange={handleInputChange} />
-              <InputField label="Data de Nascimento" name="birthday" value={tecData ? tecData.birthday : "n deu de pegar os dados"} onChange={handleInputChange} />
-            </div>
-            <div className={styles.btnsComentario}>
-              <button type='submit' className={styles.btnComentario} onClick={() => {
-                submitComentario(tecData.id);
-                setEditing(!editing);
-              }}>Alterar</button>
-              <button type='submit' className={styles.btnComentario} onClick={() => setEditing(!editing)}>Cancelar</button>
+              <InputField label="Logradouro" name="logradouro" value={tecData.logradouro || ''} onChange={handleInputChange} />
             </div>
           </>
         )}
-        {name === "Alterar informações de endereço" && !editing && (
-          <>
-            <div className={styles.row}>
-              <InputField label="CEP" name="cep" value={data ? data.cep : "n deu de pegar os dados"} onChange={handleInputChange} />
-              <InputField label="UF" name="uf" value={data ? data.uf : "n deu de pegar os dados"} onChange={handleInputChange} />
-              <InputField label="Cidade" name="cidade" value={data ? data.cidade : "n deu de pegar os dados"} onChange={handleInputChange} />
-            </div>
-            <div className={styles.row}>
-              <InputField label="Bairro" name="bairro" value={data ? data.bairro : "n deu de pegar os dados"} onChange={handleInputChange} />
-              <InputField label="Numero" name="numero" value={data ? data.numero : "n deu de pegar os dados"} onChange={handleInputChange} />
-            </div>
-            <div className={styles.row}>
-              <InputField label="Logradouro" name="logradouro" value={data ? data.logradouro : "n deu de pegar os dados"} onChange={handleInputChange} />
-              <InputField label="Endereço" name="endereco" value={data ? data.endereco : "n deu de pegar os dados"} onChange={handleInputChange} />
-            </div>
-          </>
+        {name === 'Alterar Descrição' && (
+          <div className={styles.row}>
+            <textarea
+              name="obs"
+              value={tecData.obs || ''}
+              onChange={handleInputChange}
+              className={`${styles.obsField} ${styles.input}`}
+            />
+          </div>
         )}
-        {name === "Alterar informações de endereço" && editing && (
-          <>
-            <div className={styles.row}>
-              <InputField label="CEP" name="cep" value={tecData ? tecData.cep : "n deu de pegar os dados"} onChange={handleInputChange} />
-              <InputField label="UF" name="uf" value={tecData ? tecData.uf : "n deu de pegar os dados"} onChange={handleInputChange} />
-              <InputField label="Cidade" name="cidade" value={tecData ? tecData.cidade : "n deu de pegar os dados"} onChange={handleInputChange} />
-            </div>
-            <div className={styles.row}>
-              <InputField label="Bairro" name="bairro" value={tecData ? tecData.bairro : "n deu de pegar os dados"} onChange={handleInputChange} />
-              <InputField label="Numero" name="numero" value={tecData ? tecData.numero : "n deu de pegar os dados"} onChange={handleInputChange} />
-            </div>
-            <div className={styles.row}>
-              <InputField label="Logradouro" name="logradouro" value={tecData ? tecData.logradouro : "n deu de pegar os dados"} onChange={handleInputChange} />
-              <InputField label="Endereço" name="endereco" value={tecData ? tecData.endereco : "n deu de pegar os dados"} onChange={handleInputChange} />
-            </div>
-            <div className={styles.btnsComentario}>
-              <button type='submit' className={styles.btnComentario} onClick={() => {
-                submitComentario(tecData.id);
-                setEditing(!editing);
-              }}>Alterar</button>
-              <button type='submit' className={styles.btnComentario} onClick={() => setEditing(!editing)}>Cancelar</button>
-            </div>
-          </>
+        {editing && (
+          <div className={styles.btnsComentario}>
+            <button type="button" className={styles.btnComentario} onClick={() => {
+              updateTecData();
+              setEditing(false);
+            }}>Salvar</button>
+            <button type="button" className={styles.btnComentario} onClick={() => setEditing(false)}>Cancelar</button>
+          </div>
         )}
       </div>
     </div>

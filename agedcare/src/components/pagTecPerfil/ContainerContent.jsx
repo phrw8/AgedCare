@@ -52,9 +52,13 @@ const ContainerContent = () => {
                     <div className={styles.row3}>
                         <ContainerPersonal name="Alterar informações pessoais" data={dataUser} />
                         <ContainerPersonal name="Alterar informações de endereço" data={dataUser} />
+                        
                     </div>
                     <div className={styles.row4}>
-                        <ContainerDesc data={dataUser} />
+                        <ContainerPersonal name="Alterar Descrição" data={dataUser} />
+                    </div>
+                    <div className={styles.row4}>
+                        
                     </div>
                 </div>
             </div>
