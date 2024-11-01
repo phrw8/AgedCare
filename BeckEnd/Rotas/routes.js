@@ -12,7 +12,8 @@ router.patch('/usuario', UserController.RotaAtualizarUsuario);
 // Tecnico rotas
 router.post('/cadastro-tec', verificarPermissaoTecnico, upload, UserController.RotaCadastroTec); 
 router.patch('/perfilTecAtualiza', upload, UserController.RotaPerfilTec); 
-router.patch('/disponibilidade', UserController.RotaAtualizarDisponibilidade)
+router.patch('/disponibilidade', UserController.RotaAtualizarDisponibilidades)
+router.patch('/lugares',UserController.RotaAtualizarLugares)
 router.get('/perfilTec', UserController.RotaPerfilTecGet); 
 router.get('/tecnico/:id', UserController.RotaObterTecnicoPorId); 
 

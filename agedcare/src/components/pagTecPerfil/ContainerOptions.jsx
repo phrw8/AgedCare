@@ -6,26 +6,41 @@ import { RiHospitalLine } from "react-icons/ri";
 import { IoHomeOutline } from "react-icons/io5";
 import { PiSunHorizon, PiSunDimLight, PiMoonDuotone, PiMoonFill } from "react-icons/pi";
 import { SlEyeglass } from "react-icons/sl";
-import { AiOutlineCalendar } from "react-icons/ai"; // Ícone para Fds
+import { AiOutlineCalendar } from "react-icons/ai";
+import { FaClinicMedical } from "react-icons/fa";
 
 export const ContainerOptions = ({ name, data }) => {
     const [availability, setAvailability] = useState({
         Dia: false,
-        Tarde: false,
         Noite: false,
-        Pernoite: false,
+        Tarde: false,
         Fds: false,
+        Pernoite: false,
+    });
+
+    const [availaLugar, setAvailaLugar] = useState({
+        Domicilio: false,
+        Hospital: false,
+        Asilo: false,
+        Clinica: false,
     });
     const [isEditing, setIsEditing] = useState(false);
 
     useEffect(() => {
         if (data) {
             setAvailability({
-                Dia: Boolean(data.dia),
-                Tarde: Boolean(data.tarde),
-                Noite: Boolean(data.noite),
-                Pernoite: Boolean(data.pernoite),
-                Fds: Boolean(data.fds),
+                Dia: data.dia === 'true',
+                Noite: data.noite === 'true',
+                Tarde: data.tarde === 'true',
+                Fds: data.fds === 'true',
+                Pernoite: data.pernoite === 'true',
+            });
+
+            setAvailaLugar({
+                Domicilio: data.domicilio === 'true',
+                Hospital: data.hospital === 'true',
+                Asilo: data.asilo === 'true',
+                Clinica: data.clinica === 'true',
             });
         }
     }, [data]);
@@ -34,29 +49,27 @@ export const ContainerOptions = ({ name, data }) => {
         return <p>Carregando dados...</p>;
     }
 
-    const locaisAptosAll = {
-        Domicilio: data.domicilio,
-        Hospital: data.hospital,
-        Asilo: data.asilo,
-        Clinica: data.clinica,
-    };
-    const locais = Object.entries(locaisAptosAll)
-        .filter(([key, value]) => value)
-        .map(([key]) => key);
-
     const icones = {
         'Asilo': SlEyeglass,
         'Hospital': RiHospitalLine,
         'Domicilio': IoHomeOutline,
+        'Clinica': FaClinicMedical,
         'Dia': PiSunHorizon,
-        'Tarde': PiSunDimLight,
         'Noite': PiMoonDuotone,
+        'Tarde': PiSunDimLight,
+        'Fds': AiOutlineCalendar,
         'Pernoite': PiMoonFill,
-        'Fds': AiOutlineCalendar, // Ícone para Fds
     };
 
     const handleAvailabilityChange = (key) => {
         setAvailability((prev) => ({
+            ...prev,
+            [key]: !prev[key],
+        }));
+    };
+
+    const handleAvailaLugar = (key) => {
+        setAvailaLugar((prev) => ({
             ...prev,
             [key]: !prev[key],
         }));
@@ -69,9 +82,8 @@ export const ContainerOptions = ({ name, data }) => {
             console.error('Código do técnico não encontrado.');
             return;
         }
-
         try {
-            const response = await fetch('http://localhost:5050/perfilTecAtualiza', {
+            const response = await fetch('http://localhost:5050/disponibilidade', {
                 method: 'PATCH',
                 credentials: 'include',
                 headers: {
@@ -80,24 +92,16 @@ export const ContainerOptions = ({ name, data }) => {
                 body: JSON.stringify({
                     cod,
                     dia: availability.Dia,
-                    tarde: availability.Tarde,
                     noite: availability.Noite,
-                    pernoite: availability.Pernoite,
+                    tarde: availability.Tarde,
                     fds: availability.Fds,
+                    pernoite: availability.Pernoite,
                 }),
             });
 
-            console.log('Status da resposta:', response.status);
-        console.log('Headers da resposta:', response.headers);
-
             if (!response.ok) {
-                let errorMessage = 'Erro ao atualizar a disponibilidade.';
-                try {
-                    const errorData = await response.json();
-                    errorMessage = errorData.message || errorMessage;
-                } catch (jsonError) {
-                    console.error('Resposta da API não contém JSON válido.');
-                }
+                const errorData = await response.json();
+                const errorMessage = errorData.message || 'Erro ao atualizar a disponibilidade.';
                 console.error(errorMessage);
                 alert(errorMessage);
                 return;
@@ -109,6 +113,46 @@ export const ContainerOptions = ({ name, data }) => {
         } catch (error) {
             console.error('Erro ao atualizar a disponibilidade:', error);
             alert(`Erro ao atualizar a disponibilidade: ${error.message}`);
+        }
+    };
+
+    const updateAvailaLugar = async () => {
+        const cod = sessionStorage.getItem('user');
+        if (!cod) {
+            alert('Código do técnico não encontrado. Faça login novamente.');
+            console.error('Código do técnico não encontrado.');
+            return;
+        }
+        try {
+            const response = await fetch('http://localhost:5050/lugares', { // Rota específica para atualizar locais
+                method: 'PATCH',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    cod,
+                    domicilio: availaLugar.Domicilio,
+                    hospital: availaLugar.Hospital,
+                    asilo: availaLugar.Asilo,
+                    clinica: availaLugar.Clinica,
+                }),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                const errorMessage = errorData.message || 'Erro ao atualizar os locais aptos.';
+                console.error(errorMessage);
+                alert(errorMessage);
+                return;
+            }
+
+            console.log('Locais aptos atualizados com sucesso.');
+            setIsEditing(false);
+            window.location.reload();
+        } catch (error) {
+            console.error('Erro ao atualizar os locais aptos:', error);
+            alert(`Erro ao atualizar os locais aptos: ${error.message}`);
         }
     };
 
@@ -140,17 +184,32 @@ export const ContainerOptions = ({ name, data }) => {
                             ))}
                         </>
                     )}
-                    {name === "Locais aptos" && locais.map((local, index) => (
-                        <div key={index} className={styles.itens}>
+                    {name === "Locais aptos" && Object.keys(availaLugar).map((key) => (
+                        <div key={key} className={styles.itens}>
                             <IconContext.Provider value={{ className: styles.icon }}>
-                                {icones[local] && React.createElement(icones[local])}
+                                {icones[key] && React.createElement(icones[key])}
                             </IconContext.Provider>
-                            {local}
+                            <label>
+                                {key}
+                                <input
+                                    type="checkbox"
+                                    checked={availaLugar[key]}
+                                    onChange={() => isEditing && handleAvailaLugar(key)}
+                                    disabled={!isEditing}
+                                />
+                            </label>
                         </div>
                     ))}
                 </div>
                 {isEditing && (
-                    <button onClick={updateAvailability} className={styles.btnComentario}>Salvar</button>
+                    <>
+                        {name === "Disponibilidade" && (
+                            <button onClick={updateAvailability} className={styles.btnComentario}>Salvar Disponibilidade</button>
+                        )}
+                        {name === "Locais aptos" && (
+                            <button onClick={updateAvailaLugar} className={styles.btnComentario}>Salvar Locais</button>
+                        )}
+                    </>
                 )}
             </div>
         </div>

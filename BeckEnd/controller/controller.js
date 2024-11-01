@@ -281,7 +281,7 @@ class UserController {
                 UPDATE aged.tecnico
                 SET ${updateFields.join(', ')}
                 WHERE cod_usuario=?
-            `;
+            `;  
             updateValues.push(cod_usuario);
     
             // Execução da query
@@ -299,17 +299,122 @@ class UserController {
     }
     
 
-    async RotaAtualizarDisponibilidade(req,res){
+    async RotaAtualizarDisponibilidades(req, res) {
         try {
-            const cod_usuario = req.session.user.cod
-
-            const{dia, noite, tarde, fds, pernoite} =req.body
-
+            const cod_usuario = req.session.user.cod; // Recupera o código do usuário da sessão
+    
+            // Extrai os campos enviados no corpo da requisição
+            const { dia, noite, tarde, fds, pernoite } = req.body;
+    
+            const updateFields = [];
+            const updateValues = [];
+    
+            // Adiciona os campos de disponibilidade para atualização, caso sejam fornecidos
+            if (dia !== undefined) {
+                updateFields.push('dia=?');
+                updateValues.push(dia ? 'true' : 'false'); // Converte booleano para string
+            }
+            if (noite !== undefined) {
+                updateFields.push('noite=?');
+                updateValues.push(noite ? 'true' : 'false'); // Converte booleano para string
+            }
+            if (tarde !== undefined) {
+                updateFields.push('tarde=?');
+                updateValues.push(tarde ? 'true' : 'false'); // Converte booleano para string
+            }
+            if (fds !== undefined) {
+                updateFields.push('fds=?');
+                updateValues.push(fds ? 'true' : 'false'); // Converte booleano para string
+            }
+            if (pernoite !== undefined) {
+                updateFields.push('pernoite=?');
+                updateValues.push(pernoite ? 'true' : 'false'); // Converte booleano para string
+            }
+    
+            // Se nenhum campo foi enviado para atualização, retorna erro
+            if (updateFields.length === 0) {
+                return res.status(400).json({ error: 'Nenhum campo de disponibilidade para atualizar.' });
+            }
+    
+            // Construção dinâmica da query
+            const query = `
+                UPDATE tecnico
+                SET ${updateFields.join(', ')}
+                WHERE cod_usuario=?
+            `;
+            updateValues.push(cod_usuario);
+    
+            // Execução da query
+            connection.query(query, updateValues, function (error, results, fields) {
+                if (error) {
+                    return res.status(500).send({ error: error.message });
+                }
+                res.status(200).send({ message: 'Disponibilidades atualizadas com sucesso!' });
+            });
         } catch (error) {
-            console.log(error)
+            res.status(500).send({ error: error.message });
         }
     }
+    
 
+    async RotaAtualizarLugares(req, res) {
+        try {
+            const cod_usuario = req.session.user.cod; // Recupera o código do usuário da sessão
+    
+            // Extrai os campos enviados no corpo da requisição
+            const { domicilio,hospital,asilo,clinica} = req.body;
+    
+            const updateFields = [];
+            const updateValues = [];
+    
+            // Adiciona os campos de disponibilidade para atualização, caso sejam fornecidos
+            if (domicilio !== undefined) {
+                updateFields.push('domicilio=?');
+                updateValues.push(domicilio ? 'true' : 'false'); // Converte booleano para string
+            }
+            if (hospital !== undefined) {
+                updateFields.push('hospital=?');
+                updateValues.push(hospital ? 'true' : 'false'); // Converte booleano para string
+            }
+            if (asilo !== undefined) {
+                updateFields.push('asilo=?');
+                updateValues.push(asilo ? 'true' : 'false'); // Converte booleano para string
+            }
+            if (asilo !== undefined) {
+                updateFields.push('asilo=?');
+                updateValues.push(asilo ? 'true' : 'false'); // Converte booleano para string
+            }
+            if (clinica !== undefined) {
+                updateFields.push('clinica=?');
+                updateValues.push(clinica ? 'true' : 'false'); // Converte booleano para string
+            }
+    
+            // Se nenhum campo foi enviado para atualização, retorna erro
+            if (updateFields.length === 0) {
+                return res.status(400).json({ error: 'Nenhum campo de disponibilidade para atualizar.' });
+            }
+    
+            // Construção dinâmica da query
+            const query = `
+                UPDATE tecnico
+                SET ${updateFields.join(', ')}
+                WHERE cod_usuario=?
+            `;
+            updateValues.push(cod_usuario);
+    
+            // Execução da query
+            connection.query(query, updateValues, function (error, results, fields) {
+                if (error) {
+                    return res.status(500).send({ error: error.message });
+                }
+                res.status(200).send({ message: 'Disponibilidades atualizadas com sucesso!' });
+            });
+        } catch (error) {
+            res.status(500).send({ error: error.message });
+        }
+    }
+    
+    
     //rota do perfil do tecnico que retorna informaçoes dele baseado no tecnico auntenticado
     async RotaPerfilTecGet(req, res) {
         try {
