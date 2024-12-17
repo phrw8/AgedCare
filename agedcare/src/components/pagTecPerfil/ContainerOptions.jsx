@@ -124,7 +124,7 @@ export const ContainerOptions = ({ name, data }) => {
             return;
         }
         try {
-            const response = await fetch('http://localhost:5050/lugares', { // Rota específica para atualizar locais
+            const response = await fetch('http://localhost:5050/lugares', { 
                 method: 'PATCH',
                 credentials: 'include',
                 headers: {
