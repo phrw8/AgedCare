@@ -3,52 +3,49 @@ import styles from './tecDocs.module.css'
 import { NormalInput } from './inputs/NormalInput'
 import { useState } from 'react'
 import { useEffect } from 'react'
+import { ImageCheckbox } from './inputs/ImageCheckbox'
 
 export const TecDocs = ({ data, updateData }) => {
-  // const [file, setFile] = useState(null);
-  // const handleFileChange = (event) => {
-  //   setFile(event.target.files[0]);
-  // };
+  const [selectedValue, setSelectedValue] = useState(null);
+  const [avatar,setAvatar] = useState()
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
+  // Função para atualizar o estado do valor selecionado
+  const handleSelection = (value) => {
+    setSelectedValue(value);
+    setAvatar(value)
+  };
 
-  //   try {
-  //     const fileUrl= URL.createObjectURL(file)
-  //     const jsonUrl=JSON.stringify(fileUrl)
-  //     const response = await fetch('http://localhost:3000/users', {
-  //       method: 'POST',
-  //       body: jsonUrl
-  //     });
-      
-  //     const data = await response.json();
-  //     console.log('Resposta do servidor:', data);
-  //   } catch (error) {
-  //     console.error('Erro ao enviar imagem:', error);
-  //   }
-  // };
+  useEffect(() => {
+    console.log(avatar); 
+  }, [avatar]);
   return (
     <>
       <div className={styles.content}>
         <label className={styles.title}>Documentos</label>
         <div className={styles.row1}>
-          <form action="" onSubmit={(e)=>handleSubmit(e)}>
-          <label className={styles.label}>Certificado Profissional</label>
-          <NormalInput type="file" onChange={(e)=>{
-            handleFileChange(e)
-            }} />
-            <button type='submit'>Envia ai paizao</button>
-            </form>
+          <form action="" onSubmit={(e) => handleSubmit(e)}>
+            <label className={styles.label}>Escolha seu avatar!</label>
+            <div className={styles.imagesContainer}>
+              <ImageCheckbox value={1} isSelected={selectedValue === 1} onSelect={handleSelection} />
+              <ImageCheckbox value={2} isSelected={selectedValue === 2} onSelect={handleSelection} />
+              <ImageCheckbox value={3} isSelected={selectedValue === 3} onSelect={handleSelection} />
+              
+            </div>
+          </form>
         </div>
-        <div className={styles.row2}>
-          <label className={styles.label}>Foto Identidade</label>
-          <NormalInput type="file" onChange={(e) => handleFileChange(e)} />
-        </div>
-        <div className={styles.row3}>
-          <label className={styles.label}>Foto de perfil</label>
-          <NormalInput type="file" onChange={(e) => handleFileChange(e)} />
-        </div>
+
       </div>
     </>
   )
 }
+
+{/* 
+<div className={styles.row2}>
+  <label className={styles.label}>Foto Identidade</label>
+  <NormalInput type="file" onChange={(e) => handleFileChange(e)} />
+</div>
+<div className={styles.row3}>
+  <label className={styles.label}>Foto de perfil</label>
+  <NormalInput type="file" onChange={(e) => handleFileChange(e)} />
+</div>
+*/}

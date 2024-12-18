@@ -1,21 +1,31 @@
-.title{
-    color: rgba(0, 18, 34,.7);
+.title {
+    color: rgba(0, 18, 34, .7);
     font-weight: 400;
     font-size: 1.5rem;
     text-transform: uppercase;
     text-align: center;
-    border-bottom:1px solid #ccc ;
+    border-bottom: 1px solid #ccc;
     padding-bottom: .5rem;
 }
-.content{
+
+.content {
     display: flex;
     flex-direction: column;
     gap: 1.4rem;
 }
-.label{
-    color: rgb(1, 47, 89,.9);
+
+.label {
+    color: rgb(1, 47, 89, .9);
     font-weight: 500;
     font-size: 1.2rem;
-    text-align:center;
-    
+    text-align: center;
+
+}
+
+.imagesContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
 }
