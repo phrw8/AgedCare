@@ -51,6 +51,7 @@
 .h3foggy {
     color: black;
     font-weight: 500;
+    cursor: pointer;
 }
 
 .contentRow {
@@ -138,6 +139,7 @@
     padding: 70;
     margin: 0;
 }
+
 
 
 
