@@ -2,14 +2,15 @@ import React from 'react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import './index.css';
-
+import { Link } from 'react-router-dom';
 const index = () => {
   return (
     <>
       <Header />
       <div className="content-container">
+        
         <section className="about-us">
-          <h1>Sobre Nós</h1>
+          <Link to='/'><h1>Sobre Nós</h1></Link>
           <p>Bem-vindo ao AgedCare, a plataforma inovadora criada para facilitar a contratação de técnicos de enfermagem qualificados e experientes. Sabemos que encontrar o profissional certo pode ser um desafio, e é por isso que estamos aqui para ajudar. Nosso objetivo é conectar você com técnicos de enfermagem que atendem às suas necessidades específicas, oferecendo um serviço de alta qualidade e confiança.</p>
         </section>
 

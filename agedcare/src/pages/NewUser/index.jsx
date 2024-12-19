@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './newUser.module.css'
 import FormNewUser from '../../components/pagNewUser/FormNewUser'
-
+import { Link } from 'react-router-dom';
 const index = () => {
   return (
     <>
@@ -19,8 +19,9 @@ const index = () => {
 
             <div className={styles.formContainer}>
                 <FormNewUser/>
+                
             </div>
-
+            <button className={styles.btnLog}><Link to='/' className={styles.linkSemEstilo}>Voltar</Link></button>
         </div>
        
     </div>

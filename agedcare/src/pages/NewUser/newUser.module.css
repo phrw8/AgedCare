@@ -143,3 +143,29 @@ background: linear-gradient(173deg, rgba(31,144,248,0) 16%, rgba(31,144,248,1) 1
         width: 90% ;
     }
 }
+
+
+.btnLog {
+    position: fixed;
+    top: 5px;
+    left: 5px;
+    display: flex;
+    align-self: flex-start;
+    border-radius: 1rem;
+    padding: .3rem 1rem;
+    background-color: #82C3FF;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: 2px 2px 20px 0px rgba(0,0,0,0.75);
+    transition: transform ease .5s;
+    margin-top: 10px;
+    margin-left: 5px;
+  }
+
+  btnLog:hover{
+    background-color: #fff;
+    color: #012F59 ;
+    opacity: .9;
+    transform: scale(.9);
+} 
