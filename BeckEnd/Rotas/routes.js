@@ -17,6 +17,8 @@ router.patch('/lugares',UserController.RotaAtualizarLugares)
 router.get('/perfilTec', UserController.RotaPerfilTecGet); 
 router.get('/tecnico/:id', UserController.RotaObterTecnicoPorId); 
 router.patch('/avatar',UserController.RotaAtualizarAvatar)
+router.patch('/banner',UserController.RotaAtualizarBanner)
+
 
 //  Rotas padrão
 router.get('/home', UserController.RotaHome);

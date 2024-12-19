@@ -317,6 +317,39 @@ class UserController {
         
     }
     
+
+    async RotaAtualizarBanner(req,res){
+        const cod_usuario = req.session.user?.cod; // Verifica se o user existe na sessão
+    const { banner } = req.body; // Obtém avatar do body
+
+    if (!cod_usuario) {
+        return res.status(401).json({ error: 'Usuário não autenticado.' });
+    }
+
+    if (!banner) {
+        return res.status(400).json({ error: 'Avatar não informado.' });
+    }
+
+    const query = `
+        UPDATE tecnico
+        SET banner = ?
+        WHERE cod_usuario = ?
+    `;
+
+    connection.query(query, [banner, cod_usuario], (error, results) => {
+        if (error) {
+            console.error('Erro ao atualizar banner:', error.message);
+            return res.status(500).json({ error: 'Erro ao atualizar banner.' });
+        }
+
+        if (results.affectedRows === 0) {
+            return res.status(404).json({ error: 'Técnico não encontrado.' });
+        }
+
+        res.status(200).json({ message: ' Banner atualizado com sucesso!' });
+    });
+        
+    }
     
 
     async RotaAtualizarDisponibilidades(req, res) {
