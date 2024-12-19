@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './login.module.css';
+import { Link } from 'react-router-dom';
 
 import FormLogin from '../../components/pagLogin/FormLogin';
 
@@ -22,7 +23,7 @@ const Index = () => {
               <h1>Aged Care</h1>
               
                 <FormLogin />
-
+                <button className={styles.btnLog}><Link to='/' className={styles.linkSemEstilo}>Voltar</Link></button>
             </div>
           </div>
         </div>

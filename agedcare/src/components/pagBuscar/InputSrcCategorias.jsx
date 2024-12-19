@@ -25,9 +25,9 @@ return (
 <div className={styles.app}>
 <div className={styles.row}>
 <div className={styles.textGroup}>
-<Input name={"manha"} handleChange={handleDisponibilidadeChange} />
+<Input name={"dia"} handleChange={handleDisponibilidadeChange} />
 <div className={styles.icon}><PiSunHorizon /></div>
-<p>Manhã</p>
+<p>dia</p>
 </div>
 <div className={styles.textGroup}>
 <Input name={"noite"} handleChange={handleDisponibilidadeChange} />

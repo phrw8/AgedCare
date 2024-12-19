@@ -61,44 +61,45 @@ class UserController {
     async RotaCadastroTec(req, res) {
         try {
             const cod_usuario = req.session.user.cod;
-            const { nome, cpf, datanasc, org, rg, email, fone, sexo, estado, logradouro, numero, cidade, uf, bairro, cep, dia, noite, tarde, fds, pernoite, domicilio, hospital, asilo, clinica, km, obs} = req.body;
-
-            const dateRegex = /^\d{2}\/\d{2}\/\d{4}$/
-
-        if (!dateRegex.test(datanasc)) {
-            return res.status(400).json({ error: 'Formato de data inválido. Use DD/MM/YYYY.' });
-        }
-
-            if (!req.files || !req.files.foto || !req.files.identidade) {
-              return res.status(400).json({ error: 'Alguma imagem não foi enviada.' });
-            }
-
-            const foto = req.files.foto[0].filename; 
-            const identidade = req.files.identidade[0].filename;
-
-            const query = `
-                INSERT INTO aged.tecnico (nome, cpf, datanasc, org, rg, email, fone, sexo, estado, 
-                    logradouro, numero, cidade, uf, bairro, cep, dia, noite, 
-                    tarde, fds, pernoite, domicilio, hospital, asilo, clinica, 
-                    km, foto, identidade, obs, cod_usuario) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            `;
             
-            connection.query(query, [nome, cpf, datanasc, org, rg, email, fone, sexo, estado, 
+            const {
+                nome, cpf, datanasc, org, rg, email, fone, sexo, estado, 
                 logradouro, numero, cidade, uf, bairro, cep, dia, noite, 
                 tarde, fds, pernoite, domicilio, hospital, asilo, clinica, 
-                km, foto, identidade, obs, cod_usuario], function (error, results, fields) {
-                if (error) {
-                    res.status(500).send({ error: error.message });
-                } else {
-                    res.status(200).send({ message: 'Dados inseridos com sucesso!' });
-                }
-            });
+                km, obs, avatar, banner
+            } = req.body;
+    
+            // Validação de data no formato DD/MM/YYYY
+            const dateRegex = /^\d{2}\/\d{2}\/\d{4}$/;
+            if (!dateRegex.test(datanasc)) {
+                return res.status(400).json({ error: 'Formato de data inválido. Use DD/MM/YYYY.' });
+            }
+    
+            const query = `
+    INSERT INTO tecnico (nome, cpf, datanasc, org, rg, email, fone, sexo, estado, 
+        logradouro, numero, cidade, uf, bairro, cep, dia, noite, tarde, fds, 
+        pernoite, domicilio, hospital, asilo, clinica, km, obs, avatar, banner, cod_usuario) 
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+`;
 
+        const values = [
+            nome, cpf, datanasc, org, rg, email, fone, sexo, estado, 
+            logradouro, numero, cidade, uf, bairro, cep, dia, noite, tarde, 
+            fds, pernoite, domicilio, hospital, asilo, clinica, km, obs, avatar, banner, cod_usuario
+        ];
+
+    
+            connection.query(query, values, function (error, results) {
+                if (error) {
+                    return res.status(500).json({ error: error.message });
+                } 
+                res.status(200).json({ message: 'Dados do técnico inseridos com sucesso!' });
+            });
         } catch (error) {
-            res.status(500).send({ error: error.message });
+            res.status(500).json({ error: error.message });
         }
     }
+    
     //rota home que retornar os dados de todos tecnicos
     async RotaHome(req,res){
         try {
@@ -132,7 +133,7 @@ class UserController {
     async RotaPerfilTec(req, res) {
         try {
             const cod_usuario = req.session.user.cod; // Recupera o código do usuário da sessão
-    
+            
             // Extrai os campos enviados no corpo da requisição
             const {
                 nome, cpf, datanasc, org, rg, email, fone, sexo, estado,
@@ -154,22 +155,7 @@ class UserController {
                 updateValues.push(datanasc);
             }
     
-            // Validação das imagens, caso estejam presentes
-            let foto, identidade;
-            if (req.files) {
-                if (req.files.foto) {
-                    foto = req.files.foto[0].filename;
-                    updateFields.push('foto=?');
-                    updateValues.push(foto);
-                }
-                if (req.files.identidade) {
-                    identidade = req.files.identidade[0].filename;
-                    updateFields.push('identidade=?');
-                    updateValues.push(identidade);
-                }
-            }
-    
-            // Adiciona os outros campos para atualização, caso sejam fornecidos
+            // Adiciona os campos enviados para atualização
             if (nome) {
                 updateFields.push('nome=?');
                 updateValues.push(nome);
@@ -281,7 +267,7 @@ class UserController {
                 UPDATE aged.tecnico
                 SET ${updateFields.join(', ')}
                 WHERE cod_usuario=?
-            `;  
+            `;
             updateValues.push(cod_usuario);
     
             // Execução da query
@@ -297,6 +283,7 @@ class UserController {
             res.status(500).send({ error: error.message });
         }
     }
+    
     
 
     async RotaAtualizarDisponibilidades(req, res) {

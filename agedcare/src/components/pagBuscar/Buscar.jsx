@@ -23,6 +23,7 @@ const response = await fetch('http://localhost:5050/home');
 if (!response.ok) throw new Error('Erro ao buscar dados');
 const data = await response.json();
 setCuidadoresData(data);
+console.log(cuidadoresData)
 } catch (err) {
 setError(err.message);
 } finally {
@@ -102,7 +103,7 @@ handleDisponibilidadeChange={handleDisponibilidadeChange}
 {cuidadoresFiltrados.map(tecnico => (
 <Card
 key={tecnico.cod}
-name={tecnico.nome}
+name={tecnico.name}
 img={tecnico.foto}
 age={tecnico.datanasc}
 cidade={tecnico.cidade}

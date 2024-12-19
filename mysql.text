@@ -35,10 +35,9 @@ CREATE TABLE tecnico (
   asilo ENUM('true', 'false'),
   clinica ENUM('true', 'false'),
   km varchar(20),
-  foto varchar(100) NOT NULL,
-  identidade varchar(100) NOT NULL,
   obs varchar(500) not null,
-  certificado varchar(400),
+  avatar varchar(500) not null,
+  banner varchar(500)not null,
   cod_usuario INT,
   FOREIGN KEY (cod_usuario) REFERENCES usuarios(cod)
 );
