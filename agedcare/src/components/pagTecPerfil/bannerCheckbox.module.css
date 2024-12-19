@@ -1,37 +1,44 @@
 .card {
-    width: 100%;
-    height: 200px; /* Altura definida do card */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px; /* Espaço entre os banners */
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 2px solid transparent; /* Inicialmente sem borda */
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  
-  .card:hover {
-    transform: scale(1.05); /* Dá um efeito de zoom quando o mouse passa */
-  }
-  
-  .selected {
-    border-color: #0285ff; /* Cor da borda quando selecionado */
-    box-shadow: 0 4px 15px rgba(0, 133, 255, 0.4); /* Sombra para destacar o selecionado */
-  }
-  
-  .checkbox {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .banner {
-    width: 100%; 
-    height: auto; 
-    object-fit: cover; /* Faz a imagem preencher o container sem distorcer */
-    object-position: center; /* Centraliza a imagem dentro do container */
-  }
+  width: 100%;
+  min-height: 200px;
+  /* Altura definida do card */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  /* Espaço entre os banners */
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid transparent;
+  /* Inicialmente sem borda */
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  /* Dá um efeito de zoom quando o mouse passa */
+}
+
+.selected {
+  border-color: #0285ff;
+  box-shadow: 0 4px 15px rgba(0, 133, 255, 0.4);
+  background-color: #0285ffad;
+}
+
+.checkbox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.banner {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 90%;
+  height: 40vh;
+}

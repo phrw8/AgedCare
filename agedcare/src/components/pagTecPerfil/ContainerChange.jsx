@@ -52,7 +52,8 @@ export const ContainerChange = ({ setShowScreen, opt, setShowScreen2 }) => {
         <h1>Escolha um Banner!</h1>
         <div className={styles.main2}>
           <BannerCheckbox value={1} isSelected={selectedBannerValue === 1} onSelect={handleBannerSelection} />
-          <BannerCheckbox value={1} isSelected={selectedBannerValue === 1} onSelect={handleBannerSelection} />
+          <BannerCheckbox value={2} isSelected={selectedBannerValue === 2} onSelect={handleBannerSelection} />
+          <BannerCheckbox value={3} isSelected={selectedBannerValue === 3} onSelect={handleBannerSelection} />
           
           
         </div>

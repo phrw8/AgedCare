@@ -37,16 +37,16 @@ const ContainerContent = () => {
         fetchUserData(); // Chama a função para buscar os dados do usuário
     }, [cod_usuario]);
     const [showScreen, setShowScreen] = useState();
-    const [showScreen2,setShowScreen2]=useState()
+    const [showScreen2, setShowScreen2] = useState()
 
     return (
         <>
             <div className={styles.app}>
-                {showScreen && <div className={styles.foggyBack}></div>}
+                {(showScreen || showScreen2) && <div className={styles.foggyBack}></div>}
                 <div className={styles.square}>
                     <div className={styles.banner}></div>
                     <div className={styles.row1}>
-                        <ContainerData data={dataUser} showScreen={showScreen} setShowScreen={setShowScreen} setShowScreen2={setShowScreen2} showScreen2={showScreen2}/>
+                        <ContainerData data={dataUser} showScreen={showScreen} setShowScreen={setShowScreen} setShowScreen2={setShowScreen2} showScreen2={showScreen2} />
                         <Card data={dataUser} />
                     </div>
                     <div className={styles.row2}>
@@ -61,9 +61,9 @@ const ContainerContent = () => {
                     <div className={styles.row4}>
                         <ContainerPersonal name="Alterar Descrição" data={dataUser} />
                     </div>
-                </div>  
-                {showScreen && <ContainerChange setShowScreen={setShowScreen} className={styles.containerChange} opt={1}/>}
-                {showScreen2 && <ContainerChange setShowScreen2={setShowScreen2} className={styles.containerChange} opt={2}/>}
+                </div>
+                {showScreen && <ContainerChange setShowScreen={setShowScreen} className={styles.containerChange} opt={1} />}
+                {showScreen2 && <ContainerChange setShowScreen2={setShowScreen2} className={styles.containerChange} opt={2} />}
             </div>
         </>
     );
