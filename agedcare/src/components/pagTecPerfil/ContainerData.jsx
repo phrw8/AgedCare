@@ -2,7 +2,7 @@ import React from 'react'
 // import styles from "./containerData.module.css"
 import styles from './../../pages/PerfilTec/tecnicoPerfil.module.css'
 
-const ContainerData = ({data}) => {
+const ContainerData = ({data,showScreen,setShowScreen,setShowScreen2,showScreen2}) => {
   return (
     <>
       <div className={styles.app2}>
@@ -19,15 +19,16 @@ const ContainerData = ({data}) => {
 
         </div>
         <div className={styles.row2}>
-          <h3 className={styles.h3foggy}>Alterar foto de perfil</h3>
+          <h3 className={styles.h3foggy} onClick={() => setShowScreen(!showScreen)}>Alterar foto de perfil</h3>
           <hr className={styles.divisoria} />
-          <h3 className={styles.h3foggy}>Alterar banner</h3>
+          <h3 className={styles.h3foggy} onClick={()=>setShowScreen2(!showScreen2)}>Alterar banner</h3>
         </div>
-
 
       </div>
     </>
+
   )
 }
 
 export default ContainerData
+

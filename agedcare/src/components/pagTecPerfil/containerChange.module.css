@@ -1,0 +1,89 @@
+.container {
+    position: fixed; /* Fixa o elemento em relação à janela */
+    width: 75%;
+    height: 75%;
+    background-color: #f0f0f0; /* Apenas para visualização */
+    top: 50%; /* Move o centro verticalmente */
+    left: 50%; /* Move o centro horizontalmente */
+    transform: translate(-50%, -50%); /* Centraliza corrigindo a posição */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Estilização opcional */
+    border-radius: 10px; /* Cantos arredondados */
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+
+}
+
+
+.main {
+    display: flex;
+    width: 100%;
+    height: 85%;
+    overflow-y: auto; /* Permite rolagem vertical */
+    display: flex;
+    flex-direction: row; /* Alinha os itens verticalmente */
+    align-items: center;
+    gap: 10px; /* Espaçamento entre as imagens */
+    padding: 10px;
+    border-top: 1px solid #012F59;
+    border-bottom: 1px solid #012F59;
+
+}
+
+.main2 {
+    width: 100%;
+    height: 85%;
+    overflow-y: auto; /* Permite rolagem vertical */
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column; /* Alinha os itens verticalmente */
+    align-items: center;
+    padding: 10px;
+    border-top: 1px solid #012F59;
+    border-bottom: 1px solid #012F59;
+  }
+  
+.row{
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: end;
+    height: 15%;
+    width: 100%;
+    gap: 1rem;
+}
+
+.button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Espaçamento entre os itens no botão */
+    padding: 10px 20px; /* Aumenta o espaço interno do botão */
+    background-color: #0285ff; /* Cor primária */
+    border: 1px solid #012F59; /* Cor do contorno */
+    border-radius: 8px; /* Bordas arredondadas */
+    color: #ffffff; /* Cor do texto */
+    font-size: 16px; /* Tamanho da fonte */
+    font-weight: 500; /* Negrito moderado */
+    cursor: pointer; /* Muda o cursor para indicar que é clicável */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: all 0.3s ease; /* Transições suaves para efeitos */
+}
+
+.button:hover {
+    background-color: #015cbf; /* Cor mais escura no hover */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Aumenta a sombra no hover */
+    transform: scale(1.05); /* Aumenta levemente o tamanho */
+}
+
+.button:active {
+    background-color: #014789; /* Cor ainda mais escura no clique */
+    transform: scale(0.98); /* Reduz ligeiramente no clique */
+}
+
+.button:focus {
+    outline: 2px solid #82b1ff; /* Adiciona um contorno visível para acessibilidade */
+    outline-offset: 2px; /* Afasta o contorno do botão */
+}

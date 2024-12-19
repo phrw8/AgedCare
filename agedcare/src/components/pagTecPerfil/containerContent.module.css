@@ -45,6 +45,18 @@
     padding: 3rem;
     gap: 2rem;
 }
+
+.foggyBack {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+    z-index: 10; /* Certifique-se de que está acima dos elementos, mas abaixo do ContainerChange */
+  }
+
+
 @media (max-width:550px) {
     .app{
         padding: .5rem;
