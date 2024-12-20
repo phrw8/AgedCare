@@ -6,6 +6,7 @@ import { ContainerOptions } from './ContainerOptions';
 import { ContainerPersonal } from './ContainerPersonal';
 import { ContainerDesc } from './ContainerDesc';
 import { ContainerChange } from './ContainerChange';
+import { Banner } from './Banner';
 
 const ContainerContent = () => {
     // Obtém o 'cod_usuario' armazenado na sessão
@@ -44,7 +45,7 @@ const ContainerContent = () => {
             <div className={styles.app}>
                 {(showScreen || showScreen2) && <div className={styles.foggyBack}></div>}
                 <div className={styles.square}>
-                    <div className={styles.banner}></div>
+                <Banner data={dataUser}/>
                     <div className={styles.row1}>
                         <ContainerData data={dataUser} showScreen={showScreen} setShowScreen={setShowScreen} setShowScreen2={setShowScreen2} showScreen2={showScreen2} />
                         <Card data={dataUser} />

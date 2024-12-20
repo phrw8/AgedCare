@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState,useEffect}from 'react';
 import { Link } from 'react-router-dom';
 import styles from './card.module.css';
 import { RiHospitalLine } from "react-icons/ri";
@@ -7,8 +7,27 @@ import { PiSunHorizon, PiSunDimLight, PiMoonDuotone, PiMoonFill } from "react-ic
 import { SlEyeglass } from "react-icons/sl";
 import { MdLocalHospital } from "react-icons/md";  // Ícone para clínica
 import tecImage from './../../assets/tec1.jpeg'
+import Avatar1 from '../../assets/tec1.jpeg'
+import Avatar2 from '../../assets/tec2.jpeg'
+import Avatar3 from '../../assets/tecpic.png'
 
 export const Card = ({ name, age, cidade, locaisAptos, img, id }) => {
+    const [value, setValue] = useState(null); // Estado inicial como null
+    
+      // Atualiza o estado com o avatar de 'data' quando disponível
+      useEffect(() => {
+        if (img) {
+          setValue(Number(img));
+        }
+      }, [img]);
+    
+      // Determina qual avatar exibir
+      const avatarToDisplay =
+        value === 1 ? Avatar1 :
+        value === 2 ? Avatar2 :
+        value === 3 ? Avatar3 :
+        null;
+    
     const calcularIdade = (age) => {
         const [dia, mes, ano] = age.split('/');
         const dataNascimentoObj = new Date(`${ano}-${mes}-${dia}`);
@@ -59,7 +78,7 @@ export const Card = ({ name, age, cidade, locaisAptos, img, id }) => {
         <Link to={`/TecnicoInfo/${id}`}  className={styles.link}>
             <div className={styles.card}>
                 <div className={styles.imgPerfil}>
-                    {img && <img src={img} alt={``} />}
+                    {avatarToDisplay && <img src={avatarToDisplay} alt={``} />}
                 </div>
                 <h4 className={styles.name}>{name}</h4>
                 <h5 className={styles.personalInfo}>{calcularIdade(age)}, {cidade}</h5>

@@ -1,56 +1,80 @@
+
+/* card.module.css */
+
 .card {
-    width: 300px;
-    min-height: 400px; /* Aumente a altura mínima do cartão */
-    border-radius: 2rem;
-    background-color: #fff;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 320px;
+    margin: 20px auto;
+    padding: 16px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .divisoria1 {
+    border: none;
+    border-top: 2px solid #f0f0f0;
+    margin: 10px 0 20px;
+  }
+  
+  .divisoria {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 15px 0;
+  }
+  
+  .image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .username {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin: 10px 0;
+  }
+  
+  .avaliacao {
     display: flex;
     flex-direction: column;
-    gap: .5rem;
     align-items: center;
-}
-
-.image {
-    width: 150px;
-    height: 150px; /* Aumente a altura da imagem */
-    background: url("./../../assets/tecpic.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.username {
-    color: #06080a;
-    font-size: 1.3rem;
-    font-weight: 500;
-}
-
-.divisoria1 {
-    width: 100%;
-    height: 1px;
-    background-color: #ccc;
-    margin-top: 2rem;
-}
-
-.divisoria {
-    width: 100%;
-    height: 1px;
-    background-color: #ccc;
-}
-
-
-
-.avaliacao {
-    display: flex; 
-    align-items: center; 
-}
-
-.numeroAvalicao {
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-}
-
-.avNum {
-    font-size: 1.2rem;
-    font-weight: 300;
-}
+    justify-content: center;
+    margin-top: 15px;
+  }
+  
+  .numeroAvalicao {
+    margin-top: 8px;
+  }
+  
+  .avNum {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  @media screen and (max-width: 480px) {
+    .card {
+      padding: 12px;
+    }
+  
+    .username {
+      font-size: 16px;
+    }
+  
+    .avNum {
+      font-size: 12px;
+    }
+  }
+  

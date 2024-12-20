@@ -111,7 +111,7 @@ export const Buscar = () => {
                         <Card
                             key={tecnico.cod}
                             name={tecnico.nome} // Alteração para garantir que o nome seja passado corretamente
-                            img={tecnico.foto}
+                            img={tecnico.avatar}
                             age={tecnico.datanasc}
                             cidade={tecnico.cidade}
                             locaisAptos={{

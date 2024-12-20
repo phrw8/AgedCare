@@ -52,7 +52,7 @@ export const Home = () => {
                         <Card 
                             key={tecnico.cod} 
                             name={tecnico.nome} 
-                            img={tecnico.foto} 
+                            img={tecnico.avatar} 
                             age={tecnico.datanasc} 
                             cidade={tecnico.cidade} 
                             locaisAptos={{

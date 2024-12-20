@@ -13,11 +13,15 @@ export const TecDocs = ({ data, updateData }) => {
   const handleSelection = (value) => {
     setSelectedValue(value);
     setAvatar(value)
+    updateData('avatar',value)
   };
-
   useEffect(() => {
     console.log(avatar); 
   }, [avatar]);
+
+  useEffect(()=>{
+    console.log(data.avatar)
+  },[avatar])
   return (
     <>
       <div className={styles.content}>

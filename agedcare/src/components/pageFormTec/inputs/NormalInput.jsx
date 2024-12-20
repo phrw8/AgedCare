@@ -41,6 +41,11 @@ export const NormalInput = ({ value, onChange, label, type, dado }) => {
                     className={value ? `${styles.input} ${styles.hasValue} ` : `${styles.input}`}
                     value={value}
                     onChange={onChange}
+                    maxLength={
+                        dado === "uf" ? 2 : 
+                        dado === "numero" ? 5 : 
+                        dado === "cep" ? 10 : undefined
+                    }
                 />
 
                 <label className={styles.placeholder}>{label}</label>

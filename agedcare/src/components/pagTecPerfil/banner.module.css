@@ -1,12 +1,3 @@
-.app{
-    width: 100%;
-
-    padding: 2rem;
-}
-.square{
-    background-color: #fff;
-    padding: 1rem;
-}
 .banner{
     width: 100%;
     height: 40vh;
@@ -20,10 +11,4 @@
 .banner img{
     width: 100%;
     height: 40vh;
-}
-@media (max-width:550px) {
-    .app{
-        padding: .5rem;
-    }
-    
 }
