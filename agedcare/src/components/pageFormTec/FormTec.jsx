@@ -42,6 +42,7 @@ const FormTec = ({ screen, setScreen }) => {
         km: "",
         obs: "deixar aki default so pra testa",
         avatar:1,
+        banner:1,
     };
 
     const [data, setData] = useState(formData);

@@ -15,11 +15,14 @@ import { SlEyeglass } from "react-icons/sl";
 import { Comentarios } from './avaliacao/Comentarios';
 // import { Rating } from './avaliacao/Rating';
 import { ShowRating } from './avaliacao/ShowRating';
+import Avatar1 from '../../assets/tec1.jpeg'
+import Avatar2 from '../../assets/tec2.jpeg'
+import Avatar3 from '../../assets/tecpic.png'
 
 export const ContainerData = ({ data }) => {
     // Garantindo que `data` existe antes de acessar suas propriedades
     const tecId = data ? data.cod : "";
-   // const currentUserId = localStorage.getItem("id");
+    // const currentUserId = localStorage.getItem("id");
     const numeroTelefone = data ? data.fone : null;
     const mensagem = 'Olá, venho da AgedCare!';
     const mensagemCodificada = encodeURIComponent(mensagem);
@@ -52,19 +55,19 @@ export const ContainerData = ({ data }) => {
 
     function calcularIdade(dataNascimento) {
         if (!dataNascimento) return "Data inválida";
-        
+
         // Converte a data do formato DD/MM/YYYY para YYYY-MM-DD
         const partes = dataNascimento.split('/');
         const dataNascimentoFormatada = `${partes[2]}-${partes[1]}-${partes[0]}`;
-        
+
         const dataNascimentoObj = new Date(dataNascimentoFormatada);
         const dataAtual = new Date();
         const diff = dataAtual - dataNascimentoObj;
         const idade = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
-        
+
         return isNaN(idade) ? "Data inválida" : idade;
     }
-    
+
 
     const icones = {
         'asilo': SlEyeglass,
@@ -78,6 +81,21 @@ export const ContainerData = ({ data }) => {
         'fds': PiSunHorizon,
     };
 
+    const [value, setValue] = useState(null); // Estado inicial como null
+
+    // Atualiza o estado com o avatar de 'data' quando disponível
+    useEffect(() => {
+        if (data?.avatar) {
+            setValue(Number(data.avatar));
+        }
+    }, [data]);
+
+    // Determina qual avatar exibir
+    const avatarToDisplay =
+        value === 1 ? Avatar1 :
+            value === 2 ? Avatar2 :
+                value === 3 ? Avatar3 :
+                    null;
     // function calcularMediaAvaliacoes(objeto, nm) {
     //     const filhos = Object.keys(objeto);
     //     let somaAvaliacoes = 0;
@@ -138,7 +156,7 @@ export const ContainerData = ({ data }) => {
             <div className={styles.app}>
                 <div className={styles.row0Container}>
                     <div className={styles.card}>
-                        <img src={tec1Image} className={styles.img} alt="Foto do técnico" />
+                    {avatarToDisplay && <img src={avatarToDisplay} alt="Foto do técnico" className={styles.img} />} 
                     </div>
                     <div className={styles.dataContainer}>
                         <div className={styles.avaliacao}>
@@ -199,7 +217,7 @@ export const ContainerData = ({ data }) => {
                     </div>
                 </div>
                 <div className={styles.row2Container}>
-                    <Comentarios/>
+                    <Comentarios />
                 </div>
             </div>
         </>
