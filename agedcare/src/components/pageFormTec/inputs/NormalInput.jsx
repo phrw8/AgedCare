@@ -42,9 +42,12 @@ export const NormalInput = ({ value, onChange, label, type, dado }) => {
                     value={value}
                     onChange={onChange}
                     maxLength={
-                        dado === "uf" ? 2 : 
-                        dado === "numero" ? 5 : 
-                        dado === "cep" ? 10 : undefined
+                        dado === 'uf' ? 2 :
+                        dado === 'numero' ? 5 :
+                        dado === 'cep' ? 10 :
+                        dado === 'org' || dado === 'rg' ? 10 :
+                        dado === 'cpf' ? 20 :
+                        undefined
                     }
                 />
 

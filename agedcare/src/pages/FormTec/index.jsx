@@ -18,7 +18,7 @@ const index = () => {
     <>
     <Header/>
     <div className={styles.app}>
-        <h3 className={styles.title}>Mande suas informações para nós o(a) avaliar!</h3>
+        <h3 className={styles.title}>Mande suas informações para nós avaliá-lo(a)!</h3>
        <div className={styles.formContainer}>
         <div className={styles.iconContainer}>
 

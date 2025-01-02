@@ -107,7 +107,7 @@ const index = () => {
                     <div className={styles.feedbacks}>
                         <Feedback name="Maria Aparecida" comment="A facilidade de uso do site, juntamente com a atenção e cuidado demonstrados por sua equipe, tornam a experiência de encontrar um cuidador de confiança incrivelmente tranquila e reconfortante." image={img1} id={1} />
                         <Feedback name="Claudioni Pinho" comment="Encontrei alguém maravilhoso para cuidar da minha mãe, alguém que não só é altamente competente e profissional, mas também traz consigo carinho e humanidade." image={img2} id={2} />
-                        <Feedback name="Emilio Escobar" comment="Muito chave recomendo" image={img3} id={3} />
+                        <Feedback name="Emilio Escobar" comment="Encontrei alguém maravilhoso para cuidar da minha mãe, alguém que não só é altamente competente e profissional, mas também traz consigo carinho e humanidade." image={img3} id={3} />
                     </div>
                 </div>
 
