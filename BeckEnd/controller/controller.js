@@ -264,7 +264,7 @@ class UserController {
     
             // Construção dinâmica da query
             const query = `
-                UPDATE aged.tecnico
+                UPDATE testecomentarios.tecnico
                 SET ${updateFields.join(', ')}
                 WHERE cod_usuario=?
             `;
@@ -472,16 +472,21 @@ class UserController {
     async RotaPerfilTecGet(req, res) {
         try {
             const cod_usuario = req.session.user.cod; 
-            const query = 'SELECT * FROM aged.tecnico WHERE cod_usuario=?';
+            const query = 'SELECT * FROM testecomentarios.tecnico WHERE cod_usuario=?';
             connection.query(query, [cod_usuario], function (error, results, fields) {
                 if (error) {
+                    console.error('Erro na consulta:', error); // Logando o erro
                     res.status(500).send({ error: error.message });
                 } else {
+                    if (results.length === 0) {
+                        return res.status(404).send({ error: 'Nenhum dado encontrado para o usuário.' });
+                    }
                     res.status(200).json({ data: results[0] });
                 }
             });
 
         } catch (error) {
+            console.error('Erro inesperado:', error);
             res.status(500).send({ error: error.message });
         }
     }
@@ -534,7 +539,7 @@ async RotaObterTecnicoPorId(req, res) {
     try {
         const { id } = req.params; // Captura o ID do técnico a partir dos parâmetros da URL
 
-        const query = 'SELECT * FROM aged.tecnico WHERE cod = ?';
+        const query = 'SELECT * FROM testecomentarios.tecnico WHERE cod = ?';
         connection.query(query, [id], function (error, results, fields) {
             if (error) {
                 res.status(500).send({ error: error.message });
@@ -584,7 +589,7 @@ async RotaObterUsuarioId(req, res) {
     try {
         const { cod } = req.params; 
 
-        const query = 'SELECT * FROM aged.usuarios WHERE cod = ?';
+        const query = 'SELECT * FROM testecomentarios.usuarios WHERE cod = ?';
         connection.query(query, [cod], function (error, results, fields) {
             if (error) {
                 res.status(500).send({ error: error.message });
@@ -617,6 +622,106 @@ async RotaAtualizar(req, res) {
                 res.status(200).send({ message: 'Dados atualizados com sucesso!' });
             }
         });
+    } catch (error) {
+        res.status(500).send({ error: error.message });
+    }
+}
+async RotaPostComentario(req, res) {
+    const { cod_usuario, comentario, parentId, createdAt, avaliacao, tecId, userName } = req.body;
+
+    // Valida os campos obrigatórios
+    if (!cod_usuario || !comentario || !createdAt || !avaliacao || !tecId || !userName ) {
+        return res.status(400).send({ error: 'Campos obrigatórios ausentes.' });
+    }
+
+    // Construção da query para inserção
+    const query = `
+        INSERT INTO avaliacoes (comentario, userId, parentId, createdAt, avaliacao, tecId, userName)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+    `;
+    const values = [comentario, cod_usuario, parentId, createdAt, avaliacao, tecId, userName];
+
+    // Execução da query
+    connection.query(query, values, function (error, results, fields) {
+        if (error) {
+            res.status(500).send({ error: error.message });
+        } else {
+            res.status(200).send({ message: 'Comentário inserido com sucesso!', id: results.insertId });
+        }
+    });
+
+} catch (error) {
+    res.status(500).send({ error: error.message });
+}
+
+async RotaGetComentario(req, res) {
+    try {
+        const { tecId } = req.params; // Extrai o tecId dos parâmetros da rota
+        
+        if (!tecId) {
+            return res.status(400).send({ error: 'ID do técnico não fornecido.' });
+        }
+
+        const query = `
+            SELECT * FROM avaliacoes
+            WHERE tecId = ?
+        `;
+
+        connection.query(query, [tecId], function (error, results, fields) {
+            if (error) {
+                res.status(500).send({ error: error.message });
+            } else {
+                res.status(200).json({ data: results });
+            }
+        });
+    } catch (error) {
+        res.status(500).send({ error: error.message });
+    }
+}
+async RotaDeleteComentario(req, res) {
+    try {
+        const cod_usuario = req.session.user.cod; // Recupera o código do usuário da sessão
+        const { comentarioId } = req.params; // O ID do comentário que será deletado é passado pela URL
+        
+        // Verifica se o ID do comentário foi fornecido
+        if (!comentarioId) {
+            return res.status(400).send({ error: 'ID do comentário não fornecido.' });
+        }
+
+        // Consulta para verificar se o comentário existe e pertence ao usuário
+        const checkQuery = `
+            SELECT * FROM avaliacoes
+            WHERE id = ? AND cod_usuario = ?
+        `;
+
+        // Verifica se o comentário existe para o usuário
+        connection.query(checkQuery, [comentarioId, cod_usuario], function (error, results, fields) {
+            if (error) {
+                return res.status(500).send({ error: error.message });
+            }
+
+            if (results.length === 0) {
+                // Se não encontrar o comentário, retorna um erro
+                return res.status(404).send({ error: 'Comentário não encontrado ou não pertence ao usuário.' });
+            }
+
+            // Se o comentário existe, prossegue para a exclusão
+            const deleteQuery = `
+                DELETE FROM avaliacoes
+                WHERE id = ? AND cod_usuario = ?
+            `;
+            
+            // Executa a exclusão
+            connection.query(deleteQuery, [comentarioId, cod_usuario], function (error, results, fields) {
+                if (error) {
+                    return res.status(500).send({ error: error.message });
+                }
+                
+                // Se a exclusão for bem-sucedida, retorna uma mensagem de sucesso
+                res.status(200).send({ message: 'Comentário deletado com sucesso!' });
+            });
+        });
+
     } catch (error) {
         res.status(500).send({ error: error.message });
     }

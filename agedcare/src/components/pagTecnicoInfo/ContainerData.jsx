@@ -217,7 +217,7 @@ export const ContainerData = ({ data }) => {
                     </div>
                 </div>
                 <div className={styles.row2Container}>
-                    <Comentarios />
+                    <Comentarios  tecId={tecId} />
                 </div>
             </div>
         </>

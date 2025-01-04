@@ -41,3 +41,16 @@ CREATE TABLE tecnico (
   cod_usuario INT,
   FOREIGN KEY (cod_usuario) REFERENCES usuarios(cod)
 );
+
+CREATE TABLE avaliacoes (
+    id INT AUTO_INCREMENT,
+    comentario VARCHAR(180) NOT NULL,
+    userId INT NOT NULL,
+    parentId INT DEFAULT NULL,
+    createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+    avaliacao INT NOT NULL,
+    tecId INT NOT NULL,
+    userName VARCHAR(45) NOT NULL,
+    PRIMARY KEY (id),
+    UNIQUE KEY id_UNIQUE (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

@@ -4,7 +4,7 @@ class User {
     //funçao utilizada para criar o usuario no caso o cadastro
     criarUsuario(nome, email,senha,permissao) {
         return new Promise((resolve, reject) => {
-            const query = 'INSERT INTO aged.usuarios (nome,email,senha,permissao) VALUES (?, ?, ?, ?)';
+            const query = 'INSERT INTO testecomentarios.usuarios (nome,email,senha,permissao) VALUES (?, ?, ?, ?)';
             connection.query(query, [nome,email,senha,permissao], (error, result) => {
                 if (error) {
                     reject(error);
@@ -23,7 +23,7 @@ class User {
     //funçao para login do usuario
     Login(nome, senha) {
         return new Promise((resolve, reject) => {
-            const query = 'SELECT * FROM aged.usuarios WHERE nome = ? AND senha = ?';
+            const query = 'SELECT * FROM testecomentarios.usuarios WHERE nome = ? AND senha = ?';
             connection.query(query, [nome,senha], (error, results) => {
                 if (error) {
                     reject(error);
@@ -40,7 +40,7 @@ class User {
     //  nao esta sendo utilizada!!!
     CriarTecnico(nome,cpf,datanasc,org,rg,email,fone,sexo,estado,logradouro,numero,cidade,uf,bairro,cep,dia,noite,tarde,fds,pernoite,domicilio,hospital,asilo,clinica,km,foto,identidade,obs,cod_usario) {
         return new Promise((resolve, reject) => {
-            const query = 'INSERT INTO aged.tecnico (nome,cpf,datanasc,org,rg,email,fone,sexo,estado,logradouro,numero,cidade,uf,bairro,cep,dia,noite,tarde,fds,pernoite,domicilio,hospital,asilo,clinica,km,foto,identidade,obs,cod_usario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+            const query = 'INSERT INTO testecomentarios.tecnico (nome,cpf,datanasc,org,rg,email,fone,sexo,estado,logradouro,numero,cidade,uf,bairro,cep,dia,noite,tarde,fds,pernoite,domicilio,hospital,asilo,clinica,km,foto,identidade,obs,cod_usario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
             connection.query(query, [nome,cpf,datanasc,org,rg,email,fone,sexo,estado,logradouro,numero,cidade,uf,bairro,cep,dia,noite,tarde,fds,pernoite,domicilio,hospital,asilo,clinica,km,foto,identidade,obs,cod_usario], (error, result) => {
                 if (error) {
                     reject(error);
@@ -57,7 +57,7 @@ class User {
     //função de mostrar os tecnicos
     MostraTecnicos() {
         return new Promise((resolve, reject) => {
-            const query = 'SELECT * FROM aged.tecnico';
+            const query = 'SELECT * FROM testecomentarios.tecnico';
             connection.query(query, (error, results) => {
                 if (error) {
                     reject(error);
@@ -69,7 +69,7 @@ class User {
     }
     MostraUsuarios() {
         return new Promise((resolve, reject) => {
-            const query = 'SELECT * FROM aged.usuarios';
+            const query = 'SELECT * FROM testecomentarios.usuarios';
             connection.query(query, (error, results) => {
                 if (error) {
                     reject(error);

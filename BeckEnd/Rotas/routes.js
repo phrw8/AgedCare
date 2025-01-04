@@ -31,4 +31,9 @@ router.delete('/delete/:cod',UserController.RotaRetornaUsuarios)
 router.get('/user/:cod',UserController.RotaObterUsuarioId)
 router.put('/atualiza/:cod',UserController.RotaAtualizar)
 
+//comentario
+router.post('/comentario',UserController.RotaPostComentario); 
+router.get('/comentario/:tecId',UserController.RotaGetComentario); 
+router.delete('/comentario/:id',UserController.RotaGetComentario); 
+
 module.exports = router;

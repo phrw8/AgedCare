@@ -21,7 +21,12 @@ export const Rating = ({ avaliacao, setAvaliacao,rating,hover,setHover,setRating
                                 onMouseEnter={()=> setHover(currentRating)}
                                 onMouseLeave={()=>setHover(null)}
                             />
-                            <IoStarSharp className={styles.star}  color={currentRating <= (hover || rating) ? "#6f00ff" : "#4b4b4b"} />
+                            <IoStarSharp
+                            className={styles.star}  
+                            color={currentRating <= (hover || rating) ? "#6f00ff" : "#4b4b4b"}
+                            onMouseEnter={() => setHover(currentRating)}
+                            onMouseLeave={() => setHover(null)}
+                             />
 
                         </label>
                     )

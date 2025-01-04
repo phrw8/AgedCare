@@ -9,7 +9,7 @@ export const Home = () => {
     const [cidade, setCidade] = useState("");
     const [cidadeData, setCidadeData] = useState([]);
     const [skip, setSkip] = useState(0); // Estado para controlar a paginação
-    const limit = 12; // Limite de itens por página
+    const limit = 6; // Limite de itens por página
 
     useEffect(() => {
         if (cidade) {
