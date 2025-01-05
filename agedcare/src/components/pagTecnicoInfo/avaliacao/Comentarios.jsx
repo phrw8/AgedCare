@@ -131,28 +131,49 @@ export const Comentarios = ({ tecId }) => {
     }
 
     const deleteComment = async (comentarioId) => {
-        if (window.confirm("Tem certeza de que quer excluir esse comentario?"))
-            try {
-                const comentariosRelacionados = comentarios.filter(cm => cm.parentId === comentarioId);
-
-                for (const comentarioRelacionado of comentariosRelacionados) {
-                    await fetch(`http://localhost:5050/delete/${comentarioRelacionado.id}`, {
+        console.log(comentarioId)
+        if (!window.confirm("Tem certeza de que quer excluir esse comentário?")) {
+            return;
+        }
+    
+        try {
+            // Filtrar comentários relacionados
+            const comentariosRelacionados = comentarios.filter(cm => cm.parentId === comentarioId);
+    
+            // Excluir comentários relacionados
+            for (const comentarioRelacionado of comentariosRelacionados) {
+                try {
+                    const response = await fetch(`http://localhost:5050/comentario/${comentarioRelacionado.id}`, {
                         method: 'DELETE'
+                        
                     });
+    
+                    if (!response.ok) {
+                        throw new Error(`Erro ao excluir comentário relacionado com ID ${comentarioRelacionado.id}.`);
+                    }
+                } catch (error) {
+                    console.error(`Erro ao excluir comentário relacionado:`, error);
+                    alert(`Erro ao excluir comentário relacionado com ID ${comentarioRelacionado.id}.`);
                 }
-
-                const response = await fetch(`http://localhost:5050/delete/${comentarioId}`, {
-                    method: 'DELETE'
-                });
-
-                if (response.ok) {
-                    setComentarios(comentarios.filter(cm => cm.id !== comentarioId));
-                } else {
-                    console.error('Falha ao excluir comentário.');
-                }
-            } catch (error) {
-                console.error('Erro ao excluir comentário:', error);
             }
+    
+            // Excluir comentário principal
+            const response = await fetch(`http://localhost:5050/comentario/${comentarioId}`, {
+                method: 'DELETE'
+            });
+    
+            if (response.ok) {
+                setComentarios(comentarios.filter(cm => cm.id !== comentarioId));
+                alert('Comentário excluído com sucesso.');
+            } else {
+                const errorText = await response.text(); // Tentar pegar detalhes do erro
+                console.error('Falha ao excluir comentário principal:', errorText);
+                alert('Falha ao excluir comentário principal. Tente novamente.');
+            }
+        } catch (error) {
+            console.error('Erro inesperado ao excluir comentário:', error);
+            alert('Ocorreu um erro inesperado ao tentar excluir o comentário. Verifique a conexão e tente novamente.');
+        }
     };
     const updateComment = async (text, commentId) => {
         const data = {

@@ -679,23 +679,22 @@ async RotaGetComentario(req, res) {
     }
 }
 async RotaDeleteComentario(req, res) {
-    try {
-        const cod_usuario = req.session.user.cod; // Recupera o código do usuário da sessão
-        const { comentarioId } = req.params; // O ID do comentário que será deletado é passado pela URL
+    try {  
+        const { id } = req.params; // O ID do comentário que será deletado é passado pela URL
         
         // Verifica se o ID do comentário foi fornecido
-        if (!comentarioId) {
+        if (!id) {
             return res.status(400).send({ error: 'ID do comentário não fornecido.' });
         }
 
         // Consulta para verificar se o comentário existe e pertence ao usuário
         const checkQuery = `
             SELECT * FROM avaliacoes
-            WHERE id = ? AND cod_usuario = ?
+            WHERE id = ?
         `;
 
         // Verifica se o comentário existe para o usuário
-        connection.query(checkQuery, [comentarioId, cod_usuario], function (error, results, fields) {
+        connection.query(checkQuery, [id], function (error, results, fields) {
             if (error) {
                 return res.status(500).send({ error: error.message });
             }
@@ -708,11 +707,11 @@ async RotaDeleteComentario(req, res) {
             // Se o comentário existe, prossegue para a exclusão
             const deleteQuery = `
                 DELETE FROM avaliacoes
-                WHERE id = ? AND cod_usuario = ?
+                WHERE id = ?
             `;
             
             // Executa a exclusão
-            connection.query(deleteQuery, [comentarioId, cod_usuario], function (error, results, fields) {
+            connection.query(deleteQuery, [id], function (error, results, fields) {
                 if (error) {
                     return res.status(500).send({ error: error.message });
                 }
