@@ -264,7 +264,7 @@ class UserController {
     
             // Construção dinâmica da query
             const query = `
-                UPDATE testecomentarios.tecnico
+                UPDATE aged.tecnico
                 SET ${updateFields.join(', ')}
                 WHERE cod_usuario=?
             `;
@@ -472,7 +472,7 @@ class UserController {
     async RotaPerfilTecGet(req, res) {
         try {
             const cod_usuario = req.session.user.cod; 
-            const query = 'SELECT * FROM testecomentarios.tecnico WHERE cod_usuario=?';
+            const query = 'SELECT * FROM aged.tecnico WHERE cod_usuario=?';
             connection.query(query, [cod_usuario], function (error, results, fields) {
                 if (error) {
                     console.error('Erro na consulta:', error); // Logando o erro
@@ -539,7 +539,7 @@ async RotaObterTecnicoPorId(req, res) {
     try {
         const { id } = req.params; // Captura o ID do técnico a partir dos parâmetros da URL
 
-        const query = 'SELECT * FROM testecomentarios.tecnico WHERE cod = ?';
+        const query = 'SELECT * FROM aged.tecnico WHERE cod = ?';
         connection.query(query, [id], function (error, results, fields) {
             if (error) {
                 res.status(500).send({ error: error.message });
@@ -589,7 +589,7 @@ async RotaObterUsuarioId(req, res) {
     try {
         const { cod } = req.params; 
 
-        const query = 'SELECT * FROM testecomentarios.usuarios WHERE cod = ?';
+        const query = 'SELECT * FROM aged.usuarios WHERE cod = ?';
         connection.query(query, [cod], function (error, results, fields) {
             if (error) {
                 res.status(500).send({ error: error.message });
