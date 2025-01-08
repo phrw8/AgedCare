@@ -40,7 +40,7 @@ const FormTec = ({ screen, setScreen }) => {
         asilo: false,
         clinica: false,
         km: "",
-        obs: "deixar aki default so pra testa",
+        obs: "Parceiro(a) da AgedCare",
         avatar:1,
         banner:1,
     };
