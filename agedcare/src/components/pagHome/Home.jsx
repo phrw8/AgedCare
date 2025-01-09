@@ -14,7 +14,7 @@ export const Home = () => {
     useEffect(() => {
         if (cidade) {
             const cidadeLowerCase = cidade.toLowerCase();
-            const tecnicosFiltrados = tecnicosData.filter(tecnico => 
+            const tecnicosFiltrados = tecnicosData.filter(tecnico =>
                 tecnico.cidade.toLowerCase().includes(cidadeLowerCase)
             );
             setCidadeData(tecnicosFiltrados);
@@ -48,27 +48,30 @@ export const Home = () => {
 
             <div className={styles.content}>
                 {currentData.length > 0 ? (
-                    currentData.map(tecnico => (
-                        <Card 
-                            key={tecnico.cod} 
-                            name={tecnico.nome} 
-                            img={tecnico.avatar} 
-                            age={tecnico.datanasc} 
-                            cidade={tecnico.cidade} 
-                            locaisAptos={{
-                                dia: tecnico.dia,
-                                noite: tecnico.noite,
-                                tarde: tecnico.tarde,
-                                fds: tecnico.fds,
-                                pernoite: tecnico.pernoite,
-                                domicilio: tecnico.domicilio,
-                                hospital: tecnico.hospital,
-                                asilo: tecnico.asilo,
-                                clinica: tecnico.clinica
-                            }}
-                            id={tecnico.cod} 
-                        />
-                    ))
+                    currentData.map(tecnico => {
+                        console.log(tecnico.cod); // Exibindo cada técnico no console
+                        return (
+                            <Card
+                                key={tecnico.cod}
+                                name={tecnico.nome}
+                                img={tecnico.avatar}
+                                age={tecnico.datanasc}
+                                cidade={tecnico.cidade}
+                                locaisAptos={{
+                                    dia: tecnico.dia,
+                                    noite: tecnico.noite,
+                                    tarde: tecnico.tarde,
+                                    fds: tecnico.fds,
+                                    pernoite: tecnico.pernoite,
+                                    domicilio: tecnico.domicilio,
+                                    hospital: tecnico.hospital,
+                                    asilo: tecnico.asilo,
+                                    clinica: tecnico.clinica
+                                }}
+                                id={tecnico.cod}
+                            />
+                        );
+                    })
                 ) : (
                     <div className={styles.alert}>Nenhum cuidador encontrado</div>
                 )}

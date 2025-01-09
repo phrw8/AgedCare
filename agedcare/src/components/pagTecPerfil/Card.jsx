@@ -6,8 +6,9 @@ import Avatar2 from '../../assets/tec2.jpeg'
 import Avatar3 from '../../assets/tecpic.png'
 import {ShowRating} from './../pagTecnicoInfo/avaliacao/ShowRating'
 
-const Card = ({ data }) => {
+const Card = ({ data,dataUser,media }) => {
   const [value, setValue] = useState(null); // Estado inicial como null
+
 
   // Atualiza o estado com o avatar de 'data' quando disponível
   useEffect(() => {
@@ -33,11 +34,11 @@ const Card = ({ data }) => {
           {avatarToDisplay && <img src={avatarToDisplay} alt="Card " className={styles.image} />}
         </div>
         <hr className={styles.divisoria} />
-        <h3 className={styles.username}>{`@${data ? data.nome : "error"}`}</h3>
+        <h3 className={styles.username}>{`@${dataUser ? dataUser.nome : "error"}`}</h3>
         <div className={styles.avaliacao}>
-          <ShowRating rating={data ? data.avaliacao : "Nao possui avaliacoes"} title={true} />
+          <ShowRating rating={media ? media : "Nao possui avaliacoes"} title={true} />
           <div className={styles.numeroAvalicao}>
-            <p className={styles.avNum}>5,0/{data ? data.avaliacao : "Nao possui avaliacoes"}</p>
+            <p className={styles.avNum}>5,0/{media ? media : "Nao possui avaliacoes"}</p>
           </div>
         </div>
       </div>

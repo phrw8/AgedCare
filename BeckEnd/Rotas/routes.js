@@ -34,6 +34,6 @@ router.put('/atualiza/:cod',UserController.RotaAtualizar)
 //comentario
 router.post('/comentario',UserController.RotaPostComentario); 
 router.get('/comentario/:tecId',UserController.RotaGetComentario); 
-router.delete('/comentario/:id',UserController.RotaGetComentario); 
+router.delete('/comentario/:id',UserController.RotaDeleteComentario); 
 
 module.exports = router;

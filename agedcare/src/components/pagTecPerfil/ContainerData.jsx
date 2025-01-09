@@ -11,7 +11,7 @@ const ContainerData = ({data,showScreen,setShowScreen,setShowScreen2,showScreen2
         </div>
         <div className={styles.row}>
           <div >
-            <h3 className={styles.name}> Nome:{data ? data.nome : "error"}</h3>
+            <h3 className={styles.name}> Nome: {data ? data.nome : "error"}</h3>
             <h3 className={styles.name}>Cpf: {data ? data.cpf : "error"}</h3>
             <h3 className={styles.name}>Email: {data ? data.email : "error"}</h3>
           </div>

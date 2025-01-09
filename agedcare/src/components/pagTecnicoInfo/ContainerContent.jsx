@@ -25,24 +25,38 @@ const ContainerContent = ({ id }) => {
       null;
     
 
-    useEffect(() => {
+      useEffect(() => {
         const fetchTechnicianData = async () => {
             try {
-                if (id) {
-                    const url = `http://localhost:5050/tecnico/${id}`;
-                    const response = await fetch(url);
-                    if (!response.ok) {
-                        throw new Error('Erro ao obter os dados do técnico');
-                    }
-                    const result = await response.json();
-                    console.log('Dados recebidos:', result);
-                    setData(result);
+                if (!id) {
+                    console.warn('Nenhum ID fornecido para buscar os dados do técnico');
+                    return;
                 }
+    
+                const url = `http://localhost:5050/tecnico/${id}`;
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+    
+                if (!response.ok) {
+                    const errorDetails = await response.json();
+                    throw new Error(
+                        `Erro ao obter os dados do técnico: ${response.status} ${response.statusText} - ${errorDetails.message || 'Detalhes não disponíveis'}`
+                    );
+                }
+    
+                const result = await response.json();
+                console.log('Dados recebidos:', result);
+                setData(result);
             } catch (error) {
-                console.error('Erro na requisição:', error);
+                console.error('Erro ao buscar os dados do técnico:', error.message || error);
+                alert('Ocorreu um erro ao buscar os dados do técnico. Tente novamente mais tarde.');
             }
         };
-
+    
         fetchTechnicianData();
     }, [id]);
 

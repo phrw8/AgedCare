@@ -26,6 +26,9 @@ export const ContainerData = ({ data }) => {
     const numeroTelefone = data ? data.fone : null;
     const mensagem = 'Olá, venho da AgedCare!';
     const mensagemCodificada = encodeURIComponent(mensagem);
+    const [avaliacaoTec, setAvaliacaoTec] = useState();
+    const [mediaAvTec, setMediaAvTec] = useState();
+
 
     // Verificação de null e uso de valores padrão
     const locaisAptosData = data ? {
@@ -51,7 +54,7 @@ export const ContainerData = ({ data }) => {
         .filter(([local, apto]) => apto)
         .map(([local, apto]) => local);
 
-    // const [avaliacaoTec, setAvaliacaoTec] = useState();
+
 
     function calcularIdade(dataNascimento) {
         if (!dataNascimento) return "Data inválida";
@@ -89,6 +92,9 @@ export const ContainerData = ({ data }) => {
             setValue(Number(data.avatar));
         }
     }, [data]);
+    useEffect(()=>{
+        console.log(avaliacaoTec)
+    },[avaliacaoTec])
 
     // Determina qual avatar exibir
     const avatarToDisplay =
@@ -96,37 +102,50 @@ export const ContainerData = ({ data }) => {
             value === 2 ? Avatar2 :
                 value === 3 ? Avatar3 :
                     null;
-    // function calcularMediaAvaliacoes(objeto, nm) {
-    //     const filhos = Object.keys(objeto);
-    //     let somaAvaliacoes = 0;
-    //     let count = 0;
+    function calcularMediaAvaliacoes(array, nm) {
+        let somaAvaliacoes = 0;
+        let count = 0;
+        console.log(array)
 
-    //     filhos.forEach(filho => {
-    //         const avaliacao = objeto[filho].avaliacao;
-    //         if (avaliacao !== null && avaliacao !== undefined) {
-    //             somaAvaliacoes += objeto[filho].avaliacao;
-    //             count++;
-    //         }
-    //     });
+        array.forEach(item => {
+            console.log(item)
+            const avaliacao = item;
+            if (avaliacao !== null && avaliacao !== undefined) {
+                somaAvaliacoes += avaliacao;
+                count++;
+            }
+        });
 
-    //     const media = count > 0 ? (somaAvaliacoes / count).toFixed(1) : 'Não possui avaliações';
-    //     return nm ? media : count;
-    // }
+        const media = count > 0 ? (somaAvaliacoes / count).toFixed(1) : 'Não possui avaliações';
+        console.log(media)
+        return nm ? media : count;
+    }
+    useEffect(() => {
+        const fetchAvaliacaoTec = async () => {
+            try {
+                const response = await fetch(`http://localhost:5050/comentario/${tecId}`, {
+                    method: 'GET',
+                    credentials: 'include', // Inclui cookies na requisição para gerenciar a sessão
+                });
 
-    // useEffect(() => {
-    //     const avaliacaoDataTec = async () => {
-    //         try {
-    //             const response = await fetch(`http://localhost:3030/avaliacoes/tec/${tecId}`);
-    //             const data = await response.json();
-    //             setAvaliacaoTec(data);
-    //         } catch (error) {
-    //             console.error('Ocorreu um erro ao buscar as avaliações:', error);
-    //         }
-    //     };
-    //     if (tecId) {
-    //         avaliacaoDataTec();
-    //     }
-    // }, [tecId]);
+                if (!response.ok) {
+                    throw new Error(`Erro ao buscar os comentários. Status: ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                // Extrai apenas o campo "avaliacao" dos dados
+                const avaliacoes = data.data.map(comentario => comentario.avaliacao);
+
+                console.log('Avaliações:', avaliacoes); // Debug das avaliações extraídas
+                setAvaliacaoTec(avaliacoes)
+            } catch (error) {
+                console.error('Erro ao buscar os comentários:', error);
+            }
+        };
+
+        fetchAvaliacaoTec();
+    }, [tecId]);
 
     // useEffect(() => {
     //     const atualizarAvaliacao = async () => {
@@ -156,17 +175,17 @@ export const ContainerData = ({ data }) => {
             <div className={styles.app}>
                 <div className={styles.row0Container}>
                     <div className={styles.card}>
-                    {avatarToDisplay && <img src={avatarToDisplay} alt="Foto do técnico" className={styles.img} />} 
+                        {avatarToDisplay && <img src={avatarToDisplay} alt="Foto do técnico" className={styles.img} />}
                     </div>
                     <div className={styles.dataContainer}>
                         <div className={styles.avaliacao}>
-                            <ShowRating rating={/*avaliacaoTec ? calcularMediaAvaliacoes(avaliacaoTec, 1) : */"carregando"} title={true} />
+                            <ShowRating rating={avaliacaoTec ? calcularMediaAvaliacoes(avaliacaoTec, 1) : "carregando"} title={true} />
                             <div className={styles.avaliacao2}>
                                 <div className={styles.numeroAvalicao}>
-                                    <p className={styles.avNum}>5,0/{/*avaliacaoTec ? calcularMediaAvaliacoes(avaliacaoTec, 1) : */"carregando"}</p>
+                                    <p className={styles.avNum}>5,0/{avaliacaoTec ? calcularMediaAvaliacoes(avaliacaoTec, 1) : "carregando"}</p>
                                 </div>
                                 <div className={styles.quantidadeAvaliacoes}>
-                                    <p className={styles.avLengh}>{/*avaliacaoTec ? calcularMediaAvaliacoes(avaliacaoTec, 0) : */"carregando"} avaliações </p>
+                                    <p className={styles.avLengh}>{avaliacaoTec ? calcularMediaAvaliacoes(avaliacaoTec, 0) : "carregando"} avaliações </p>
                                 </div>
                             </div>
                         </div>
@@ -217,7 +236,7 @@ export const ContainerData = ({ data }) => {
                     </div>
                 </div>
                 <div className={styles.row2Container}>
-                    <Comentarios  tecId={tecId} />
+                    <Comentarios tecId={tecId} />
                 </div>
             </div>
         </>
